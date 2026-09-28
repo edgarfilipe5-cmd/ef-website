@@ -82,6 +82,7 @@ content:
           - { name: title, label: Título, type: string }
           - { name: body, label: Texto, type: text }
           - { name: video, label: Vídeo, type: file }
+          - { name: poster, label: Imagem de fallback, type: image }
           - { name: start, label: Início loop (s), type: number }
           - { name: end, label: Fim loop (s), type: number }
           - { name: focus_x, label: Foco horizontal, type: number }
@@ -157,6 +158,7 @@ content:
           - { name: title, label: Título, type: string }
           - { name: body, label: Texto, type: text }
           - { name: video, label: Vídeo, type: file }
+          - { name: poster, label: Imagem de fallback, type: image }
           - { name: start, label: Início loop (s), type: number }
           - { name: end, label: Fim loop (s), type: number }
           - { name: focus_x, label: Foco horizontal, type: number }
