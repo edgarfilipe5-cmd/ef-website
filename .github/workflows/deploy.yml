@@ -26,35 +26,6 @@ jobs:
         with:
           node-version: 22
 
-      - name: Prepare media
-        shell: bash
-        run: |
-          set -e
-          mkdir -p public/assets/images public/assets/videos .tmp-media
-          python -m pip install --quiet gdown
-
-          if [ ! -f public/assets/images/logo-white.png ]; then
-            gdown 13P-25QVYVtSo1_p-9wuzDKPLE2v_OD1Q -O public/assets/images/logo-white.png
-          fi
-
-          if [ ! -f public/assets/images/hero-sunset.jpg ]; then
-            gdown 1i1pbv_gHZhm-jpiy8ewvpWbG4iHf0lP_ -O public/assets/images/hero-sunset.jpg
-          fi
-
-          if [ ! -f public/assets/images/edgar-portrait.jpg ]; then
-            gdown 1XU7l9ET_01xuPE7PKlk3k5WAicIj0PgZ -O public/assets/images/edgar-portrait.jpg
-          fi
-
-          if [ ! -f public/assets/videos/training-loop.mp4 ]; then
-            gdown 1r0rJfrIpElyI84sgeRBnrxu2rDbilUWF -O .tmp-media/training.mov
-            ffmpeg -y -i .tmp-media/training.mov -an -vf "scale=1280:-2" -c:v libx264 -preset medium -crf 27 -movflags +faststart public/assets/videos/training-loop.mp4
-          fi
-
-          if [ ! -f public/assets/videos/studio-loop.mp4 ]; then
-            gdown 1UBrptlrj-vciVHhrO9Ozb6sXjqfbmrnB -O .tmp-media/studio.mov
-            ffmpeg -y -ss 1 -t 6 -i .tmp-media/studio.mov -an -vf "scale=1280:-2" -c:v libx264 -preset medium -crf 27 -movflags +faststart public/assets/videos/studio-loop.mp4
-          fi
-
       - name: Build
         run: npm run build
 
