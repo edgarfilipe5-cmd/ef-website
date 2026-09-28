@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>EF — Edgar Filipe Personal Trainer</title>
+  <meta name="description" content="EF Coaching: acompanhamento online personalizado durante 12 semanas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+<header class="site-nav">
+  <div class="inner">
+    <a href="#topo"><img src="./assets/images/logo-white.png" alt="Edgar Filipe Personal Trainer"></a>
+    <nav>
+      <a href="#coaching">Online</a>
+      <a href="#presencial">Presencial</a>
+      <a href="#metodo">Método</a>
+      <a href="#faq">FAQ</a>
+      <a id="applyTop" class="nav-apply" href="#">Candidatar-me ao EF Coaching</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="topo">
+  <div class="hero-bg"><img id="heroImage" alt="Edgar Filipe"></div>
+  <img class="hero-logo" src="./assets/images/logo-white.png" alt="">
+  <div class="hero-grid">
+    <div>
+      <div id="heroTag" class="hero-tag"></div>
+      <h1 id="heroTitle"></h1>
+      <p id="heroSub" class="hero-sub"></p>
+      <div class="hero-ctas">
+        <a id="applyHero" class="cta gold" href="#">Candidatar-me ao EF Coaching</a>
+        <a class="cta ghost" href="#presencial">Conhecer o Presencial</a>
+      </div>
+    </div>
+    <aside class="hero-panel">
+      <h3>Qual é o teu objetivo?</h3>
+      <div class="goal-buttons">
+        <button class="goal-btn active"></button>
+        <button class="goal-btn"></button>
+        <button class="goal-btn"></button>
+      </div>
+      <p id="goalCopy" class="goal-copy"></p>
+      <div class="hero-meta">
+        <div class="meta"><strong id="durationHero"></strong><span>duração</span></div>
+        <div class="meta"><strong id="priceHero"></strong><span>pagamento único</span></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>TREINO COM MÉTODO</span><span>RESULTADOS SEM PERDER A VIDA</span><span>APP + WHATSAPP</span><span>12 SEMANAS</span><span>199 €</span>
+    <span>TREINO COM MÉTODO</span><span>RESULTADOS SEM PERDER A VIDA</span><span>APP + WHATSAPP</span><span>12 SEMANAS</span><span>199 €</span>
+  </div>
+</div>
+
+<section class="section problem">
+  <div class="wrap split">
+    <div class="sticky"><div class="eyebrow">Vida real primeiro</div><h2 id="problemTitle"></h2></div>
+    <div><p id="problemBody" class="lead"></p><div id="problemAccent" class="statement"></div></div>
+  </div>
+</section>
+
+<section class="section" id="coaching">
+  <div class="wrap online-grid">
+    <div class="sticky">
+      <div class="eyebrow">EF Coaching</div>
+      <h2>Não recebes só um plano.</h2>
+      <p id="onlineIntro" class="lead" style="margin-top:28px"></p>
+      <div class="hero-ctas"><a id="applyOnline" class="cta gold" href="#">Candidatar-me ao EF Coaching</a></div>
+    </div>
+    <div id="onlineFeatures" class="feature-list"></div>
+  </div>
+</section>
+
+<section class="motion-band">
+  <video id="motionVideo" autoplay muted playsinline preload="metadata"></video>
+  <div class="shade"></div>
+  <div class="motion-copy">
+    <div class="eyebrow" style="color:#ccc">Treino em movimento</div>
+    <h2 id="motionTitle"></h2>
+    <p id="motionBody"></p>
+  </div>
+</section>
+
+<section class="section" id="metodo">
+  <div class="wrap split">
+    <div class="sticky">
+      <div class="eyebrow">Método EF</div>
+      <h2>Menos improviso.<br>Mais direção.</h2>
+      <p id="methodIntro" class="lead" style="margin-top:28px"></p>
+    </div>
+    <div id="methodSteps" class="steps"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split">
+    <div class="sticky"><div class="eyebrow">Para quem é</div><h2>Não tens de viver para o fitness.</h2></div>
+    <div><p id="fitIntro" class="lead"></p><div id="fitSteps" class="steps" style="margin-top:42px"></div></div>
+  </div>
+</section>
+
+<section class="section black">
+  <div class="wrap split">
+    <div class="sticky"><div class="eyebrow" style="color:#888">Depois da candidatura</div><h2>Sabes sempre o que acontece a seguir.</h2></div>
+    <div id="processSteps" class="feature-list"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split">
+    <div class="sticky"><div class="eyebrow">Progresso</div><h2>Não olho apenas para um número.</h2></div>
+    <div><p id="progressIntro" class="lead"></p><div id="progressCards" class="goal-cards progress-cards"></div></div>
+  </div>
+</section>
+
+<section class="about-grid" id="edgar">
+  <div class="about-photo"><img id="aboutImage" alt="Edgar Filipe"></div>
+  <div class="about-copy">
+    <div class="eyebrow" style="color:#888">Edgar Filipe</div>
+    <h2 id="aboutTitle"></h2>
+    <p id="aboutBody"></p>
+    <div class="price-lockup">
+      <div class="price">
+        <span>EF Coaching · <span id="aboutDuration"></span></span>
+        <strong id="aboutPrice"></strong>
+        <span>pagamento único</span>
+      </div>
+      <a id="applyAbout" class="cta gold" href="#">Candidatar-me</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="presencial">
+  <div class="wrap presential-grid">
+    <div class="presential-copy">
+      <div class="eyebrow">Personal Training presencial</div>
+      <h2 id="presentialTitle"></h2>
+      <p id="presentialBody" style="margin-top:28px"></p>
+      <p class="presential-price">Preço definido após avaliação inicial.</p>
+      <div class="hero-ctas"><a id="instagram" class="cta gold" href="#">Pedir avaliação presencial</a></div>
+    </div>
+    <div class="presential-video"><video id="presentialVideo" autoplay muted playsinline preload="metadata"></video></div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap faq-grid">
+    <div><div class="eyebrow">FAQ</div><h2>Sem letras pequenas.</h2></div>
+    <div id="faqList"></div>
+  </div>
+</section>
+
+<section class="section final">
+  <div class="wrap">
+    <h2 id="finalTitle"></h2>
+    <div><p id="finalBody"></p><a id="applyFinal" class="cta" href="#">Candidatar-me ao EF Coaching</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <img src="./assets/images/logo-white.png" alt="Edgar Filipe Personal Trainer">
+    <div><a href="https://www.instagram.com/edgar_filipe__pt/">Instagram</a></div>
+  </div>
+</footer>
+
+<script src="./src/app.js"></script>
+</body>
+</html>
