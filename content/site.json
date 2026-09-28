@@ -68,12 +68,13 @@
   "motion": {
     "title": "CIÊNCIA PARA ORIENTAR.<br><span>VIDA REAL</span> PARA DECIDIR.",
     "body": "O plano existe para te dar direção. O acompanhamento existe para perceber quando é altura de manter, progredir ou adaptar.",
-    "video": "/assets/videos/training-loop.mp4",
+    "video": "",
     "start": 0,
     "end": 6,
     "focus_x": 50,
     "focus_y": 50,
-    "zoom": 100
+    "zoom": 100,
+    "poster": "/assets/images/hero-sunset.jpg"
   },
   "method": {
     "intro": "Estrutura suficiente para evoluir. Flexibilidade suficiente para sobreviver à tua semana real.",
@@ -163,12 +164,13 @@
   "presential": {
     "title": "Treino presencial. Atenção total.",
     "body": "No The Clinic VIP, em Miramar, trabalho em treino individual, duo ou pequenos grupos até 3 pessoas. Começamos com uma avaliação inicial, eu trato de todo o planeamento do treino e fazemos uma avaliação mensal para acompanhar a evolução, corrigir o necessário e decidir os próximos passos.",
-    "video": "/assets/videos/studio-loop.mp4",
+    "video": "",
     "start": 0,
     "end": 6,
     "focus_x": 50,
     "focus_y": 50,
-    "zoom": 100
+    "zoom": 100,
+    "poster": "/assets/images/edgar-portrait.jpg"
   },
   "faq": [
     {
