@@ -1,0 +1,180 @@
+media:
+  input: public/assets
+  output: /assets
+  categories: [image, video]
+
+settings:
+  content:
+    merge: true
+  commit:
+    identity: user
+    templates:
+      update: "content: atualizar website EF"
+
+content:
+  - name: website
+    label: Website EF
+    type: file
+    path: content/site.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: site
+        label: Configuração
+        type: object
+        fields:
+          - { name: title, label: Título do site, type: string }
+          - { name: description, label: Descrição SEO, type: text }
+          - { name: application_url, label: Link candidatura, type: string }
+          - { name: instagram_url, label: Instagram, type: string }
+          - { name: price, label: Preço online, type: string }
+          - { name: duration, label: Duração, type: string }
+          - { name: payment_label, label: Pagamento, type: string }
+
+      - name: hero
+        label: Hero
+        type: object
+        fields:
+          - { name: tag, label: Linha superior, type: string }
+          - { name: title, label: Headline, type: string }
+          - { name: subtitle, label: Subtítulo, type: text }
+          - { name: image, label: Imagem, type: image }
+          - { name: focus_x, label: Foco horizontal, type: number }
+          - { name: focus_y, label: Foco vertical, type: number }
+          - { name: zoom, label: Zoom, type: number }
+
+      - name: goals
+        label: Objetivos
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{title}" }
+        fields:
+          - { name: title, label: Título, type: string }
+          - { name: text, label: Texto, type: text }
+
+      - name: problem
+        label: Problema
+        type: object
+        fields:
+          - { name: title, label: Título, type: string }
+          - { name: body, label: Texto, type: text }
+          - { name: accent, label: Destaque, type: string }
+
+      - name: online
+        label: Online
+        type: object
+        fields:
+          - { name: intro, label: Introdução, type: text }
+          - name: features
+            label: O que inclui
+            type: object
+            list:
+              collapsible: { collapsed: true, summary: "{title}" }
+            fields:
+              - { name: title, label: Título, type: string }
+              - { name: text, label: Texto, type: text }
+
+      - name: motion
+        label: Bloco vídeo treino
+        type: object
+        fields:
+          - { name: title, label: Título, type: string }
+          - { name: body, label: Texto, type: text }
+          - { name: video, label: Vídeo, type: file }
+          - { name: start, label: Início loop (s), type: number }
+          - { name: end, label: Fim loop (s), type: number }
+          - { name: focus_x, label: Foco horizontal, type: number }
+          - { name: focus_y, label: Foco vertical, type: number }
+          - { name: zoom, label: Zoom, type: number }
+
+      - name: method
+        label: Método EF
+        type: object
+        fields:
+          - { name: intro, label: Introdução, type: text }
+          - name: steps
+            label: Etapas
+            type: object
+            list:
+              collapsible: { collapsed: true, summary: "{title}" }
+            fields:
+              - { name: title, label: Título, type: string }
+              - { name: text, label: Texto, type: text }
+
+      - name: fit
+        label: Para quem é
+        type: object
+        fields:
+          - { name: intro, label: Introdução, type: text }
+          - name: items
+            label: Situações
+            type: object
+            list:
+              collapsible: { collapsed: true, summary: "{title}" }
+            fields:
+              - { name: title, label: Título, type: string }
+              - { name: text, label: Texto, type: text }
+
+      - name: process
+        label: Processo
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{title}" }
+        fields:
+          - { name: title, label: Etapa, type: string }
+          - { name: text, label: Texto, type: text }
+
+      - name: progress
+        label: Progresso
+        type: object
+        fields:
+          - { name: intro, label: Introdução, type: text }
+          - name: items
+            label: Indicadores
+            type: object
+            list:
+              collapsible: { collapsed: true, summary: "{title}" }
+            fields:
+              - { name: title, label: Título, type: string }
+              - { name: text, label: Texto, type: text }
+
+      - name: about
+        label: Sobre Edgar
+        type: object
+        fields:
+          - { name: title, label: Título, type: string }
+          - { name: body, label: Texto, type: text }
+          - { name: image, label: Fotografia, type: image }
+          - { name: focus_x, label: Foco horizontal, type: number }
+          - { name: focus_y, label: Foco vertical, type: number }
+          - { name: zoom, label: Zoom, type: number }
+
+      - name: presential
+        label: Presencial
+        type: object
+        fields:
+          - { name: title, label: Título, type: string }
+          - { name: body, label: Texto, type: text }
+          - { name: video, label: Vídeo, type: file }
+          - { name: start, label: Início loop (s), type: number }
+          - { name: end, label: Fim loop (s), type: number }
+          - { name: focus_x, label: Foco horizontal, type: number }
+          - { name: focus_y, label: Foco vertical, type: number }
+          - { name: zoom, label: Zoom, type: number }
+
+      - name: faq
+        label: FAQ
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{question}" }
+        fields:
+          - { name: question, label: Pergunta, type: string }
+          - { name: answer, label: Resposta, type: text }
+
+      - name: final
+        label: CTA final
+        type: object
+        fields:
+          - { name: title, label: Título, type: string }
+          - { name: body, label: Texto, type: text }
