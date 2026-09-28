@@ -1,0 +1,199 @@
+{
+  "site": {
+    "title": "EF — Edgar Filipe Personal Trainer",
+    "description": "EF Coaching: acompanhamento online personalizado durante 12 semanas para integrar treino, saúde e resultados na vida real.",
+    "application_url": "https://form.jotform.com/262522804984059",
+    "instagram_url": "https://www.instagram.com/edgar_filipe__pt/",
+    "price": "199 €",
+    "duration": "12 semanas",
+    "payment_label": "pagamento único"
+  },
+  "hero": {
+    "tag": "EF Coaching · Online · 12 semanas · 199 €",
+    "title": "TREINA PARA <span>VIVER</span> MELHOR.",
+    "subtitle": "Um acompanhamento que junta treino, ciência e vida real para perder gordura, ganhar massa muscular ou construir um estilo de vida mais forte e saudável.",
+    "image": "/assets/images/hero-sunset.jpg",
+    "focus_x": 50,
+    "focus_y": 48,
+    "zoom": 100
+  },
+  "goals": [
+    {
+      "title": "Perder massa gorda",
+      "text": "Estrutura e consistência para melhorar a composição corporal sem transformar o processo numa guerra contra a tua rotina."
+    },
+    {
+      "title": "Ganhar massa muscular",
+      "text": "Treino pensado para o teu nível, equipamento e disponibilidade, com progressão e ajustes ao longo do acompanhamento."
+    },
+    {
+      "title": "Saúde & longevidade",
+      "text": "Força, capacidade física e hábitos que ajudam a manter um estilo de vida ativo durante muitos anos."
+    }
+  ],
+  "problem": {
+    "title": "O problema não é saber que devias treinar.",
+    "body": "É transformar o treino numa parte consistente da tua vida sem depender de planos impossíveis, extremos ou motivação perfeita.",
+    "accent": "O treino tem de funcionar na tua vida. Não o contrário."
+  },
+  "online": {
+    "intro": "Recebes estrutura, acompanhamento contínuo e uma pessoa do outro lado a perceber o que está a acontecer contigo.",
+    "features": [
+      {
+        "title": "Plano personalizado",
+        "text": "Objetivo, experiência, disponibilidade e contexto real entram no planeamento."
+      },
+      {
+        "title": "App com vídeos",
+        "text": "Exercícios organizados, com vídeo e descrição para saberes exatamente o que fazer."
+      },
+      {
+        "title": "Acompanhamento contínuo",
+        "text": "O processo continua depois de o plano ser enviado."
+      },
+      {
+        "title": "Ajustes quando necessário",
+        "text": "O plano muda quando existe uma razão real para mudar."
+      },
+      {
+        "title": "WhatsApp direto",
+        "text": "Contacto comigo para dúvidas, contexto e proximidade ao longo das semanas."
+      },
+      {
+        "title": "Orientação alimentar inicial",
+        "text": "Dicas práticas para alinhar hábitos com o objetivo, sem substituir acompanhamento nutricional."
+      }
+    ]
+  },
+  "motion": {
+    "title": "CIÊNCIA PARA ORIENTAR.<br><span>VIDA REAL</span> PARA DECIDIR.",
+    "body": "O plano existe para te dar direção. O acompanhamento existe para perceber quando é altura de manter, progredir ou adaptar.",
+    "video": "/assets/videos/training-loop.mp4",
+    "start": 0,
+    "end": 6,
+    "focus_x": 50,
+    "focus_y": 50,
+    "zoom": 100
+  },
+  "method": {
+    "intro": "Estrutura suficiente para evoluir. Flexibilidade suficiente para sobreviver à tua semana real.",
+    "steps": [
+      {
+        "title": "Perceber onde estás",
+        "text": "Objetivo, experiência, rotina, disponibilidade e o que já tentaste entram primeiro na decisão."
+      },
+      {
+        "title": "Construir o teu plano",
+        "text": "O treino é pensado para aquilo que realmente consegues executar com consistência."
+      },
+      {
+        "title": "Acompanhar de perto",
+        "text": "Feedback, contacto e contexto ao longo das semanas — não apenas uma folha de exercícios."
+      },
+      {
+        "title": "Ajustar com razão",
+        "text": "O plano evolui quando há motivo. Nem tudo precisa de mudar para continuar a funcionar."
+      }
+    ]
+  },
+  "fit": {
+    "intro": "O EF Coaching é para quem quer integrar atividade física e um estilo de vida mais saudável na vida real — com direção, acompanhamento e sem depender de extremos.",
+    "items": [
+      {
+        "title": "Queres começar mas não sabes como",
+        "text": "Tens vontade de treinar, mas falta uma estrutura clara e adequada ao teu nível."
+      },
+      {
+        "title": "Já tentaste e não conseguiste manter",
+        "text": "O problema não é falta de informação; é encontrar uma abordagem que funcione na tua rotina."
+      },
+      {
+        "title": "Tens pouco tempo",
+        "text": "O plano parte da disponibilidade real que tens, em vez de exigir que reorganizes a vida à volta do treino."
+      },
+      {
+        "title": "Queres resultados sem abdicar da vida",
+        "text": "Perder massa gorda, ganhar massa muscular ou simplesmente sentir-te mais forte e saudável sem entrar numa lógica de tudo ou nada."
+      }
+    ]
+  },
+  "process": [
+    {
+      "title": "Candidatura",
+      "text": "Respondes a algumas perguntas para eu perceber o teu objetivo, contexto e disponibilidade."
+    },
+    {
+      "title": "Análise",
+      "text": "Eu revejo a candidatura e confirmo se o EF Coaching é adequado ao que procuras."
+    },
+    {
+      "title": "Pagamento + onboarding",
+      "text": "Se avançarmos, fazes o pagamento único de 199 € e completas o onboarding para eu recolher a informação necessária."
+    },
+    {
+      "title": "Plano na app",
+      "text": "Recebes o plano personalizado na aplicação, com exercícios, vídeos e descrições."
+    },
+    {
+      "title": "Acompanhamento",
+      "text": "Ao longo das 12 semanas mantemos contacto, acompanho a resposta ao plano e ajustamos quando fizer sentido."
+    }
+  ],
+  "progress": {
+    "intro": "O progresso é interpretado de acordo com o teu objetivo e com o que está realmente a acontecer ao longo das semanas.",
+    "items": [
+      {
+        "title": "Treino",
+        "text": "Execução, consistência, progressão e resposta ao plano ajudam a perceber se estamos no caminho certo."
+      },
+      {
+        "title": "Vida real",
+        "text": "Sono, stress, rotina, disponibilidade e aderência também contam. Um plano só funciona se conseguir continuar a ser executado."
+      }
+    ]
+  },
+  "about": {
+    "title": "Treinar bem é técnico. Aderir ao processo é humano.",
+    "body": "A ciência orienta as decisões, mas não trabalho com pessoas como se fossem estudos ou folhas de cálculo. O que me distingue é a ligação com cada cliente e a capacidade de transformar teoria em decisões práticas que façam sentido no dia a dia. O plano tem de ser tecnicamente bom — e suficientemente realista para ser seguido.",
+    "image": "/assets/images/edgar-portrait.jpg",
+    "focus_x": 50,
+    "focus_y": 25,
+    "zoom": 100
+  },
+  "presential": {
+    "title": "Treino presencial. Atenção total.",
+    "body": "No The Clinic VIP, em Miramar, trabalho em treino individual, duo ou pequenos grupos até 3 pessoas. Começamos com uma avaliação inicial, eu trato de todo o planeamento do treino e fazemos uma avaliação mensal para acompanhar a evolução, corrigir o necessário e decidir os próximos passos.",
+    "video": "/assets/videos/studio-loop.mp4",
+    "start": 0,
+    "end": 6,
+    "focus_x": 50,
+    "focus_y": 50,
+    "zoom": 100
+  },
+  "faq": [
+    {
+      "question": "Preciso de já saber treinar?",
+      "answer": "Não. O acompanhamento é adaptado ao teu nível e o plano inclui vídeo e descrição dos exercícios."
+    },
+    {
+      "question": "E se eu tiver pouco tempo?",
+      "answer": "O plano começa pela tua realidade. Um programa perfeito no papel e impossível de cumprir não serve."
+    },
+    {
+      "question": "Como funciona o acompanhamento online?",
+      "answer": "Depois da candidatura e onboarding, recebes o plano na app. Tens acompanhamento contínuo, contacto por WhatsApp e ajustes quando necessários."
+    },
+    {
+      "question": "Tenho de seguir uma dieta específica?",
+      "answer": "Não é um serviço de nutrição. Numa fase inicial posso dar orientações alimentares práticas para ajudar a alinhar hábitos com o objetivo."
+    },
+    {
+      "question": "Quanto custa?",
+      "answer": "12 semanas, 199 €, pagamento único. Primeiro fazes a candidatura para percebermos se o acompanhamento faz sentido para ti."
+    }
+  ],
+  "final": {
+    "title": "O primeiro passo é ter um plano que consigas manter.",
+    "body": "Candidata-te ao EF Coaching. Eu analiso o teu contexto e percebemos se faz sentido avançar."
+  }
+}
