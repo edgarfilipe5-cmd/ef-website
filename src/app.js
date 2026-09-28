@@ -78,9 +78,15 @@ function render(){
   text('#onlineIntro',data.online.intro);
 
   const mv=q('#motionVideo');
-  mv.src=resolvePath(data.motion.video);
+  mv.poster=resolvePath(data.motion.poster||data.hero.image);
+  if(data.motion.video){
+    mv.src=resolvePath(data.motion.video);
+    loopVideo(mv,data.motion);
+  } else {
+    mv.removeAttribute('src');
+    mv.load();
+  }
   mediaStyle(mv,data.motion);
-  loopVideo(mv,data.motion);
   text('#motionTitle',data.motion.title);
   text('#motionBody',data.motion.body);
 
@@ -108,9 +114,15 @@ function render(){
   text('#presentialTitle',data.presential.title);
   text('#presentialBody',data.presential.body);
   const pv=q('#presentialVideo');
-  pv.src=resolvePath(data.presential.video);
+  pv.poster=resolvePath(data.presential.poster||data.about.image);
+  if(data.presential.video){
+    pv.src=resolvePath(data.presential.video);
+    loopVideo(pv,data.presential);
+  } else {
+    pv.removeAttribute('src');
+    pv.load();
+  }
   mediaStyle(pv,data.presential);
-  loopVideo(pv,data.presential);
 
   q('#faqList').innerHTML=data.faq.map(x=>
     `<details><summary>${esc(x.question)}</summary><p>${esc(x.answer)}</p></details>`
