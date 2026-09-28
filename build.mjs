@@ -17,3 +17,7 @@ if (fs.existsSync("public/assets")) {
 }
 
 console.log("EF website built to dist/");
+
+if (fs.existsSync("edit")) {
+  fs.cpSync("edit",path.join(dist,"edit"),{recursive:true});
+}
