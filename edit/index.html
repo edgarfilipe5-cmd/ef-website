@@ -4,28 +4,53 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="theme-color" content="#000000">
-  <title>EF — Editor Criativo</title>
+  <meta name="theme-color" content="#080808">
+  <title>EF — Área da Filmmaker</title>
   <style>
-    :root{--gold:#D4AF37;--black:#000;--white:#fff;--grey:#A7A7A7}
-    *{box-sizing:border-box}body{margin:0;min-height:100svh;background:#080808;color:#fff;font-family:Arial,sans-serif;display:grid;place-items:center;padding:24px}
-    main{width:min(680px,100%);border:1px solid #2c2c2c;background:#101010;padding:42px}
-    .tag{color:var(--gold);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800}
-    h1{font-size:clamp(2.5rem,7vw,5.5rem);line-height:.92;letter-spacing:-.05em;margin:18px 0}
-    p{color:#c7c7c2;line-height:1.6;font-size:1.05rem}.note{font-size:.9rem;color:#92928d;border-top:1px solid #2f2f2f;padding-top:20px;margin-top:24px}
-    .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;text-decoration:none;font-weight:900;padding:15px 18px;border:1px solid #fff;color:#fff}.btn.primary{background:var(--gold);border-color:var(--gold);color:#000}
+    :root{--gold:#D4AF37;--bg:#080808;--panel:#101010;--line:#2b2b2b;--text:#f5f5f1;--muted:#a9a9a3}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;padding:28px}
+    .wrap{width:min(980px,100%);margin:auto}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:0 0 28px;border-bottom:1px solid var(--line)}
+    .logo{width:138px}
+    .tag{color:var(--gold);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;font-weight:800}
+    h1{font-size:clamp(2.7rem,7vw,6.4rem);line-height:.9;letter-spacing:-.055em;margin:22px 0 18px;max-width:10ch}
+    .lead{color:#c8c8c2;font-size:1.08rem;line-height:1.65;max-width:62ch}
+    .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{display:inline-flex;min-height:52px;align-items:center;text-decoration:none;font-weight:900;padding:0 18px;border:1px solid #fff;color:#fff}
+    .btn.primary{background:var(--gold);border-color:var(--gold);color:#050505}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:48px 0}
+    .card{border:1px solid var(--line);background:var(--panel);padding:24px}
+    .card b{display:block;font-size:1.05rem;margin-bottom:8px}
+    .card p{margin:0;color:var(--muted);line-height:1.55;font-size:.92rem}
+    .n{display:block;color:var(--gold);font-size:.7rem;font-weight:900;margin-bottom:22px}
+    .note{border-top:1px solid var(--line);padding-top:22px;color:#8d8d87;line-height:1.6;font-size:.9rem}
+    @media(max-width:700px){body{padding:18px}.grid{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
   </style>
 </head>
 <body>
-  <main>
-    <div class="tag">EF · Área criativa</div>
-    <h1>Editor do website EF.</h1>
-    <p>Área reservada para edição de textos, fotografias e vídeos do website. O acesso às alterações é controlado pelo Pages CMS.</p>
-    <div class="buttons">
-      <a class="btn primary" href="https://app.pagescms.org/edgarfilipe5-cmd/ef-website/main/file/website">Abrir editor</a>
-      <a class="btn" href="https://ef-website.onrender.com">Ver site público</a>
-    </div>
-    <p class="note">Se não estiveres autorizada como colaboradora, o editor não permitirá alterar o conteúdo.</p>
-  </main>
+<div class="wrap">
+  <div class="top">
+    <div><div class="tag">EF · Creative handoff</div></div>
+    <span class="tag">Website publicado · Filmmaker</span>
+  </div>
+
+  <h1>Conteúdo visual do website.</h1>
+  <p class="lead">A estrutura, animações e identidade EF já estão fechadas. Aqui podes trocar fotografias e vídeos, ajustar enquadramentos e, se necessário, afinar os textos sem mexer no código.</p>
+
+  <div class="buttons">
+    <a class="btn primary" href="https://app.pagescms.org/edgarfilipe5-cmd/ef-website/main/file/website">Abrir editor</a>
+    <a class="btn" href="https://ef-website.onrender.com">Ver pré-visualização</a>
+  </div>
+
+  <div class="grid">
+    <div class="card"><span class="n">01</span><b>Hero</b><p>Trocar a fotografia principal e ajustar foco horizontal, vertical e zoom.</p></div>
+    <div class="card"><span class="n">02</span><b>Vídeo principal</b><p>Carregar o vídeo, escolher poster e definir os segundos exatos do loop.</p></div>
+    <div class="card"><span class="n">03</span><b>Sobre Edgar</b><p>Escolher a fotografia mais forte para a secção pessoal e ajustar o enquadramento.</p></div>
+    <div class="card"><span class="n">04</span><b>Presencial</b><p>Trocar vídeo/poster do presencial e também a fotografia do cartão de entrada.</p></div>
+  </div>
+
+  <p class="note">As alterações guardadas no editor são publicadas no website e desencadeiam automaticamente uma nova versão no Render. Evita alterar preços, links de candidatura ou estrutura comercial sem combinar primeiro com o Edgar.</p>
+</div>
 </body>
 </html>
