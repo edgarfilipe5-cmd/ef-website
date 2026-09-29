@@ -203,3 +203,47 @@ setupReveal();
 setupScroll();
 setupPointer();
 setup3D();
+
+
+function setupCharacterScroll(){
+  const heroStage=document.querySelector(".avatar-stage");
+  const section=document.getElementById("avatar-experience");
+  const windowEl=section?.querySelector(".avatar-window");
+  const steps=[...(section?.querySelectorAll(".avatar-step")||[])];
+  if(!section || !windowEl) return;
+
+  const setScene=(scene)=>{
+    windowEl.dataset.scene=String(scene);
+    heroStage?.setAttribute("data-pose",String(scene));
+    steps.forEach((el,i)=>el.classList.toggle("is-active",i===scene));
+  };
+
+  let current=-1;
+  const update=()=>{
+    if(innerWidth<=960 || reduce){ setScene(0); return; }
+    const rect=section.getBoundingClientRect();
+    const travel=Math.max(1,rect.height-innerHeight);
+    const progress=clamp(-rect.top/travel,0,1);
+    let scene=progress<.34?0:progress<.67?1:2;
+    if(scene!==current){ current=scene; setScene(scene); }
+
+    const drift=(progress-.5);
+    windowEl.style.setProperty("--scene-drift",drift.toFixed(3));
+    windowEl.style.transform=`perspective(1200px) rotateY(${drift*4}deg) translateY(${Math.sin(progress*Math.PI)*-8}px)`;
+  };
+  addEventListener("scroll",()=>requestAnimationFrame(update),{passive:true});
+  addEventListener("resize",update,{passive:true});
+  update();
+}
+
+function setupHeroCharacterEntrance(){
+  const stage=document.querySelector(".avatar-stage");
+  if(!stage || reduce) return;
+  stage.animate([
+    {opacity:0,transform:"perspective(1000px) translateY(34px) rotateY(-5deg) scale(.97)"},
+    {opacity:1,transform:"perspective(1000px) translateY(0) rotateY(0deg) scale(1)"}
+  ],{duration:1050,easing:"cubic-bezier(.2,.75,.2,1)",fill:"both",delay:180});
+}
+
+setupHeroCharacterEntrance();
+setupCharacterScroll();
