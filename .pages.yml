@@ -33,7 +33,7 @@ content:
           - { name: payment_label, label: Pagamento, type: string }
 
       - name: hero
-        label: Hero
+        label: 01 · Hero
         type: object
         fields:
           - { name: tag, label: Linha superior, type: string }
@@ -43,6 +43,15 @@ content:
           - { name: focus_x, label: Foco horizontal, type: number }
           - { name: focus_y, label: Foco vertical, type: number }
           - { name: zoom, label: Zoom, type: number }
+
+      - name: creative
+        label: Visuais de apoio
+        type: object
+        fields:
+          - { name: presential_card_image, label: Imagem cartão Presencial, type: image }
+          - { name: presential_card_focus_x, label: Foco horizontal cartão, type: number }
+          - { name: presential_card_focus_y, label: Foco vertical cartão, type: number }
+          - { name: presential_card_zoom, label: Zoom cartão, type: number }
 
       - name: goals
         label: Objetivos
@@ -76,7 +85,7 @@ content:
               - { name: text, label: Texto, type: text }
 
       - name: motion
-        label: Bloco vídeo treino
+        label: 02 · Vídeo principal
         type: object
         fields:
           - { name: title, label: Título, type: string }
@@ -141,7 +150,7 @@ content:
               - { name: text, label: Texto, type: text }
 
       - name: about
-        label: Sobre Edgar
+        label: 03 · Sobre Edgar
         type: object
         fields:
           - { name: title, label: Título, type: string }
@@ -152,7 +161,7 @@ content:
           - { name: zoom, label: Zoom, type: number }
 
       - name: presential
-        label: Presencial
+        label: 04 · Presencial
         type: object
         fields:
           - { name: title, label: Título, type: string }
