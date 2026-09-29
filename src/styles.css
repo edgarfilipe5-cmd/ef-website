@@ -701,3 +701,104 @@ details[open]{
 @media(prefers-reduced-motion:reduce){
   .experience-halo,.brand-core-shine:after,.card-orbit{animation:none!important}
 }
+
+
+/* EF MOTION V7 — conversion + filmmaker handoff polish */
+html{scroll-padding-top:92px}
+#coaching,#metodo,#presencial,#faq,#edgar,#problema{scroll-margin-top:92px}
+
+.mobile-apply{
+  display:none;
+  position:fixed;
+  z-index:110;
+  left:14px;
+  right:14px;
+  bottom:14px;
+  min-height:54px;
+  padding:0 18px;
+  align-items:center;
+  justify-content:space-between;
+  text-decoration:none;
+  font-weight:900;
+  background:var(--gold);
+  color:#050505;
+  border:1px solid rgba(0,0,0,.14);
+  box-shadow:0 18px 50px rgba(0,0,0,.32);
+  backdrop-filter:blur(12px);
+}
+.mobile-apply b{font-size:1.25rem}
+
+.site-nav nav a{
+  position:relative;
+  opacity:.86;
+  transition:opacity .25s ease;
+}
+.site-nav nav a:not(.nav-apply):after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:-10px;
+  height:1px;
+  background:var(--gold);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .3s var(--ease);
+}
+.site-nav nav a:not(.nav-apply):hover{opacity:1}
+.site-nav nav a:not(.nav-apply):hover:after{transform:scaleX(1)}
+
+.motion-band video:not([src]){
+  background-position:center;
+  background-size:cover;
+}
+.motion-band{
+  min-height:700px;
+}
+.motion-band .shade{
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.90),rgba(0,0,0,.45) 56%,rgba(0,0,0,.22)),
+    linear-gradient(0deg,rgba(0,0,0,.42),transparent 55%);
+}
+.motion-copy{
+  padding-bottom:92px;
+}
+
+.card-photo-presencial{
+  background-position:var(--creative-card-x,50%) var(--creative-card-y,25%);
+  transform:scale(var(--creative-card-zoom,1));
+}
+.experience-card:hover .card-photo-presencial{
+  transform:scale(calc(var(--creative-card-zoom,1) * 1.045));
+}
+
+.about-copy .price-lockup{
+  position:relative;
+}
+.about-copy .price-lockup:before{
+  content:"12 SEMANAS · APP · WHATSAPP";
+  position:absolute;
+  top:-34px;
+  left:0;
+  font-size:.62rem;
+  letter-spacing:.14em;
+  color:#777;
+}
+
+.final .cta{
+  transition:transform .3s var(--ease),box-shadow .3s ease;
+}
+.final .cta:hover{
+  transform:translateY(-3px);
+  box-shadow:0 16px 38px rgba(0,0,0,.22);
+}
+
+@media(max-width:760px){
+  body{padding-bottom:82px}
+  .mobile-apply{display:flex}
+  .site-nav .nav-apply{display:none}
+  .site-nav nav{display:none}
+  .site-nav .inner{justify-content:center}
+  .site-nav img{width:122px}
+}
+@media(prefers-reduced-motion:reduce){
+  .mobile-apply,.site-nav nav a:after{transition:none!important}
+}
