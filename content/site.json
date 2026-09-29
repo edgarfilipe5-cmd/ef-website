@@ -197,5 +197,11 @@
   "final": {
     "title": "O primeiro passo é ter um plano que consigas manter.",
     "body": "Candidata-te ao EF Coaching. Eu analiso o teu contexto e percebemos se faz sentido avançar."
+  },
+  "creative": {
+    "presential_card_image": "/assets/images/edgar-portrait.jpg",
+    "presential_card_focus_x": 50,
+    "presential_card_focus_y": 25,
+    "presential_card_zoom": 100
   }
 }
