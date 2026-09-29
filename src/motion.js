@@ -14,7 +14,7 @@ function setupReveal(){
     ".motion-copy",
     "#metodo .sticky","#metodo .step",
     ".section:not(#coaching):not(#metodo):not(#faq) .sticky",
-    ".goal-card",".about-copy>*",".presential-copy>*","#faq .faq-grid>div",
+    ".goal-card",".avatar-story-copy",".avatar-window",".about-copy>*",".presential-copy>*","#faq .faq-grid>div",
     ".final .wrap>*"
   ];
   const nodes=[...new Set(targets.flatMap(s=>[...document.querySelectorAll(s)]))];
@@ -60,7 +60,7 @@ function setupPointer(){
     document.body.style.setProperty("--pointer-y",e.clientY+"px");
   },{passive:true});
 
-  document.querySelectorAll(".hero-panel,.goal-card").forEach(card=>{
+  document.querySelectorAll(".hero-panel,.goal-card,.avatar-stage,.avatar-window").forEach(card=>{
     card.addEventListener("pointermove",e=>{
       const r=card.getBoundingClientRect();
       const x=(e.clientX-r.left)/r.width-.5;
