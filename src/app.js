@@ -46,7 +46,7 @@ function render(){
   const meta=document.querySelector('meta[name="description"]');
   if(meta)meta.content=s.description;
 
-  ['applyTop','applyHero','applyOnline','applyAbout','applyFinal'].forEach(id=>q('#'+id).href=s.application_url);
+  ['applyTop','applyHero','applyOnline','applyAbout','applyFinal','mobileApply'].forEach(id=>{const el=q('#'+id); if(el) el.href=s.application_url});
   q('#instagram').href=s.instagram_url;
 
   text('#heroTag',data.hero.tag);
@@ -57,6 +57,15 @@ function render(){
   mediaStyle(hi,data.hero);
   q('#priceHero').textContent=s.price;
   q('#durationHero').textContent=s.duration;
+
+  const creative=data.creative||{};
+  const card=q('.card-photo-presencial');
+  if(card && creative.presential_card_image){
+    card.style.backgroundImage=`url("${resolvePath(creative.presential_card_image)}")`;
+    card.style.setProperty('--creative-card-x',`${creative.presential_card_focus_x??50}%`);
+    card.style.setProperty('--creative-card-y',`${creative.presential_card_focus_y??25}%`);
+    card.style.setProperty('--creative-card-zoom',String((creative.presential_card_zoom??100)/100));
+  }
 
   const goalBtns=qa('.goal-btn');
   const goalCopy=q('#goalCopy');
@@ -79,6 +88,9 @@ function render(){
 
   const mv=q('#motionVideo');
   mv.poster=resolvePath(data.motion.poster||data.hero.image);
+  mv.style.backgroundImage=`url("${resolvePath(data.motion.poster||data.hero.image)}")`;
+  mv.style.backgroundSize='cover';
+  mv.style.backgroundPosition=`${data.motion.focus_x??50}% ${data.motion.focus_y??50}%`;
   if(data.motion.video){
     mv.src=resolvePath(data.motion.video);
     loopVideo(mv,data.motion);
