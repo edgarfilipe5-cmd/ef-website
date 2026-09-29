@@ -47,7 +47,12 @@
     <div class="hero-visual">
       <div class="avatar-stage" aria-label="Avatar EF de Edgar Filipe">
         <div class="avatar-glow"></div>
-        <div class="avatar-image"></div>
+        <div class="avatar-floor"></div>
+        <div class="avatar-pose avatar-pose-1"></div>
+        <div class="avatar-pose avatar-pose-2"></div>
+        <div class="avatar-pose avatar-pose-3"></div>
+        <div class="avatar-logo-patch" aria-hidden="true"></div>
+        <img class="avatar-chest-logo" src="./assets/images/logo-white.png" alt="">
         <div class="avatar-gridlines"></div>
         <div class="avatar-badge"><span>EF DIGITAL COACH</span><strong>EDGAR</strong></div>
         <div class="avatar-float float-a"><span>01</span><b>PLANO</b><small>personalizado</small></div>
@@ -77,21 +82,37 @@
   </div>
 </div>
 
-<section class="avatar-intro">
-  <div class="wrap avatar-story">
-    <div class="avatar-story-copy">
-      <div class="eyebrow">EF Digital Coach</div>
-      <h2>O método ganha uma <span>presença digital.</span></h2>
-      <p>Um avatar EF para tornar a experiência mais clara, reconhecível e consistente — sem substituir o acompanhamento humano. A estratégia, os ajustes e as decisões continuam a ser comigo.</p>
-      <div class="avatar-chips">
-        <span>Treino personalizado</span><span>App + WhatsApp</span><span>Feedback contínuo</span>
+<section class="avatar-intro" id="avatar-experience">
+  <div class="avatar-scroll-shell">
+    <div class="wrap avatar-story">
+      <div class="avatar-story-copy">
+        <div class="eyebrow">EF Digital Coach</div>
+        <h2>O avatar passa a fazer parte da <span>experiência.</span></h2>
+        <p>À medida que percorres o site, a personagem muda de enquadramento, aproxima-se e acompanha cada fase do método. O objetivo é dar presença à marca sem transformar o site num jogo.</p>
+        <div class="avatar-chips">
+          <span>Scroll 3D</span><span>Motion responsivo</span><span>Branding EF</span>
+        </div>
+        <div class="avatar-progress" aria-hidden="true">
+          <button class="avatar-step is-active" data-step="0"><span>01</span> Diagnóstico</button>
+          <button class="avatar-step" data-step="1"><span>02</span> Plano</button>
+          <button class="avatar-step" data-step="2"><span>03</span> Acompanhamento</button>
+        </div>
       </div>
-    </div>
-    <div class="avatar-window">
-      <div class="avatar-echo"></div>
-      <img src="./assets/images/logo-white.png" alt="" class="avatar-window-logo">
-      <div class="avatar-window-tag">EF / COACHING SYSTEM</div>
-      <div class="avatar-window-line"></div>
+
+      <div class="avatar-window" data-scene="0">
+        <div class="scene-ring ring-one"></div>
+        <div class="scene-ring ring-two"></div>
+        <div class="avatar-scene-layer scene-a"></div>
+        <div class="avatar-scene-layer scene-b"></div>
+        <div class="avatar-scene-layer scene-c"></div>
+        <div class="avatar-window-brand-mask"></div>
+        <img src="./assets/images/logo-white.png" alt="Edgar Filipe Personal Trainer" class="avatar-window-logo avatar-official-logo">
+        <div class="scene-copy scene-copy-a"><span>01</span><strong>DIAGNÓSTICO</strong><small>Perceber antes de prescrever.</small></div>
+        <div class="scene-copy scene-copy-b"><span>02</span><strong>PLANO</strong><small>Treino construído à tua medida.</small></div>
+        <div class="scene-copy scene-copy-c"><span>03</span><strong>ACOMPANHAMENTO</strong><small>Ajustar para continuar a progredir.</small></div>
+        <div class="avatar-window-tag">EF / INTERACTIVE COACH</div>
+        <div class="avatar-window-line"></div>
+      </div>
     </div>
   </div>
 </section>
