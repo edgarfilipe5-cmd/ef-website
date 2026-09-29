@@ -60,7 +60,7 @@ function setupPointer(){
     document.body.style.setProperty("--pointer-y",e.clientY+"px");
   },{passive:true});
 
-  document.querySelectorAll(".hero-panel,.goal-card").forEach(card=>{
+  document.querySelectorAll(".hero-panel,.goal-card,.brand-core,.experience-card").forEach(card=>{
     card.addEventListener("pointermove",e=>{
       const r=card.getBoundingClientRect();
       const x=(e.clientX-r.left)/r.width-.5;
@@ -92,72 +92,82 @@ function setup3D(){
 
   const scene=new THREE.Scene();
   const camera=new THREE.PerspectiveCamera(34,1,.1,100);
-  camera.position.set(0,0,8);
+  camera.position.set(0,0,9);
 
   const group=new THREE.Group();
-  group.position.set(2.7,.2,0);
   scene.add(group);
 
-  const coreGeo=new THREE.IcosahedronGeometry(1.12,4);
-  const coreMat=new THREE.MeshPhysicalMaterial({
+  const knotMat=new THREE.MeshPhysicalMaterial({
     color:0xd4af37,
-    metalness:.92,
-    roughness:.24,
+    metalness:.96,
+    roughness:.18,
     clearcoat:1,
-    clearcoatRoughness:.18,
+    clearcoatRoughness:.12,
     transparent:true,
     opacity:.94
   });
-  const core=new THREE.Mesh(coreGeo,coreMat);
-  group.add(core);
-
-  const wire=new THREE.Mesh(
-    new THREE.IcosahedronGeometry(1.17,2),
-    new THREE.MeshBasicMaterial({color:0xffefb0,wireframe:true,transparent:true,opacity:.11})
-  );
-  group.add(wire);
+  const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.28,.16,220,26,2,3),knotMat);
+  knot.rotation.set(.55,.35,.1);
+  group.add(knot);
 
   const ringMat=new THREE.MeshStandardMaterial({
-    color:0xc9a227,
-    metalness:.9,
-    roughness:.28,
+    color:0xe4c55f,
+    metalness:.88,
+    roughness:.25,
     transparent:true,
-    opacity:.72
+    opacity:.38
   });
   [
-    [1.82,.018,0,0,.25],
-    [1.55,.013,Math.PI/2,.45,.2],
-    [2.10,.012,.55,Math.PI/2,.8]
+    [2.08,.016,.9,.1,.1],
+    [1.72,.012,.1,1.22,.4],
+    [2.48,.010,.55,.72,1.2]
   ].forEach(([radius,tube,rx,ry,rz])=>{
-    const ring=new THREE.Mesh(new THREE.TorusGeometry(radius,tube,10,180),ringMat);
+    const ring=new THREE.Mesh(new THREE.TorusGeometry(radius,tube,10,220),ringMat);
     ring.rotation.set(rx,ry,rz);
     group.add(ring);
   });
 
-  const count=260;
+  const shardMat=new THREE.MeshPhysicalMaterial({
+    color:0xffffff,
+    metalness:.72,
+    roughness:.28,
+    transparent:true,
+    opacity:.16
+  });
+  for(let i=0;i<7;i++){
+    const g=new THREE.BoxGeometry(.035+Math.random()*.025,.55+Math.random()*.6,.035+Math.random()*.025);
+    const m=new THREE.Mesh(g,shardMat);
+    const a=(i/7)*Math.PI*2;
+    const r=2.0+Math.random()*.65;
+    m.position.set(Math.cos(a)*r,(Math.random()-.5)*2.3,Math.sin(a)*r*.55);
+    m.rotation.set(Math.random()*2,Math.random()*2,Math.random()*2);
+    group.add(m);
+  }
+
+  const count=360;
   const positions=new Float32Array(count*3);
   for(let i=0;i<count;i++){
-    const radius=2.25+Math.random()*2.5;
+    const radius=2.5+Math.random()*3.2;
     const theta=Math.random()*Math.PI*2;
-    const phi=Math.acos(2*Math.random()-1);
-    positions[i*3]=radius*Math.sin(phi)*Math.cos(theta);
-    positions[i*3+1]=radius*Math.sin(phi)*Math.sin(theta);
-    positions[i*3+2]=radius*Math.cos(phi);
+    const y=(Math.random()-.5)*4.8;
+    positions[i*3]=Math.cos(theta)*radius;
+    positions[i*3+1]=y;
+    positions[i*3+2]=Math.sin(theta)*radius*.52;
   }
   const ptsGeo=new THREE.BufferGeometry();
   ptsGeo.setAttribute("position",new THREE.BufferAttribute(positions,3));
   const pts=new THREE.Points(ptsGeo,new THREE.PointsMaterial({
-    color:0xf6e2a0,size:.018,transparent:true,opacity:.52,sizeAttenuation:true
+    color:0xf6e2a0,size:.018,transparent:true,opacity:.42,sizeAttenuation:true
   }));
   group.add(pts);
 
-  scene.add(new THREE.AmbientLight(0xffffff,.46));
-  const key=new THREE.PointLight(0xffdc75,18,20);
-  key.position.set(4,3,5);
+  scene.add(new THREE.AmbientLight(0xffffff,.38));
+  const key=new THREE.PointLight(0xffd969,22,24);
+  key.position.set(4,3,6);
   scene.add(key);
-  const rim=new THREE.PointLight(0xffffff,9,20);
-  rim.position.set(-3,-2,3);
-  scene.add(rim);
+  const fill=new THREE.PointLight(0xffffff,9,20);
+  fill.position.set(-3,-2,4);
+  scene.add(fill);
 
   let tx=0,ty=0,mx=0,my=0;
   if(finePointer){
@@ -170,13 +180,13 @@ function setup3D(){
   const resize=()=>{
     const w=canvas.clientWidth||innerWidth;
     const h=canvas.clientHeight||innerHeight;
-    renderer.setPixelRatio(Math.min(devicePixelRatio,innerWidth<700?1.35:1.8));
+    renderer.setPixelRatio(Math.min(devicePixelRatio,innerWidth<700?1.2:1.7));
     renderer.setSize(w,h,false);
     camera.aspect=w/h;
     camera.updateProjectionMatrix();
-    group.position.x=w<900?1.45:2.75;
-    group.position.y=w<700?.9:.15;
-    group.scale.setScalar(w<700?.68:w<1000?.82:1);
+    group.position.x=w<1000?1.0:2.9;
+    group.position.y=w<700?.45:.25;
+    group.scale.setScalar(w<700?.54:w<1000?.70:.92);
   };
   addEventListener("resize",resize,{passive:true});
   resize();
@@ -184,21 +194,45 @@ function setup3D(){
   const clock=new THREE.Clock();
   const animate=()=>{
     const t=clock.getElapsedTime();
-    mx=lerp(mx,tx,.035); my=lerp(my,ty,.035);
-    core.rotation.x=t*.16+my*.35;
-    core.rotation.y=t*.22+mx*.5;
-    wire.rotation.x=-t*.10;
-    wire.rotation.y=t*.14;
-    group.rotation.z=Math.sin(t*.28)*.05;
-    group.rotation.y=mx*.12+scrollY*.00025;
-    group.position.y+=( (innerWidth<700?.9:.15) - scrollY*.00065 - group.position.y)*.04;
-    pts.rotation.y=t*.018;
+    mx=lerp(mx,tx,.025); my=lerp(my,ty,.025);
+    knot.rotation.x=.55+t*.12+my*.22;
+    knot.rotation.y=.35+t*.18+mx*.34;
+    group.rotation.z=Math.sin(t*.24)*.025;
+    group.rotation.y=mx*.10+scrollY*.00018;
+    group.position.y+=( (innerWidth<700?.45:.25) - scrollY*.00028 - group.position.y)*.035;
+    pts.rotation.y=t*.012;
     renderer.render(scene,camera);
     requestAnimationFrame(animate);
   };
   animate();
 }
 
+function setupBrandExperience(){
+  const core=document.querySelector(".brand-core");
+  const cards=[...document.querySelectorAll(".experience-card")];
+  if(!reduce && core){
+    core.animate([
+      {opacity:0,transform:"translate(-50%,-46%) rotateY(-15deg) rotateX(7deg) scale(.90)"},
+      {opacity:1,transform:"translate(-50%,-50%) rotateY(-7deg) rotateX(3deg) scale(1)"}
+    ],{duration:1100,delay:160,easing:"cubic-bezier(.2,.75,.2,1)",fill:"both"});
+  }
+  if(!reduce){
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.animate(
+            [{opacity:.15,transform:"translateY(34px) scale(.985)"},{opacity:1,transform:"translateY(0) scale(1)"}],
+            {duration:720,easing:"cubic-bezier(.2,.75,.2,1)",fill:"both"}
+          );
+          io.unobserve(entry.target);
+        }
+      });
+    },{threshold:.16});
+    cards.forEach(c=>io.observe(c));
+  }
+}
+
+setupBrandExperience();
 setupReveal();
 setupScroll();
 setupPointer();
