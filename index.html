@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark light">
   <title>EF — Edgar Filipe Personal Trainer</title>
   <meta name="description" content="EF Coaching: acompanhamento online personalizado durante 12 semanas.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,6 +13,8 @@
   <link rel="stylesheet" href="./src/styles.css">
 </head>
 <body>
+<div class="scroll-progress" aria-hidden="true"><span></span></div>
+<div class="ambient-pointer" aria-hidden="true"></div>
 <header class="site-nav">
   <div class="inner">
     <a href="#topo"><img src="./assets/images/logo-white.png" alt="Edgar Filipe Personal Trainer"></a>
@@ -26,6 +29,9 @@
 </header>
 
 <section class="hero" id="topo">
+  <canvas id="ef3d" aria-hidden="true"></canvas>
+  <div class="hero-orbit orbit-a" aria-hidden="true"></div>
+  <div class="hero-orbit orbit-b" aria-hidden="true"></div>
   <div class="hero-bg"><img id="heroImage" alt="Edgar Filipe"></div>
   <img class="hero-logo" src="./assets/images/logo-white.png" alt="">
   <div class="hero-grid">
@@ -174,5 +180,6 @@
 </footer>
 
 <script src="./src/app.js"></script>
+<script type="module" src="./src/motion.js"></script>
 </body>
 </html>
