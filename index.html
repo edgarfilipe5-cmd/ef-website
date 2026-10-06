@@ -307,6 +307,266 @@
     .app-decision{gap:24px;margin-top:52px}
   }
 </style>
+
+<style id="ef-mobile-polish-v2">
+@media(max-width:760px){
+  :root{--mobile-pad:18px}
+  html{scroll-padding-top:76px}
+  body{padding-bottom:76px}
+  .wrap,.hero-grid,.motion-copy,.site-nav .inner{width:calc(100% - 36px)}
+  .site-nav .inner{height:62px}
+  .site-nav img{width:112px}
+  .mobile-apply{
+    left:10px;right:10px;bottom:10px;
+    min-height:52px;padding:0 17px;
+    border-radius:3px;
+  }
+
+  .hero{min-height:auto}
+  .hero-grid{
+    padding:98px 0 34px;
+    gap:22px;
+    align-items:start;
+  }
+  .hero h1{
+    font-size:clamp(3.55rem,17vw,5.2rem);
+    line-height:.84;
+    max-width:7.5ch;
+  }
+  .hero-tag{font-size:.7rem;line-height:1.4;margin-bottom:18px}
+  .hero-sub{
+    margin-top:20px;
+    font-size:1rem;
+    line-height:1.5;
+    max-width:34ch;
+  }
+  .hero-ctas{gap:9px;margin-top:22px}
+  .hero-ctas .cta{width:100%;min-height:50px;padding:0 16px}
+  .hero .cta.ghost{background:rgba(0,0,0,.42)}
+
+  .hero-experience{
+    min-height:395px;
+    margin-top:2px;
+  }
+  .hero-experience:before{
+    inset:2% -12% 15%;
+    background-size:42px 42px;
+  }
+  .brand-core{
+    width:min(238px,68%);
+    top:33%;
+  }
+  .brand-core-label{font-size:.48rem;left:12px;right:12px;bottom:10px}
+  .experience-halo{top:34%}
+  .halo-one{width:82%}
+  .halo-two{width:60%}
+  .compact-goal{
+    width:100%;
+    padding:13px;
+    border-color:rgba(212,175,55,.24);
+  }
+  .compact-goal h3{font-size:.9rem}
+  .compact-goal .goal-buttons{
+    display:flex;
+    gap:6px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding-bottom:2px;
+  }
+  .compact-goal .goal-buttons::-webkit-scrollbar{display:none}
+  .compact-goal .goal-btn{
+    flex:0 0 auto;
+    min-width:142px;
+    padding:9px 10px;
+    font-size:.66rem;
+  }
+  .compact-goal .goal-copy{font-size:.78rem;line-height:1.4}
+  .compact-goal .hero-meta{gap:18px}
+  .compact-goal .meta strong{font-size:1.25rem}
+
+  .marquee span{font-size:.77rem;padding:11px 18px}
+  .experience-strip{padding:64px 0 70px}
+  .experience-strip-head{gap:18px;margin-bottom:30px}
+  .experience-strip h2{font-size:clamp(2.7rem,13vw,4rem)}
+  .experience-strip-head p{font-size:.98rem;line-height:1.55}
+  .experience-cards{gap:10px}
+  .experience-card{min-height:285px}
+  .card-content{left:19px;right:19px;bottom:19px}
+  .card-content h3{font-size:2.05rem}
+  .card-content p{min-height:0;margin:8px 0 0;font-size:.91rem}
+  .card-content b{margin-top:12px}
+
+  .section{padding:66px 0}
+  h2{font-size:clamp(2.55rem,12.5vw,4rem);line-height:.94}
+  h3{font-size:1.3rem}
+  .split,.online-grid,.faq-grid,.final .wrap{gap:30px}
+  .lead{font-size:1.04rem;line-height:1.52}
+  .problem .statement{
+    font-size:clamp(2rem,10vw,3rem);
+    margin-top:28px;padding-top:20px;
+  }
+
+  #coaching .sticky .hero-ctas{margin-top:20px}
+  .feature{
+    grid-template-columns:32px 1fr;
+    gap:8px 14px;
+    padding:20px 0;
+  }
+  .feature h3{font-size:1.12rem}
+  .feature p{
+    grid-column:2;
+    font-size:.92rem;
+    line-height:1.48;
+  }
+  .feature .n{font-size:.72rem}
+
+  .motion-band{min-height:510px}
+  .motion-copy{padding:54px 0 60px}
+  .motion-copy h2{font-size:clamp(2.85rem,13vw,4.3rem)}
+  .motion-copy p{font-size:1rem;line-height:1.55}
+
+  .step{
+    grid-template-columns:34px 1fr;
+    gap:8px 12px;
+    padding:22px 0;
+  }
+  .step h3{font-size:1.13rem}
+  .step p{
+    grid-column:2;
+    font-size:.92rem;
+    line-height:1.5;
+  }
+  .step .n{font-size:.74rem}
+
+  .goal-cards,.progress-cards{gap:10px;margin-top:28px}
+  .goal-card{min-height:0;padding:22px}
+  .goal-card .num{margin-bottom:36px}
+  .goal-card p{font-size:.94rem;line-height:1.5}
+
+  .about-grid{grid-template-columns:1fr}
+  .about-photo{height:420px}
+  .about-copy{padding:48px 20px 54px}
+  .about-copy p{font-size:1rem}
+  .price-lockup{gap:20px;margin-top:32px}
+  .price strong{font-size:3.15rem}
+  .price-lockup .cta{width:100%}
+
+  .presential-copy{padding:48px 20px}
+  .presential-video,.presential-video video{min-height:410px}
+  .faq-grid{gap:24px}
+  summary{padding:20px 0;font-size:.94rem;line-height:1.35;gap:18px}
+  details p{padding:0 8px 20px 0;line-height:1.5}
+  .final .wrap{align-items:start}
+  .final h2{font-size:clamp(2.8rem,13vw,4.2rem)}
+  .final .cta{width:100%;margin-top:10px}
+
+  /* App EF: mobile-first reading */
+  .app-section{padding:72px 0}
+  .app-intro{gap:28px}
+  .app-section h2{
+    font-size:clamp(3rem,14.6vw,4.5rem);
+    line-height:.9;
+    max-width:8.4ch;
+  }
+  .app-lead{
+    margin-top:20px;
+    font-size:1rem;
+    line-height:1.55;
+  }
+  .app-proof{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+    margin-top:20px;
+  }
+  .app-proof span{
+    padding:8px 9px;
+    font-size:.61rem;
+    text-align:center;
+  }
+  .app-device-wrap{
+    min-height:430px;
+    margin:0;
+  }
+  .app-orbit{width:108%;opacity:.72}
+  .app-device{
+    width:min(286px,82vw);
+    min-height:420px;
+    padding:12px;
+    border-radius:30px;
+    transform:rotateY(-4deg);
+  }
+  .app-screen{
+    min-height:390px;
+    padding:17px 14px;
+    border-radius:23px;
+  }
+  .app-screen-top{padding-bottom:13px}
+  .app-screen-logo{font-size:1.08rem}
+  .app-screen-status{font-size:.55rem}
+  .app-today{margin-top:17px;padding:16px}
+  .app-today strong{font-size:1.08rem}
+  .app-today p{font-size:.72rem}
+  .app-mini-grid{gap:7px;margin-top:7px}
+  .app-mini{min-height:78px;padding:10px}
+  .app-mini span{font-size:.53rem}
+  .app-mini b{font-size:.76rem}
+  .app-coach{margin-top:7px;padding:11px}
+  .app-coach b{font-size:.78rem}
+  .app-coach p{font-size:.67rem}
+
+  .app-features{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    margin-top:38px;
+    padding:0 0 8px;
+    background:transparent;
+    border:0;
+  }
+  .app-features::-webkit-scrollbar{display:none}
+  .app-feature{
+    flex:0 0 82%;
+    min-width:82%;
+    min-height:238px;
+    padding:22px;
+    scroll-snap-align:start;
+    border:1px solid rgba(255,255,255,.09);
+    background:#0c0c0c;
+  }
+  .app-feature h3{margin-top:38px;font-size:1.12rem}
+  .app-feature p{font-size:.91rem;line-height:1.5}
+  .app-swipe-hint{
+    display:block;
+    margin-top:10px;
+    color:#777;
+    font-size:.68rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .app-decision{
+    gap:18px;
+    margin-top:42px;
+    padding-top:34px;
+  }
+  .app-decision h3{font-size:clamp(2rem,10vw,3.2rem)}
+  .app-decision p{font-size:.98rem;line-height:1.58}
+  .app-included{margin-top:36px;padding:18px}
+  .app-included p{font-size:.92rem;line-height:1.55}
+}
+
+@media(max-width:390px){
+  .wrap,.hero-grid,.motion-copy,.site-nav .inner{width:calc(100% - 28px)}
+  .hero h1{font-size:3.55rem}
+  .hero-experience{min-height:380px}
+  .brand-core{width:220px}
+  .app-section h2{font-size:3.15rem}
+  .app-feature{flex-basis:86%;min-width:86%}
+  .about-photo{height:380px}
+}
+</style>
 </head>
 <body>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -543,6 +803,7 @@
       <article class="app-feature"><div class="num">07</div><h3>Desafio da semana</h3><p>Pequenas metas adicionais adaptadas ao momento do processo para melhorar consistência e hábitos fora do treino.</p></article>
       <article class="app-feature"><div class="num">08</div><h3>Coaching EF com IA</h3><p>Apoio para dúvidas simples e orientação sobre o teu processo. Alterações importantes ao treino continuam dependentes da revisão do PT.</p></article>
     </div>
+    <div class="app-swipe-hint">Desliza para explorar as funcionalidades →</div>
 
     <div class="app-decision">
       <h3>Não é apenas uma app de treino. <span>É parte do acompanhamento.</span></h3>
