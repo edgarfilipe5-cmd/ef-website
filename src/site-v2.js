@@ -25,7 +25,33 @@ function home(d){
  const h=d.home;
  return `${nav(d)}
  <main>
- <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow">${esc(h.hero.eyebrow)}</div><h1>${h.hero.title}</h1><p class="hero-sub">${esc(h.hero.subtitle)}</p><div class="hero-meta"><span>PLANO PERSONALIZADO</span><span>APP EF</span><span>CHECK-INS</span><span>AJUSTES PELO PT</span></div><div class="actions">${btn(d.site.application_url,'Quero candidatar-me')}${btn('./coaching.html','Ver como funciona','btn-light')}</div></div><div class="hero-photo">${img(h.hero.image,'Edgar Filipe')}<div class="hero-price"><b>${esc(d.site.price)}</b><span>${esc(d.site.duration)} · ${esc(d.site.payment_label)}</span></div></div></div></section>
+ <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow">${esc(h.hero.eyebrow)}</div><h1>${h.hero.title}</h1><p class="hero-sub">${esc(h.hero.subtitle)}</p><div class="hero-meta"><span>PLANO PERSONALIZADO</span><span>APP EF</span><span>CHECK-INS</span><span>AJUSTES PELO PT</span></div><div class="actions">${btn(d.site.application_url,'Quero candidatar-me')}${btn('./coaching.html','Ver como funciona','btn-light')}</div></div><div class="hero-visual-3d" id="ef-orbital">
+  <div class="orbital-stage">
+    <div class="orbital-system" aria-hidden="true">
+      <div class="orbital-glow"></div>
+      <div class="orbit orbit-1">
+        <i class="orbital-dot lg" style="--x:180px;--y:-5px;--z:22px"></i>
+        <i class="orbital-dot silver sm" style="--x:-156px;--y:18px;--z:-8px"></i>
+      </div>
+      <div class="orbit orbit-2">
+        <i class="orbital-dot silver" style="--x:120px;--y:-68px;--z:20px"></i>
+        <i class="orbital-dot sm" style="--x:-92px;--y:92px;--z:-14px"></i>
+      </div>
+      <div class="orbit orbit-3">
+        <i class="orbital-dot" style="--x:190px;--y:55px;--z:28px"></i>
+        <i class="orbital-dot silver sm" style="--x:-190px;--y:-50px;--z:0px"></i>
+        <i class="orbital-dot sm" style="--x:24px;--y:-120px;--z:34px"></i>
+      </div>
+      <div class="orbit orbit-4">
+        <i class="orbital-dot silver" style="--x:38px;--y:154px;--z:18px"></i>
+        <i class="orbital-dot sm" style="--x:-52px;--y:-154px;--z:0px"></i>
+      </div>
+      <div class="orbital-core"><img src="./assets/brand/ef-monogram-gold.svg" alt=""></div>
+    </div>
+  </div>
+  <div class="orbital-label"><span>EF / PERFORMANCE SYSTEM</span><b>MÉTODO · APP · COACHING</b></div>
+  <div class="hero-price"><b>${esc(d.site.price)}</b><span>${esc(d.site.duration)} · ${esc(d.site.payment_label)}</span></div>
+</div></div></section>
  <div class="signal-strip"><div class="wrap signal-grid"><div><b>MÉTODO EF</b><span>Decisões com lógica</span></div><div><b>APP EF</b><span>Processo ligado</span></div><div><b>ACOMPANHAMENTO</b><span>Contexto real</span></div><div><b>12 SEMANAS</b><span>Tempo para aprender e ajustar</span></div></div></div>
  <section class="section paper"><div class="wrap"><div class="section-head"><div><div class="eyebrow">${esc(h.problem.eyebrow)}</div><h2>${esc(h.problem.title)}</h2></div><p>${esc(h.problem.intro)}</p></div><div class="cards-3">${cards(h.problem.items)}</div></div></section>
  <section class="section dark"><div class="wrap"><div class="section-head"><div><div class="eyebrow">${esc(h.mechanism.eyebrow)}</div><h2>${esc(h.mechanism.title)}</h2></div><p>${esc(h.mechanism.intro)}</p></div><div class="cards-3">${h.mechanism.items.map(x=>`<article class="card mechanism-card"><div class="label">${esc(x.label)}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p><a class="text-link" href="${x.link}">Saber mais →</a></article>`).join('')}</div></div></section>
@@ -84,6 +110,24 @@ function presencialPage(d){
  <section class="section dark"><div class="wrap grid-2"><h2>${esc(p.closing_title)}</h2><div><p class="lead">${esc(p.closing_body)}</p>${btn(d.site.instagram_url,'Falar comigo no Instagram')}</div></div></section>
  </main>${footer(d)}`;
 }
+function wireOrbital(){
+ const stage=document.querySelector('#ef-orbital .orbital-stage');
+ if(!stage||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ if(window.matchMedia('(pointer:fine)').matches){
+   const host=document.getElementById('ef-orbital');
+   host.addEventListener('pointermove',e=>{
+     const r=host.getBoundingClientRect();
+     const x=(e.clientX-r.left)/r.width-.5;
+     const y=(e.clientY-r.top)/r.height-.5;
+     stage.style.setProperty('--tilt-y',(x*7).toFixed(2)+'deg');
+     stage.style.setProperty('--tilt-x',(-y*5).toFixed(2)+'deg');
+   });
+   host.addEventListener('pointerleave',()=>{
+     stage.style.setProperty('--tilt-y','0deg');
+     stage.style.setProperty('--tilt-x','0deg');
+   });
+ }
+}
 function wireMenu(){
  const b=document.querySelector('.menu-btn'),d=document.querySelector('.drawer');
  if(!b||!d)return;
@@ -94,5 +138,5 @@ fetch('./content/site.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
  document.title=PAGE==='home'?d.site.title:`${PAGE[0].toUpperCase()+PAGE.slice(1)} — EF`;
  const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=d.site.description;
  const render={home,coaching,app:appPage,method:methodPage,about:aboutPage,presential:presencialPage}[PAGE]||home;
- ROOT.innerHTML=render(d);wireMenu();
+ ROOT.innerHTML=render(d);wireMenu();wireOrbital();
 }).catch(()=>{ROOT.innerHTML='<p style="padding:40px">Não foi possível carregar o website.</p>'});

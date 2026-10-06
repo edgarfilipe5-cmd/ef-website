@@ -224,3 +224,184 @@ details p{color:var(--muted);padding:0 0 22px;margin:0}
   .brand img{width:190px}
   .hero-photo{height:380px}
 }
+
+
+/* EF 3D ORBITAL — signature hero visual */
+.hero-visual-3d{
+  position:relative;
+  min-height:610px;
+  overflow:hidden;
+  border:1px solid #282722;
+  background:
+    radial-gradient(circle at 50% 40%,rgba(227,188,102,.10),transparent 28%),
+    radial-gradient(circle at 72% 18%,rgba(246,218,142,.05),transparent 18%),
+    linear-gradient(145deg,#11110f,#060606 72%);
+  perspective:1200px;
+  isolation:isolate;
+}
+.hero-visual-3d:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:54px 54px;
+  mask-image:linear-gradient(to bottom,black,transparent 88%);
+}
+.hero-visual-3d:after{
+  content:"";
+  position:absolute;
+  inset:-15%;
+  pointer-events:none;
+  background:radial-gradient(circle at 50% 48%,rgba(227,188,102,.12),transparent 33%);
+  filter:blur(20px);
+}
+.orbital-stage{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  transform-style:preserve-3d;
+  transform:rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));
+  transition:transform .28s ease-out;
+  z-index:3;
+}
+.orbital-system{
+  position:relative;
+  width:min(480px,82%);
+  aspect-ratio:1;
+  transform-style:preserve-3d;
+}
+.orbital-core{
+  position:absolute;
+  z-index:8;
+  left:50%;top:50%;
+  width:42%;
+  aspect-ratio:1;
+  transform:translate(-50%,-50%) translateZ(44px);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 33% 25%,rgba(255,255,255,.18),transparent 18%),
+    radial-gradient(circle at 64% 72%,rgba(227,188,102,.10),transparent 28%),
+    linear-gradient(145deg,#1b1b1a 0%,#050505 62%,#111 100%);
+  border:1px solid rgba(227,188,102,.45);
+  box-shadow:
+    0 38px 70px rgba(0,0,0,.55),
+    0 0 45px rgba(227,188,102,.10),
+    inset -18px -24px 35px rgba(0,0,0,.7),
+    inset 10px 12px 30px rgba(255,255,255,.035);
+}
+.orbital-core:before{
+  content:"";
+  position:absolute;
+  inset:7%;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.07);
+}
+.orbital-core img{
+  width:55%;
+  height:auto;
+  filter:drop-shadow(0 8px 15px rgba(0,0,0,.55));
+}
+.orbit{
+  position:absolute;
+  left:50%;top:50%;
+  border-radius:50%;
+  border:1px solid rgba(227,188,102,.30);
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+.orbit-1{
+  width:88%;height:36%;
+  margin-left:-44%;margin-top:-18%;
+  transform:rotateX(68deg) rotateZ(14deg);
+  animation:efOrbitOne 15s linear infinite;
+}
+.orbit-2{
+  width:72%;height:44%;
+  margin-left:-36%;margin-top:-22%;
+  border-color:rgba(187,187,187,.24);
+  transform:rotateY(68deg) rotateZ(-18deg);
+  animation:efOrbitTwo 20s linear infinite reverse;
+}
+.orbit-3{
+  width:96%;height:54%;
+  margin-left:-48%;margin-top:-27%;
+  border-color:rgba(227,188,102,.16);
+  transform:rotateX(54deg) rotateY(18deg) rotateZ(62deg);
+  animation:efOrbitThree 24s linear infinite;
+}
+.orbit-4{
+  width:62%;height:92%;
+  margin-left:-31%;margin-top:-46%;
+  border-color:rgba(187,187,187,.14);
+  transform:rotateY(60deg) rotateZ(35deg);
+  animation:efOrbitFour 18s linear infinite reverse;
+}
+.orbital-dot{
+  position:absolute;
+  top:50%;left:50%;
+  width:18px;height:18px;
+  margin:-9px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 32% 27%,#fff7cf 0 7%,#F6DA8E 12%,#E3BC66 44%,#8d6926 100%);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 0 20px rgba(227,188,102,.24);
+  transform:translate(var(--x),var(--y)) translateZ(var(--z,0px));
+}
+.orbital-dot.silver{
+  background:radial-gradient(circle at 32% 27%,#f3f3f3 0 5%,#BBBBBB 24%,#565656 72%,#222 100%);
+  box-shadow:0 0 16px rgba(187,187,187,.12);
+}
+.orbital-dot.sm{width:11px;height:11px;margin:-5.5px}
+.orbital-dot.lg{width:26px;height:26px;margin:-13px}
+.orbital-glow{
+  position:absolute;
+  left:50%;top:50%;
+  width:74%;aspect-ratio:1;
+  transform:translate(-50%,-50%) translateZ(-60px);
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(227,188,102,.11),transparent 64%);
+  filter:blur(8px);
+}
+.orbital-label{
+  position:absolute;
+  z-index:10;
+  left:24px;right:24px;bottom:22px;
+  display:flex;justify-content:space-between;align-items:end;gap:20px;
+  padding-top:14px;
+  border-top:1px solid rgba(255,255,255,.10);
+  color:#8f8b82;
+  font-size:.61rem;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.orbital-label b{color:#d7d3c9;font-size:.68rem}
+.hero-visual-3d .hero-price{z-index:12}
+@keyframes efOrbitOne{to{transform:rotateX(68deg) rotateZ(374deg)}}
+@keyframes efOrbitTwo{to{transform:rotateY(68deg) rotateZ(342deg)}}
+@keyframes efOrbitThree{to{transform:rotateX(54deg) rotateY(18deg) rotateZ(422deg)}}
+@keyframes efOrbitFour{to{transform:rotateY(60deg) rotateZ(395deg)}}
+@media(max-width:1000px){
+  .hero-visual-3d{min-height:560px}
+  .orbital-system{width:min(440px,78vw)}
+}
+@media(max-width:760px){
+  .hero-visual-3d{min-height:410px}
+  .orbital-system{width:min(330px,88vw)}
+  .orbital-core{width:40%}
+  .orbital-dot{width:14px;height:14px;margin:-7px}
+  .orbital-dot.sm{width:9px;height:9px;margin:-4.5px}
+  .orbital-dot.lg{width:20px;height:20px;margin:-10px}
+  .orbital-label{left:14px;right:14px;bottom:14px;font-size:.52rem}
+  .orbital-label b{font-size:.58rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .orbit{animation:none!important}
+  .orbital-stage{transition:none!important}
+}
