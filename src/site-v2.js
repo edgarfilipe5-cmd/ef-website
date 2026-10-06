@@ -136,7 +136,8 @@ function wireMenu(){
  d.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{d.classList.remove('open');b.setAttribute('aria-expanded','false');d.setAttribute('aria-hidden','true')}));
 }
 fetch('./content/site.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
- document.title=PAGE==='home'?d.site.title:`${PAGE[0].toUpperCase()+PAGE.slice(1)} — EF`;
+ const pageTitles={home:d.site.title,coaching:'EF Coaching — Edgar Filipe',app:'App EF — Edgar Filipe',method:'Método EF — Edgar Filipe',about:'Sobre Edgar Filipe — EF',presential:'Personal Training — Edgar Filipe'};
+ document.title=pageTitles[PAGE]||d.site.title;
  const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=d.site.description;
  const render={home,coaching,app:appPage,method:methodPage,about:aboutPage,presential:presencialPage}[PAGE]||home;
  ROOT.innerHTML=render(d);wireMenu();wireOrbital();
