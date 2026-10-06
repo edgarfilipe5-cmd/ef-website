@@ -11,6 +11,302 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./src/styles.css">
+
+<style id="ef-app-site-section">
+  #app{scroll-margin-top:92px}
+  .app-section{
+    position:relative;
+    z-index:3;
+    overflow:hidden;
+    padding:118px 0;
+    color:#fff;
+    background:
+      radial-gradient(circle at 78% 24%,rgba(212,175,55,.16),transparent 28%),
+      radial-gradient(circle at 12% 88%,rgba(255,255,255,.05),transparent 25%),
+      linear-gradient(180deg,#080808,#0d0d0d);
+    border-top:1px solid rgba(255,255,255,.06);
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .app-section:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+      repeating-linear-gradient(90deg,transparent 0 119px,rgba(255,255,255,.018) 120px),
+      linear-gradient(180deg,rgba(255,255,255,.02),transparent 35%);
+  }
+  .app-intro{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);
+    gap:72px;
+    align-items:center;
+  }
+  .app-kicker{
+    color:var(--gold);
+    font-size:.75rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    font-weight:900;
+    margin-bottom:18px;
+  }
+  .app-section h2{
+    max-width:10ch;
+    color:#fff;
+    font-size:clamp(3.2rem,6vw,6.8rem);
+  }
+  .app-lead{
+    max-width:58ch;
+    margin:28px 0 0;
+    color:#c8c8c2;
+    font-size:clamp(1.08rem,1.45vw,1.28rem);
+    line-height:1.62;
+  }
+  .app-proof{
+    margin-top:28px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .app-proof span{
+    padding:9px 12px;
+    border:1px solid rgba(255,255,255,.12);
+    color:#bdbdb7;
+    font-size:.76rem;
+    letter-spacing:.04em;
+    background:rgba(255,255,255,.025);
+  }
+  .app-device-wrap{
+    position:relative;
+    min-height:610px;
+    display:grid;
+    place-items:center;
+    perspective:1400px;
+  }
+  .app-orbit{
+    position:absolute;
+    width:min(540px,92%);
+    aspect-ratio:1;
+    border:1px solid rgba(212,175,55,.20);
+    border-radius:50%;
+    transform:rotateX(70deg) rotateZ(-8deg);
+    box-shadow:0 0 110px rgba(212,175,55,.06);
+  }
+  .app-orbit:before,.app-orbit:after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    inset:15%;
+    border:1px solid rgba(255,255,255,.07);
+  }
+  .app-orbit:after{inset:31%;border-color:rgba(212,175,55,.13)}
+  .app-device{
+    position:relative;
+    z-index:3;
+    width:min(360px,78vw);
+    min-height:570px;
+    padding:16px;
+    border-radius:38px;
+    border:1px solid rgba(212,175,55,.42);
+    background:linear-gradient(145deg,#171717,#050505);
+    box-shadow:0 44px 110px rgba(0,0,0,.6),0 0 70px rgba(212,175,55,.08);
+    transform:rotateY(-8deg) rotateX(2deg);
+  }
+  .app-device:before{
+    content:"";
+    position:absolute;
+    width:34%;
+    height:5px;
+    border-radius:999px;
+    top:10px;
+    left:33%;
+    background:#2b2b2b;
+  }
+  .app-screen{
+    min-height:536px;
+    margin-top:10px;
+    padding:22px 18px;
+    border-radius:27px;
+    background:
+      radial-gradient(circle at 80% 5%,rgba(212,175,55,.12),transparent 22%),
+      #0b0b0b;
+    overflow:hidden;
+  }
+  .app-screen-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding-bottom:18px;
+    border-bottom:1px solid rgba(255,255,255,.09);
+  }
+  .app-screen-logo{
+    font-family:var(--display);
+    color:var(--gold);
+    font-size:1.25rem;
+    font-weight:900;
+    letter-spacing:-.06em;
+  }
+  .app-screen-status{
+    color:#8d8d87;
+    font-size:.66rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .app-today{
+    margin-top:24px;
+    padding:22px;
+    background:linear-gradient(145deg,rgba(212,175,55,.16),rgba(255,255,255,.025));
+    border:1px solid rgba(212,175,55,.22);
+  }
+  .app-today span,.app-mini span{
+    display:block;
+    color:#9d9d97;
+    font-size:.65rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+  }
+  .app-today strong{
+    display:block;
+    margin-top:8px;
+    font-family:var(--display);
+    font-size:1.35rem;
+    line-height:1.05;
+  }
+  .app-today p{
+    margin:10px 0 0;
+    color:#a9a9a3;
+    font-size:.82rem;
+    line-height:1.4;
+  }
+  .app-mini-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:10px;
+  }
+  .app-mini{
+    min-height:104px;
+    padding:14px;
+    border:1px solid rgba(255,255,255,.09);
+    background:rgba(255,255,255,.025);
+  }
+  .app-mini b{
+    display:block;
+    margin-top:8px;
+    font-family:var(--display);
+    font-size:.92rem;
+  }
+  .app-coach{
+    margin-top:10px;
+    padding:16px;
+    border-left:3px solid var(--gold);
+    background:rgba(255,255,255,.035);
+  }
+  .app-coach b{font-family:var(--display);font-size:.9rem}
+  .app-coach p{margin:7px 0 0;color:#a9a9a3;font-size:.78rem;line-height:1.4}
+  .app-features{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    margin-top:76px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .app-feature{
+    min-height:250px;
+    padding:24px;
+    background:#0c0c0c;
+    transition:background .3s ease,transform .3s ease;
+  }
+  .app-feature:hover{
+    background:#111;
+    transform:translateY(-3px);
+  }
+  .app-feature .num{
+    color:var(--gold);
+    font-family:var(--display);
+    font-weight:900;
+    font-size:.72rem;
+    letter-spacing:.1em;
+  }
+  .app-feature h3{
+    margin-top:46px;
+    color:#fff;
+    font-size:1.18rem;
+    line-height:1.08;
+  }
+  .app-feature p{
+    color:#9e9e98;
+    line-height:1.5;
+    font-size:.92rem;
+    margin:13px 0 0;
+  }
+  .app-decision{
+    position:relative;
+    z-index:2;
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:70px;
+    align-items:center;
+    margin-top:72px;
+    padding:48px 0 0;
+    border-top:1px solid rgba(255,255,255,.12);
+  }
+  .app-decision h3{
+    color:#fff;
+    font-size:clamp(2rem,3.5vw,4rem);
+    line-height:.98;
+  }
+  .app-decision h3 span{color:var(--gold)}
+  .app-decision p{
+    color:#b3b3ad;
+    font-size:1.06rem;
+    line-height:1.65;
+    margin:0;
+  }
+  .app-included{
+    position:relative;
+    z-index:2;
+    margin-top:56px;
+    padding:24px;
+    border:1px solid rgba(212,175,55,.26);
+    background:linear-gradient(90deg,rgba(212,175,55,.10),rgba(255,255,255,.025));
+  }
+  .app-included strong{
+    display:block;
+    color:#fff;
+    font-family:var(--display);
+    font-size:1rem;
+    margin-bottom:12px;
+  }
+  .app-included p{
+    margin:0;
+    color:#c1c1bb;
+    line-height:1.6;
+  }
+  @media(max-width:1050px){
+    .app-intro,.app-decision{grid-template-columns:1fr}
+    .app-device-wrap{min-height:560px;margin-top:-10px}
+    .app-features{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:620px){
+    .app-section{padding:82px 0}
+    .app-intro{gap:36px}
+    .app-section h2{font-size:clamp(3.25rem,16vw,5.6rem)}
+    .app-device-wrap{min-height:520px}
+    .app-device{width:min(330px,86vw);min-height:520px}
+    .app-screen{min-height:486px}
+    .app-features{grid-template-columns:1fr;margin-top:52px}
+    .app-feature{min-height:0;padding:22px}
+    .app-feature h3{margin-top:28px}
+    .app-decision{gap:24px;margin-top:52px}
+  }
+</style>
 </head>
 <body>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -20,6 +316,7 @@
     <a href="#topo"><img src="./assets/images/logo-white.png" alt="Edgar Filipe Personal Trainer"></a>
     <nav>
       <a href="#coaching">Online</a>
+      <a href="#app">App EF</a>
       <a href="#presencial">Presencial</a>
       <a href="#metodo">Método</a>
       <a href="#edgar">Sobre</a>
@@ -188,6 +485,77 @@
     <div><p id="progressIntro" class="lead"></p><div id="progressCards" class="goal-cards progress-cards"></div></div>
   </div>
 </section>
+
+
+<section class="app-section" id="app">
+  <div class="wrap">
+    <div class="app-intro">
+      <div>
+        <div class="app-kicker">App EF · incluída no acompanhamento</div>
+        <h2>O teu acompanhamento. <span style="color:var(--gold)">Sempre contigo.</span></h2>
+        <p class="app-lead">O acompanhamento EF reúne o teu processo num único lugar. Não recebes apenas um plano de treino: tens uma experiência personalizada onde sabes o que fazer, acompanhas a tua evolução e dás contexto real ao teu treinador ao longo das 12 semanas.</p>
+        <div class="app-proof">
+          <span>PLANO PERSONALIZADO</span>
+          <span>CHECK-IN SEMANAL</span>
+          <span>PROGRESSO</span>
+          <span>COACHING EF + IA</span>
+        </div>
+      </div>
+
+      <div class="app-device-wrap" aria-label="Pré-visualização conceptual da App EF">
+        <div class="app-orbit" aria-hidden="true"></div>
+        <div class="app-device">
+          <div class="app-screen">
+            <div class="app-screen-top">
+              <div class="app-screen-logo">EF</div>
+              <div class="app-screen-status">O teu processo</div>
+            </div>
+
+            <div class="app-today">
+              <span>Treino de hoje</span>
+              <strong>Força · Full Body</strong>
+              <p>Plano, execução, referências da sessão anterior e alternativas aprovadas.</p>
+            </div>
+
+            <div class="app-mini-grid">
+              <div class="app-mini"><span>Progresso</span><b>Consistência</b></div>
+              <div class="app-mini"><span>Semana</span><b>Check-in</b></div>
+              <div class="app-mini"><span>Histórico</span><b>Cargas & reps</b></div>
+              <div class="app-mini"><span>Hábitos</span><b>Desafio EF</b></div>
+            </div>
+
+            <div class="app-coach">
+              <b>Coaching EF</b>
+              <p>Apoio inteligente para dúvidas simples e orientação dentro das regras do Método EF. As decisões importantes continuam a ser revistas pelo PT.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-features">
+      <article class="app-feature"><div class="num">01</div><h3>Plano personalizado</h3><p>Construído a partir da tua anamnese, objetivo, experiência, disponibilidade e contexto, com revisão do teu Personal Trainer.</p></article>
+      <article class="app-feature"><div class="num">02</div><h3>Treino do dia + execução</h3><p>Abres a app e sabes o que fazer. Cada exercício pode incluir demonstração, instruções simples e pontos técnicos.</p></article>
+      <article class="app-feature"><div class="num">03</div><h3>Histórico sem complicações</h3><p>Consulta cargas e repetições anteriores e regista o que fizer sentido, sem seres obrigado a preencher tudo para concluir o treino.</p></article>
+      <article class="app-feature"><div class="num">04</div><h3>Alternativas aprovadas</h3><p>Se uma máquina estiver ocupada ou precisares de substituir um exercício, tens opções previamente validadas sem perder a lógica do plano.</p></article>
+      <article class="app-feature"><div class="num">05</div><h3>Progresso organizado</h3><p>Peso, medidas, performance, consistência, atividade e evolução ficam ligados ao mesmo processo para perceber o que está realmente a mudar.</p></article>
+      <article class="app-feature"><div class="num">06</div><h3>Check-in + feedback</h3><p>Reporta energia, recuperação, stress e evolução; depois de cada treino podes indicar dificuldade, resposta à sessão ou desconforto.</p></article>
+      <article class="app-feature"><div class="num">07</div><h3>Desafio da semana</h3><p>Pequenas metas adicionais adaptadas ao momento do processo para melhorar consistência e hábitos fora do treino.</p></article>
+      <article class="app-feature"><div class="num">08</div><h3>Coaching EF com IA</h3><p>Apoio para dúvidas simples e orientação sobre o teu processo. Alterações importantes ao treino continuam dependentes da revisão do PT.</p></article>
+    </div>
+
+    <div class="app-decision">
+      <h3>Não é apenas uma app de treino. <span>É parte do acompanhamento.</span></h3>
+      <p>Em vez de chegares ao final do mês e tentares recordar como correram as últimas semanas, vamos construindo informação ao longo do processo. Isso permite decidir com base na tua consistência, performance, recuperação e feedback real — e não apenas no peso da balança. Tu continuas focado em treinar. Nós usamos essa informação para tomar melhores decisões.</p>
+    </div>
+
+    <div class="app-included">
+      <strong>O que recebes no EF Coaching</strong>
+      <p>Avaliação inicial + plano personalizado + acesso à App EF + acompanhamento contínuo + check-ins semanais + análise da evolução + ajustes do plano pelo PT + suporte inteligente ao longo de todo o processo.</p>
+    </div>
+  </div>
+</section>
+
 
 <section class="about-grid" id="edgar">
   <div class="about-photo"><img id="aboutImage" alt="Edgar Filipe"></div>
