@@ -6,6 +6,9 @@ fs.rmSync(dist,{recursive:true,force:true});
 fs.mkdirSync(dist,{recursive:true});
 
 fs.copyFileSync("index.html",path.join(dist,"index.html"));
+for (const page of ["app.html","metodo.html","sobre.html"]) {
+  if (fs.existsSync(page)) fs.copyFileSync(page,path.join(dist,page));
+}
 fs.mkdirSync(path.join(dist,"src"),{recursive:true});
 fs.cpSync("src",path.join(dist,"src"),{recursive:true});
 fs.mkdirSync(path.join(dist,"content"),{recursive:true});
