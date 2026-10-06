@@ -3,6 +3,7 @@ const q=s=>document.querySelector(s);
 const qa=s=>[...document.querySelectorAll(s)];
 const esc=(s='')=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const text=(sel,v)=>{const el=q(sel);if(el)el.innerHTML=v||''};
+const html=(sel,v)=>{const el=q(sel);if(el)el.innerHTML=v||''};
 const resolvePath=p=>p?.startsWith('/')?'.'+p:p;
 
 async function loadData(){
@@ -47,7 +48,7 @@ function render(){
   if(meta)meta.content=s.description;
 
   ['applyTop','applyHero','applyOnline','applyAbout','applyFinal','mobileApply'].forEach(id=>{const el=q('#'+id); if(el) el.href=s.application_url});
-  q('#instagram').href=s.instagram_url;
+  const instagram=q('#instagram'); if(instagram) instagram.href=s.instagram_url;
 
   text('#heroTag',data.hero.tag);
   text('#heroTitle',data.hero.title);
@@ -83,7 +84,7 @@ function render(){
   text('#problemBody',data.problem.body);
   text('#problemAccent',data.problem.accent);
 
-  q('#onlineFeatures').innerHTML=rows(data.online.features);
+  html('#onlineFeatures',rows(data.online.features));
   text('#onlineIntro',data.online.intro);
 
   const mv=q('#motionVideo');
@@ -103,17 +104,15 @@ function render(){
   text('#motionBody',data.motion.body);
 
   text('#methodIntro',data.method.intro);
-  q('#methodSteps').innerHTML=rows(data.method.steps,'step');
+  html('#methodSteps',rows(data.method.steps,'step'));
 
   text('#fitIntro',data.fit.intro);
-  q('#fitSteps').innerHTML=rows(data.fit.items,'step');
+  html('#fitSteps',rows(data.fit.items,'step'));
 
-  q('#processSteps').innerHTML=rows(data.process);
+  html('#processSteps',rows(data.process));
 
   text('#progressIntro',data.progress.intro);
-  q('#progressCards').innerHTML=data.progress.items.map((x,i)=>
-    `<article class="goal-card"><div class="num">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`
-  ).join('');
+  html('#progressCards',data.progress.items.map((x,i)=>\n    `<article class="goal-card"><div class="num">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`\n  ).join(''));
 
   text('#aboutTitle',data.about.title);
   text('#aboutBody',data.about.body);
@@ -136,9 +135,7 @@ function render(){
   }
   mediaStyle(pv,data.presential);
 
-  q('#faqList').innerHTML=data.faq.map(x=>
-    `<details><summary>${esc(x.question)}</summary><p>${esc(x.answer)}</p></details>`
-  ).join('');
+  html('#faqList',data.faq.map(x=>\n    `<details><summary>${esc(x.question)}</summary><p>${esc(x.answer)}</p></details>`\n  ).join(''));
 
   text('#finalTitle',data.final.title);
   text('#finalBody',data.final.body);
