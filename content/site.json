@@ -1,195 +1,418 @@
 {
   "site": {
     "title": "EF — Edgar Filipe Personal Trainer",
-    "description": "EF Coaching: acompanhamento online personalizado durante 12 semanas para integrar treino, saúde e resultados na vida real.",
+    "description": "EF Coaching: 12 semanas de acompanhamento personalizado com Método EF, App EF e acompanhamento contínuo.",
     "application_url": "https://form.jotform.com/262522804984059",
     "instagram_url": "https://www.instagram.com/edgar_filipe__pt/",
     "price": "199 €",
     "duration": "12 semanas",
     "payment_label": "pagamento único"
   },
-  "hero": {
-    "tag": "EF Coaching · Online · 12 semanas · 199 €",
-    "title": "TREINA PARA <span>VIVER</span> MELHOR.",
-    "subtitle": "Um acompanhamento que junta treino, ciência e vida real para perder gordura, ganhar massa muscular ou construir um estilo de vida mais forte e saudável.",
-    "image": "/assets/images/hero-sunset.jpg",
-    "focus_x": 50,
-    "focus_y": 48,
-    "zoom": 100
-  },
-  "goals": [
-    {
-      "title": "Perder massa gorda",
-      "text": "Estrutura e consistência para melhorar a composição corporal sem transformar o processo numa guerra contra a tua rotina."
+  "home": {
+    "hero": {
+      "eyebrow": "EF Coaching · 12 semanas",
+      "title": "TREINA COM <span>DIREÇÃO.</span>",
+      "subtitle": "Um acompanhamento personalizado que junta treino, App EF e acompanhamento real para saberes o que fazer, perceberes se está a resultar e ajustares quando for necessário.",
+      "image": "/assets/images/hero-sunset.jpg",
+      "focus_x": 50,
+      "focus_y": 48,
+      "zoom": 100
     },
-    {
-      "title": "Ganhar massa muscular",
-      "text": "Treino pensado para o teu nível, equipamento e disponibilidade, com progressão e ajustes ao longo do acompanhamento."
+    "problem": {
+      "eyebrow": "O problema não é falta de exercícios",
+      "title": "É treinar sem saber se aquilo que estás a fazer te aproxima realmente do objetivo.",
+      "intro": "Mais informação não resolve falta de direção. O EF Coaching organiza o processo para que cada semana tenha uma lógica.",
+      "items": [
+        {
+          "title": "Treinas sem estrutura",
+          "text": "Mudas exercícios, rotinas ou intensidade sem uma referência clara para perceber se estás a evoluir."
+        },
+        {
+          "title": "Não sabes quando progredir",
+          "text": "Carga, repetições, técnica e contexto precisam de critérios — não de adivinhação."
+        },
+        {
+          "title": "A semana real não cabe no plano",
+          "text": "Quando trabalho, sono ou rotina mudam, precisas de adaptar sem abandonar o processo."
+        }
+      ]
     },
-    {
-      "title": "Saúde & longevidade",
-      "text": "Força, capacidade física e hábitos que ajudam a manter um estilo de vida ativo durante muitos anos."
+    "mechanism": {
+      "eyebrow": "O sistema EF",
+      "title": "Método + treinador + tecnologia.",
+      "intro": "Três componentes com funções diferentes, ligadas ao mesmo objetivo: transformar intenção em execução consistente.",
+      "items": [
+        {
+          "label": "Método EF",
+          "title": "Dá lógica às decisões.",
+          "text": "Perceber, planear, acompanhar e ajustar sem complicar por complicar.",
+          "link": "./metodo.html"
+        },
+        {
+          "label": "Edgar",
+          "title": "Interpreta o contexto.",
+          "text": "O treinador continua responsável pelas decisões importantes e pelos ajustes do plano.",
+          "link": "./sobre.html"
+        },
+        {
+          "label": "App EF",
+          "title": "Liga o processo todos os dias.",
+          "text": "Treino, progresso, feedback e check-ins organizados no mesmo lugar.",
+          "link": "./app.html"
+        }
+      ]
+    },
+    "app_teaser": {
+      "eyebrow": "App EF · incluída",
+      "title": "O teu acompanhamento não desaparece quando sais do ginásio.",
+      "body": "Abres a app e sabes o que fazer. Durante o treino tens contexto. Depois do treino dás feedback. Ao longo das semanas vês a evolução — e eu recebo informação para decidir melhor.",
+      "image": "https://at.adobe.com/5B4gr0YkDey7p73V",
+      "bullets": [
+        "Treino do dia e plano organizado",
+        "Progresso, histórico e consistência",
+        "Check-ins, feedback e Coaching EF"
+      ]
+    },
+    "journey": {
+      "eyebrow": "Como funciona",
+      "title": "Um processo simples por fora. Bem acompanhado por dentro.",
+      "items": [
+        {
+          "title": "Conheço-te",
+          "text": "Objetivo, experiência, rotina, disponibilidade e contexto."
+        },
+        {
+          "title": "Construo",
+          "text": "Crio e revejo um plano que faça sentido para a tua realidade."
+        },
+        {
+          "title": "Acompanho",
+          "text": "Treino, feedback, check-ins e evolução ficam ligados ao mesmo processo."
+        },
+        {
+          "title": "Ajustamos",
+          "text": "Mantemos o que funciona e alteramos quando existe uma razão real."
+        }
+      ]
+    },
+    "offer": {
+      "eyebrow": "EF Coaching",
+      "title": "Não compras um PDF. Entras num sistema de acompanhamento.",
+      "body": "Durante 12 semanas tens uma estrutura clara para treinar e um processo contínuo para perceber o que manter, progredir ou adaptar.",
+      "included": [
+        "Avaliação inicial",
+        "Plano de treino personalizado",
+        "Acesso à App EF",
+        "Check-in semanal",
+        "Feedback pós-treino",
+        "Análise da evolução",
+        "Ajustes pelo Personal Trainer",
+        "Suporte inteligente ao longo do processo"
+      ]
+    },
+    "about_teaser": {
+      "eyebrow": "Quem está do outro lado",
+      "title": "Treinar bem é técnico. Aderir ao processo é humano.",
+      "body": "Sou o Edgar Filipe, Personal Trainer e fundador da EF. Transformo princípios de treino em decisões práticas para que o plano funcione na tua vida — não apenas no papel.",
+      "image": "/assets/images/edgar-portrait.jpg",
+      "focus_x": 50,
+      "focus_y": 25,
+      "zoom": 100
+    },
+    "presential_teaser": {
+      "eyebrow": "Personal Training",
+      "title": "Preferes acompanhamento cara a cara?",
+      "body": "Em Miramar, o Método EF também existe presencialmente: avaliação, planeamento e acompanhamento próximo em sessões individuais, duo ou pequenos grupos.",
+      "image": "/assets/images/edgar-portrait.jpg"
     }
-  ],
-  "problem": {
-    "title": "O problema não é saber que devias treinar.",
-    "body": "É transformar o treino numa parte consistente da tua vida sem depender de planos impossíveis, extremos ou motivação perfeita.",
-    "accent": "O treino tem de funcionar na tua vida. Não o contrário."
   },
-  "online": {
-    "intro": "Plano personalizado, App EF e acompanhamento contínuo para saberes o que fazer e quando ajustar.",
-    "features": [
+  "coaching": {
+    "hero": {
+      "eyebrow": "EF Coaching · acompanhamento online",
+      "title": "DEIXA DE IMPROVISAR. <span>COMEÇA A TREINAR COM DIREÇÃO.</span>",
+      "subtitle": "12 semanas para construir um processo de treino personalizado, acompanhado e ajustado à tua vida real.",
+      "image": "/assets/images/hero-sunset.jpg"
+    },
+    "promise": {
+      "title": "O produto não é o plano. É o acompanhamento.",
+      "body": "Um bom plano é apenas o início. O valor está em ter contexto, critérios de progressão, feedback e alguém responsável por interpretar o que está a acontecer e decidir o que fazer a seguir."
+    },
+    "route": [
       {
-        "title": "Plano personalizado",
-        "text": "Construído a partir do teu objetivo, experiência, disponibilidade e contexto real."
+        "title": "Candidatura",
+        "text": "Preenches um formulário curto para eu perceber o teu objetivo e contexto."
+      },
+      {
+        "title": "Análise e conversa",
+        "text": "Revejo a candidatura e confirmamos se o EF Coaching faz sentido para ti."
+      },
+      {
+        "title": "Pagamento",
+        "text": "Se avançarmos, o pagamento é tratado diretamente comigo."
+      },
+      {
+        "title": "Acesso à App EF",
+        "text": "Recebes acesso ao espaço onde todo o acompanhamento vai ficar organizado."
+      },
+      {
+        "title": "Anamnese e onboarding",
+        "text": "Recolho a informação necessária para construir o plano com detalhe."
+      },
+      {
+        "title": "Plano revisto pelo PT",
+        "text": "O plano é construído e revisto antes de ser disponibilizado."
+      },
+      {
+        "title": "Treino + feedback",
+        "text": "Executas, registamos o que importa e recolhemos feedback ao longo das semanas."
+      },
+      {
+        "title": "Análise + ajustes",
+        "text": "A evolução e o contexto determinam quando manter, progredir ou adaptar."
+      }
+    ],
+    "included": [
+      {
+        "title": "Plano individualizado",
+        "text": "Objetivo, experiência, equipamento, disponibilidade e contexto entram na decisão."
       },
       {
         "title": "App EF",
-        "text": "Treino do dia, plano, progresso, feedback e histórico no mesmo lugar."
+        "text": "Treino, histórico, progresso, check-ins e feedback num só lugar."
       },
       {
         "title": "Acompanhamento contínuo",
-        "text": "Check-ins, feedback e contacto ao longo das 12 semanas — não apenas um plano enviado no início."
+        "text": "Não esperas pelo fim do mês para tentar recordar como correram as últimas semanas."
       },
       {
-        "title": "Ajustes pelo PT",
-        "text": "O treino evolui quando existe uma razão real para manter, progredir ou adaptar."
+        "title": "Ajustes com critério",
+        "text": "O plano muda quando existe motivo, não para criar novidade."
+      },
+      {
+        "title": "WhatsApp",
+        "text": "Mantemos um canal simples para contacto e contexto quando necessário."
+      },
+      {
+        "title": "Coaching EF com IA",
+        "text": "Apoio para dúvidas simples dentro das regras do Método EF; decisões importantes continuam a ser revistas pelo PT."
       }
-    ]
+    ],
+    "fit": {
+      "good_title": "Faz sentido para ti se...",
+      "good": [
+        "Queres melhorar força, composição corporal ou massa muscular.",
+        "Queres saber exatamente o que fazer sem viver para o fitness.",
+        "Valorizas progressão, acompanhamento e ajustes com critério.",
+        "Preferes consistência a extremos de duas semanas."
+      ],
+      "bad_title": "Não é o acompanhamento certo se...",
+      "bad": [
+        "Procuras resultados garantidos ou atalhos rápidos.",
+        "Queres um plano alimentar clínico ou prescrição nutricional dedicada.",
+        "Não pretendes comunicar nem dar feedback ao longo do processo.",
+        "Procuras mudar exercícios constantemente apenas por novidade."
+      ]
+    }
   },
-  "motion": {
-    "title": "CIÊNCIA PARA ORIENTAR.<br><span>VIDA REAL</span> PARA DECIDIR.",
-    "body": "O plano existe para te dar direção. O acompanhamento existe para perceber quando é altura de manter, progredir ou adaptar.",
-    "video": "",
-    "start": 0,
-    "end": 6,
-    "focus_x": 50,
-    "focus_y": 50,
-    "zoom": 100,
-    "poster": "/assets/images/hero-sunset.jpg"
+  "app": {
+    "hero": {
+      "eyebrow": "App EF · incluída no acompanhamento",
+      "title": "O TEU PROCESSO. <span>NA TUA MÃO.</span>",
+      "subtitle": "Treino, progresso, feedback e acompanhamento reunidos numa única experiência.",
+      "image": "https://at.adobe.com/5B4gr0YkDey7p73V"
+    },
+    "intro_title": "Não é uma app para guardar um plano. É onde o acompanhamento acontece.",
+    "intro_body": "A App EF foi criada para reduzir atrito para o cliente e dar mais contexto ao treinador. Tu sabes o que fazer; eu consigo perceber mais rapidamente como estás a responder.",
+    "screens": [
+      {
+        "label": "01 · Plano",
+        "title": "Sabes sempre o que tens a seguir.",
+        "text": "A semana mostra o foco da fase, sessões realizadas, consistência e a próxima sessão.",
+        "image": "https://at.adobe.com/CUqoAt5Q4vivL2TU"
+      },
+      {
+        "label": "02 · Sessão",
+        "title": "Treina com o contexto à frente.",
+        "text": "Vês o treino completo, o progresso da sessão e os exercícios organizados por blocos, com alternativas EF quando necessário.",
+        "image": "https://at.adobe.com/Asx6ya8DUbxEHfyq"
+      },
+      {
+        "label": "03 · Progresso",
+        "title": "Percebe tendências, não apenas números isolados.",
+        "text": "Consistência, sessões e evolução ficam organizadas para interpretar o processo ao longo do tempo.",
+        "image": "https://at.adobe.com/JneRbZN2Ss6YvCQq"
+      },
+      {
+        "label": "04 · Acompanhamento",
+        "title": "O treino termina. O acompanhamento continua.",
+        "text": "Feedback pós-treino, check-in semanal, desafio e Coaching EF mantêm o processo ligado entre sessões.",
+        "image": "https://at.adobe.com/yqUbIhwceG8Oltnr"
+      }
+    ],
+    "closing_title": "Tu focas-te em treinar. A informação ajuda-nos a decidir melhor.",
+    "closing_body": "Alterações importantes ao treino continuam dependentes da revisão do Personal Trainer. A tecnologia serve o acompanhamento — não o substitui."
   },
   "method": {
-    "intro": "Estrutura suficiente para evoluir. Flexibilidade suficiente para sobreviver à tua semana real.",
+    "hero": {
+      "eyebrow": "Método EF",
+      "title": "ESTRUTURA PARA EVOLUIR. <span>FLEXIBILIDADE PARA MANTER.</span>",
+      "subtitle": "O plano só é bom se for tecnicamente sólido e suficientemente realista para ser seguido na tua vida."
+    },
     "steps": [
       {
-        "title": "Perceber onde estás",
-        "text": "Objetivo, experiência, rotina, disponibilidade e o que já tentaste entram primeiro na decisão."
+        "title": "Perceber",
+        "text": "Objetivo, experiência, rotina, disponibilidade, limitações e histórico entram primeiro na decisão."
       },
       {
-        "title": "Construir o teu plano",
-        "text": "O treino é pensado para aquilo que realmente consegues executar com consistência."
+        "title": "Planear",
+        "text": "O treino é construído para aquilo que consegues executar com consistência — não para uma semana ideal."
       },
       {
-        "title": "Acompanhar de perto",
-        "text": "Feedback, contacto e contexto ao longo das semanas — não apenas uma folha de exercícios."
+        "title": "Acompanhar",
+        "text": "Treino, feedback, consistência, recuperação e contexto ajudam a perceber a resposta ao processo."
       },
       {
-        "title": "Ajustar com razão",
-        "text": "O plano evolui quando há motivo. Nem tudo precisa de mudar para continuar a funcionar."
+        "title": "Ajustar",
+        "text": "O plano muda quando existe motivo: progressão, dificuldade, contexto, disponibilidade ou resposta ao treino."
       }
-    ]
-  },
-  "fit": {
-    "intro": "O EF Coaching é para quem quer integrar atividade física e um estilo de vida mais saudável na vida real — com direção, acompanhamento e sem depender de extremos.",
-    "items": [
+    ],
+    "principles": [
       {
-        "title": "Queres começar mas não sabes como",
-        "text": "Tens vontade de treinar, mas falta uma estrutura clara e adequada ao teu nível."
+        "title": "Consistência > perfeição",
+        "text": "Uma sequência de semanas suficientemente boas vale mais do que uma semana perfeita seguida de abandono."
       },
       {
-        "title": "Já tentaste e não conseguiste manter",
-        "text": "O problema não é falta de informação; é encontrar uma abordagem que funcione na tua rotina."
+        "title": "Técnica antes de complexidade",
+        "text": "Especialmente no início, aprender a executar e criar hábito vale mais do que perseguir intensidade a qualquer custo."
       },
       {
-        "title": "Tens pouco tempo",
-        "text": "O plano parte da disponibilidade real que tens, em vez de exigir que reorganizes a vida à volta do treino."
+        "title": "Progressão mensurável",
+        "text": "Carga, repetições, técnica e esforço ajudam a decidir quando avançar."
       },
       {
-        "title": "Queres resultados sem abdicar da vida",
-        "text": "Perder massa gorda, ganhar massa muscular ou simplesmente sentir-te mais forte e saudável sem entrar numa lógica de tudo ou nada."
+        "title": "Contexto antes de ego",
+        "text": "Frequência e volume têm de respeitar recuperação, sono, stress, rotina e aderência real."
+      },
+      {
+        "title": "Não mudar só para parecer avançado",
+        "text": "Se um exercício ou estrutura continuam úteis, mantemos tempo suficiente para aprender, comparar e progredir."
+      },
+      {
+        "title": "Dados para decidir, não para complicar",
+        "text": "Consistência, performance, recuperação e feedback só interessam se ajudarem a tomar uma decisão melhor."
       }
-    ]
-  },
-  "process": [
-    {
-      "title": "Candidatura",
-      "text": "Respondes a algumas perguntas para eu perceber o teu objetivo e contexto."
-    },
-    {
-      "title": "Onboarding",
-      "text": "Se avançarmos, recolho a informação necessária para construir o acompanhamento."
-    },
-    {
-      "title": "Plano + App EF",
-      "text": "Recebes o plano personalizado na App EF, com tudo organizado para começar."
-    },
-    {
-      "title": "Acompanhamento",
-      "text": "Ao longo das 12 semanas acompanho a resposta ao plano e ajustamos quando fizer sentido."
-    }
-  ],
-  "progress": {
-    "intro": "O progresso é interpretado de acordo com o teu objetivo e com o que está realmente a acontecer ao longo das semanas.",
-    "items": [
-      {
-        "title": "Treino",
-        "text": "Execução, consistência, progressão e resposta ao plano ajudam a perceber se estamos no caminho certo."
-      },
-      {
-        "title": "Vida real",
-        "text": "Sono, stress, rotina, disponibilidade e aderência também contam. Um plano só funciona se conseguir continuar a ser executado."
-      }
+    ],
+    "measure": [
+      "Performance",
+      "Consistência",
+      "Recuperação e contexto",
+      "Peso, medidas, espelho e roupa quando relevantes"
     ]
   },
   "about": {
-    "title": "Treinar bem é técnico. Aderir ao processo é humano.",
-    "body": "A ciência orienta as decisões, mas não trabalho com pessoas como se fossem estudos ou folhas de cálculo. O que me distingue é a ligação com cada cliente e a capacidade de transformar teoria em decisões práticas que façam sentido no dia a dia. O plano tem de ser tecnicamente bom — e suficientemente realista para ser seguido.",
-    "image": "/assets/images/edgar-portrait.jpg",
-    "focus_x": 50,
-    "focus_y": 25,
-    "zoom": 100
+    "hero": {
+      "eyebrow": "Edgar Filipe · Personal Trainer",
+      "title": "CIÊNCIA PARA ORIENTAR. <span>PESSOAS PARA DECIDIR.</span>",
+      "subtitle": "A minha função não é tornar o treino mais complicado. É transformar informação em decisões que consigas executar e manter.",
+      "image": "/assets/images/edgar-portrait.jpg",
+      "focus_x": 50,
+      "focus_y": 25,
+      "zoom": 100
+    },
+    "bio_title": "Quem está do outro lado.",
+    "bio": [
+      "Sou o Edgar Filipe, Personal Trainer e fundador da EF.",
+      "Sou licenciado em Ciências do Desporto e trabalho com treino personalizado, online e presencial.",
+      "A minha forma de trabalhar parte de uma ideia simples: o treino tem de ser suficientemente estruturado para produzir progresso e suficientemente realista para continuar a ser cumprido."
+    ],
+    "beliefs": [
+      {
+        "title": "Clareza",
+        "text": "Quero que saibas o que fazer e porquê, sem transformar o treino num problema adicional."
+      },
+      {
+        "title": "Consistência",
+        "text": "Uma boa semana isolada vale menos do que várias semanas suficientemente boas."
+      },
+      {
+        "title": "Proximidade",
+        "text": "Acompanhamento significa perceber o que está a acontecer contigo, não apenas enviar um plano."
+      },
+      {
+        "title": "Decisão",
+        "text": "Feedback, treino e contexto servem para decidir quando manter, progredir ou adaptar."
+      }
+    ],
+    "why_title": "Porque criei o ecossistema EF.",
+    "why_body": "Quis juntar o que normalmente aparece separado: um método claro, acompanhamento humano e uma app que mantém o processo organizado. A tecnologia não substitui a relação treinador-cliente; torna-a mais informada."
   },
   "presential": {
-    "title": "Treino presencial. Atenção total.",
-    "body": "No The Clinic VIP, em Miramar, trabalho em treino individual, duo ou pequenos grupos até 3 pessoas. Começamos com uma avaliação inicial, eu trato de todo o planeamento do treino e fazemos uma avaliação mensal para acompanhar a evolução, corrigir o necessário e decidir os próximos passos.",
-    "video": "",
-    "start": 0,
-    "end": 6,
-    "focus_x": 50,
-    "focus_y": 50,
-    "zoom": 100,
-    "poster": "/assets/images/edgar-portrait.jpg"
+    "hero": {
+      "eyebrow": "Personal Training · Miramar",
+      "title": "ATENÇÃO REAL. <span>EXECUÇÃO AO VIVO.</span>",
+      "subtitle": "O Método EF aplicado cara a cara, com avaliação, planeamento e acompanhamento próximo.",
+      "image": "/assets/images/edgar-portrait.jpg"
+    },
+    "location": "The Clinic VIP · Miramar",
+    "formats": [
+      {
+        "title": "Individual",
+        "text": "Sessão totalmente focada em ti, com correção técnica e adaptação em tempo real."
+      },
+      {
+        "title": "Duo",
+        "text": "Treina com outra pessoa sem perder estrutura, planeamento e acompanhamento."
+      },
+      {
+        "title": "Pequeno grupo",
+        "text": "Até 3 pessoas, mantendo um contexto controlado e próximo."
+      }
+    ],
+    "process": [
+      {
+        "title": "Avaliação inicial",
+        "text": "Percebo objetivo, experiência, limitações e contexto antes de definir o caminho."
+      },
+      {
+        "title": "Planeamento",
+        "text": "O treino é preparado com uma lógica de progressão e adaptado ao formato escolhido."
+      },
+      {
+        "title": "Sessões acompanhadas",
+        "text": "Execução, técnica e esforço são observados no momento."
+      },
+      {
+        "title": "Avaliação mensal",
+        "text": "Revemos evolução e decidimos o que manter, progredir ou ajustar."
+      }
+    ],
+    "closing_title": "Para disponibilidade e condições do presencial, fala diretamente comigo.",
+    "closing_body": "As sessões são por marcação e dependem de disponibilidade."
   },
   "faq": [
     {
       "question": "Preciso de já saber treinar?",
-      "answer": "Não. O acompanhamento é adaptado ao teu nível e o plano inclui vídeo e descrição dos exercícios."
+      "answer": "Não. O acompanhamento é adaptado ao teu nível e a App EF organiza o plano e a execução para começares com clareza."
     },
     {
       "question": "E se eu tiver pouco tempo?",
       "answer": "O plano começa pela tua realidade. Um programa perfeito no papel e impossível de cumprir não serve."
     },
     {
-      "question": "Como funciona o acompanhamento online?",
-      "answer": "Depois da candidatura e onboarding, recebes o plano na app. Tens acompanhamento contínuo, contacto por WhatsApp e ajustes quando necessários."
+      "question": "Recebo apenas um plano?",
+      "answer": "Não. O EF Coaching inclui acompanhamento durante 12 semanas, check-ins, análise da evolução e ajustes quando fazem sentido."
     },
     {
-      "question": "Tenho de seguir uma dieta específica?",
-      "answer": "Não é um serviço de nutrição. Numa fase inicial posso dar orientações alimentares práticas para ajudar a alinhar hábitos com o objetivo."
+      "question": "Inclui plano alimentar?",
+      "answer": "Não inclui um serviço nutricional dedicado nem prescrição alimentar individualizada."
     },
     {
-      "question": "Quanto custa?",
-      "answer": "12 semanas, 199 €, pagamento único. Primeiro fazes a candidatura para percebermos se o acompanhamento faz sentido para ti."
+      "question": "Tenho uma lesão ou condição clínica. Posso entrar?",
+      "answer": "Depende do caso. Limitações e condições relevantes são consideradas, mas o acompanhamento não substitui diagnóstico ou acompanhamento médico quando necessário."
+    },
+    {
+      "question": "Quando pago?",
+      "answer": "Primeiro candidatas-te e falamos. Se o acompanhamento fizer sentido, o pagamento é tratado diretamente comigo antes do onboarding."
     }
-  ],
-  "final": {
-    "title": "O primeiro passo é ter um plano que consigas manter.",
-    "body": "Candidata-te ao EF Coaching. Eu analiso o teu contexto e percebemos se faz sentido avançar."
-  },
-  "creative": {
-    "presential_card_image": "/assets/images/edgar-portrait.jpg",
-    "presential_card_focus_x": 50,
-    "presential_card_focus_y": 25,
-    "presential_card_zoom": 100
-  }
+  ]
 }

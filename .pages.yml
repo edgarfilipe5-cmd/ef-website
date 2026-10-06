@@ -21,171 +21,267 @@ content:
       delete: false
     fields:
       - name: site
-        label: Configuração
+        label: Configuração geral
         type: object
         fields:
           - { name: title, label: Título do site, type: string }
           - { name: description, label: Descrição SEO, type: text }
           - { name: application_url, label: Link candidatura, type: string }
           - { name: instagram_url, label: Instagram, type: string }
-          - { name: price, label: Preço online, type: string }
+          - { name: price, label: Preço, type: string }
           - { name: duration, label: Duração, type: string }
-          - { name: payment_label, label: Pagamento, type: string }
+          - { name: payment_label, label: Tipo de pagamento, type: string }
 
-      - name: hero
-        label: 01 · Hero
+      - name: home
+        label: Página Inicial
         type: object
         fields:
-          - { name: tag, label: Linha superior, type: string }
-          - { name: title, label: Headline, type: string }
-          - { name: subtitle, label: Subtítulo, type: text }
-          - { name: image, label: Imagem, type: image }
-          - { name: focus_x, label: Foco horizontal, type: number }
-          - { name: focus_y, label: Foco vertical, type: number }
-          - { name: zoom, label: Zoom, type: number }
+          - name: hero
+            label: Hero
+            type: object
+            fields:
+              - { name: eyebrow, label: Linha superior, type: string }
+              - { name: title, label: Headline, type: string }
+              - { name: subtitle, label: Subtítulo, type: text }
+              - { name: image, label: Fotografia, type: image }
+              - { name: focus_x, label: Foco horizontal, type: number }
+              - { name: focus_y, label: Foco vertical, type: number }
+              - { name: zoom, label: Zoom, type: number }
+          - name: problem
+            label: Problema
+            type: object
+            fields:
+              - { name: eyebrow, label: Linha superior, type: string }
+              - { name: title, label: Título, type: text }
+              - { name: intro, label: Introdução, type: text }
+              - name: items
+                label: Problemas
+                type: object
+                list: { collapsible: { collapsed: true, summary: "{title}" } }
+                fields:
+                  - { name: title, label: Título, type: string }
+                  - { name: text, label: Texto, type: text }
+          - name: mechanism
+            label: Sistema EF
+            type: object
+            fields:
+              - { name: eyebrow, label: Linha superior, type: string }
+              - { name: title, label: Título, type: string }
+              - { name: intro, label: Introdução, type: text }
+              - name: items
+                label: Componentes
+                type: object
+                list: { collapsible: { collapsed: true, summary: "{label}" } }
+                fields:
+                  - { name: label, label: Nome, type: string }
+                  - { name: title, label: Título, type: string }
+                  - { name: text, label: Texto, type: text }
+                  - { name: link, label: Link, type: string }
+          - name: app_teaser
+            label: Preview App EF
+            type: object
+            fields:
+              - { name: eyebrow, label: Linha superior, type: string }
+              - { name: title, label: Título, type: text }
+              - { name: body, label: Texto, type: text }
+              - { name: image, label: Screenshot principal, type: image }
+              - { name: bullets, label: Pontos, type: string, list: true }
+          - name: journey
+            label: Como funciona
+            type: object
+            fields:
+              - { name: eyebrow, label: Linha superior, type: string }
+              - { name: title, label: Título, type: text }
+              - name: items
+                label: Etapas
+                type: object
+                list: { collapsible: { collapsed: true, summary: "{title}" } }
+                fields:
+                  - { name: title, label: Título, type: string }
+                  - { name: text, label: Texto, type: text }
+          - name: offer
+            label: Oferta
+            type: object
+            fields:
+              - { name: eyebrow, label: Linha superior, type: string }
+              - { name: title, label: Título, type: text }
+              - { name: body, label: Texto, type: text }
+              - { name: included, label: Incluído, type: string, list: true }
+          - name: about_teaser
+            label: Preview Sobre
+            type: object
+            fields:
+              - { name: eyebrow, label: Linha superior, type: string }
+              - { name: title, label: Título, type: text }
+              - { name: body, label: Texto, type: text }
+              - { name: image, label: Fotografia, type: image }
+              - { name: focus_x, label: Foco horizontal, type: number }
+              - { name: focus_y, label: Foco vertical, type: number }
+              - { name: zoom, label: Zoom, type: number }
+          - name: presential_teaser
+            label: Preview Presencial
+            type: object
+            fields:
+              - { name: eyebrow, label: Linha superior, type: string }
+              - { name: title, label: Título, type: text }
+              - { name: body, label: Texto, type: text }
+              - { name: image, label: Fotografia, type: image }
 
-      - name: creative
-        label: Visuais de apoio
+      - name: coaching
+        label: EF Coaching
         type: object
         fields:
-          - { name: presential_card_image, label: Imagem cartão Presencial, type: image }
-          - { name: presential_card_focus_x, label: Foco horizontal cartão, type: number }
-          - { name: presential_card_focus_y, label: Foco vertical cartão, type: number }
-          - { name: presential_card_zoom, label: Zoom cartão, type: number }
-
-      - name: goals
-        label: Objetivos
-        type: object
-        list:
-          collapsible: { collapsed: true, summary: "{title}" }
-        fields:
-          - { name: title, label: Título, type: string }
-          - { name: text, label: Texto, type: text }
-
-      - name: problem
-        label: Problema
-        type: object
-        fields:
-          - { name: title, label: Título, type: string }
-          - { name: body, label: Texto, type: text }
-          - { name: accent, label: Destaque, type: string }
-
-      - name: online
-        label: Online
-        type: object
-        fields:
-          - { name: intro, label: Introdução, type: text }
-          - name: features
+          - name: hero
+            label: Hero
+            type: object
+            fields:
+              - { name: eyebrow, label: Linha superior, type: string }
+              - { name: title, label: Headline, type: string }
+              - { name: subtitle, label: Subtítulo, type: text }
+              - { name: image, label: Fotografia, type: image }
+          - name: promise
+            label: Proposta
+            type: object
+            fields:
+              - { name: title, label: Título, type: text }
+              - { name: body, label: Texto, type: text }
+          - name: route
+            label: Rota de acompanhamento
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{title}" } }
+            fields:
+              - { name: title, label: Etapa, type: string }
+              - { name: text, label: Texto, type: text }
+          - name: included
             label: O que inclui
             type: object
-            list:
-              collapsible: { collapsed: true, summary: "{title}" }
+            list: { collapsible: { collapsed: true, summary: "{title}" } }
             fields:
               - { name: title, label: Título, type: string }
               - { name: text, label: Texto, type: text }
+          - name: fit
+            label: Para quem é
+            type: object
+            fields:
+              - { name: good_title, label: Título positivo, type: string }
+              - { name: good, label: Faz sentido se, type: string, list: true }
+              - { name: bad_title, label: Título limites, type: string }
+              - { name: bad, label: Não é indicado se, type: string, list: true }
 
-      - name: motion
-        label: 02 · Vídeo principal
+      - name: app
+        label: App EF
         type: object
         fields:
-          - { name: title, label: Título, type: string }
-          - { name: body, label: Texto, type: text }
-          - { name: video, label: Vídeo, type: file }
-          - { name: poster, label: Imagem de fallback, type: image }
-          - { name: start, label: Início loop (s), type: number }
-          - { name: end, label: Fim loop (s), type: number }
-          - { name: focus_x, label: Foco horizontal, type: number }
-          - { name: focus_y, label: Foco vertical, type: number }
-          - { name: zoom, label: Zoom, type: number }
+          - name: hero
+            label: Hero
+            type: object
+            fields:
+              - { name: eyebrow, label: Linha superior, type: string }
+              - { name: title, label: Headline, type: string }
+              - { name: subtitle, label: Subtítulo, type: text }
+              - { name: image, label: Screenshot hero, type: image }
+          - { name: intro_title, label: Título introdução, type: text }
+          - { name: intro_body, label: Texto introdução, type: text }
+          - name: screens
+            label: Ecrãs da App
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{title}" } }
+            fields:
+              - { name: label, label: Etiqueta, type: string }
+              - { name: title, label: Título, type: text }
+              - { name: text, label: Texto, type: text }
+              - { name: image, label: Screenshot, type: image }
+          - { name: closing_title, label: Título final, type: text }
+          - { name: closing_body, label: Texto final, type: text }
 
       - name: method
         label: Método EF
         type: object
         fields:
-          - { name: intro, label: Introdução, type: text }
+          - name: hero
+            label: Hero
+            type: object
+            fields:
+              - { name: eyebrow, label: Linha superior, type: string }
+              - { name: title, label: Headline, type: string }
+              - { name: subtitle, label: Subtítulo, type: text }
           - name: steps
             label: Etapas
             type: object
-            list:
-              collapsible: { collapsed: true, summary: "{title}" }
+            list: { collapsible: { collapsed: true, summary: "{title}" } }
             fields:
               - { name: title, label: Título, type: string }
               - { name: text, label: Texto, type: text }
-
-      - name: fit
-        label: Para quem é
-        type: object
-        fields:
-          - { name: intro, label: Introdução, type: text }
-          - name: items
-            label: Situações
+          - name: principles
+            label: Princípios
             type: object
-            list:
-              collapsible: { collapsed: true, summary: "{title}" }
+            list: { collapsible: { collapsed: true, summary: "{title}" } }
             fields:
               - { name: title, label: Título, type: string }
               - { name: text, label: Texto, type: text }
-
-      - name: process
-        label: Processo
-        type: object
-        list:
-          collapsible: { collapsed: true, summary: "{title}" }
-        fields:
-          - { name: title, label: Etapa, type: string }
-          - { name: text, label: Texto, type: text }
-
-      - name: progress
-        label: Progresso
-        type: object
-        fields:
-          - { name: intro, label: Introdução, type: text }
-          - name: items
-            label: Indicadores
-            type: object
-            list:
-              collapsible: { collapsed: true, summary: "{title}" }
-            fields:
-              - { name: title, label: Título, type: string }
-              - { name: text, label: Texto, type: text }
+          - { name: measure, label: O que medimos, type: string, list: true }
 
       - name: about
-        label: 03 · Sobre Edgar
+        label: Sobre Edgar
         type: object
         fields:
-          - { name: title, label: Título, type: string }
-          - { name: body, label: Texto, type: text }
-          - { name: image, label: Fotografia, type: image }
-          - { name: focus_x, label: Foco horizontal, type: number }
-          - { name: focus_y, label: Foco vertical, type: number }
-          - { name: zoom, label: Zoom, type: number }
+          - name: hero
+            label: Hero
+            type: object
+            fields:
+              - { name: eyebrow, label: Linha superior, type: string }
+              - { name: title, label: Headline, type: string }
+              - { name: subtitle, label: Subtítulo, type: text }
+              - { name: image, label: Fotografia, type: image }
+              - { name: focus_x, label: Foco horizontal, type: number }
+              - { name: focus_y, label: Foco vertical, type: number }
+              - { name: zoom, label: Zoom, type: number }
+          - { name: bio_title, label: Título bio, type: string }
+          - { name: bio, label: Bio, type: text, list: true }
+          - name: beliefs
+            label: Valores
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{title}" } }
+            fields:
+              - { name: title, label: Título, type: string }
+              - { name: text, label: Texto, type: text }
+          - { name: why_title, label: Título ecossistema, type: string }
+          - { name: why_body, label: Texto ecossistema, type: text }
 
       - name: presential
-        label: 04 · Presencial
+        label: Treino Presencial
         type: object
         fields:
-          - { name: title, label: Título, type: string }
-          - { name: body, label: Texto, type: text }
-          - { name: video, label: Vídeo, type: file }
-          - { name: poster, label: Imagem de fallback, type: image }
-          - { name: start, label: Início loop (s), type: number }
-          - { name: end, label: Fim loop (s), type: number }
-          - { name: focus_x, label: Foco horizontal, type: number }
-          - { name: focus_y, label: Foco vertical, type: number }
-          - { name: zoom, label: Zoom, type: number }
+          - name: hero
+            label: Hero
+            type: object
+            fields:
+              - { name: eyebrow, label: Linha superior, type: string }
+              - { name: title, label: Headline, type: string }
+              - { name: subtitle, label: Subtítulo, type: text }
+              - { name: image, label: Fotografia, type: image }
+          - { name: location, label: Local, type: string }
+          - name: formats
+            label: Formatos
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{title}" } }
+            fields:
+              - { name: title, label: Formato, type: string }
+              - { name: text, label: Texto, type: text }
+          - name: process
+            label: Processo
+            type: object
+            list: { collapsible: { collapsed: true, summary: "{title}" } }
+            fields:
+              - { name: title, label: Etapa, type: string }
+              - { name: text, label: Texto, type: text }
+          - { name: closing_title, label: Título final, type: text }
+          - { name: closing_body, label: Texto final, type: text }
 
       - name: faq
         label: FAQ
         type: object
-        list:
-          collapsible: { collapsed: true, summary: "{question}" }
+        list: { collapsible: { collapsed: true, summary: "{question}" } }
         fields:
           - { name: question, label: Pergunta, type: string }
           - { name: answer, label: Resposta, type: text }
-
-      - name: final
-        label: CTA final
-        type: object
-        fields:
-          - { name: title, label: Título, type: string }
-          - { name: body, label: Texto, type: text }
