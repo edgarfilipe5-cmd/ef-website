@@ -37,31 +37,23 @@
     "accent": "O treino tem de funcionar na tua vida. Não o contrário."
   },
   "online": {
-    "intro": "Recebes estrutura, acompanhamento contínuo e uma pessoa do outro lado a perceber o que está a acontecer contigo.",
+    "intro": "Plano personalizado, App EF e acompanhamento contínuo para saberes o que fazer e quando ajustar.",
     "features": [
       {
         "title": "Plano personalizado",
-        "text": "Objetivo, experiência, disponibilidade e contexto real entram no planeamento."
+        "text": "Construído a partir do teu objetivo, experiência, disponibilidade e contexto real."
       },
       {
-        "title": "App com vídeos",
-        "text": "Exercícios organizados, com vídeo e descrição para saberes exatamente o que fazer."
+        "title": "App EF",
+        "text": "Treino do dia, plano, progresso, feedback e histórico no mesmo lugar."
       },
       {
         "title": "Acompanhamento contínuo",
-        "text": "O processo continua depois de o plano ser enviado."
+        "text": "Check-ins, feedback e contacto ao longo das 12 semanas — não apenas um plano enviado no início."
       },
       {
-        "title": "Ajustes quando necessário",
-        "text": "O plano muda quando existe uma razão real para mudar."
-      },
-      {
-        "title": "WhatsApp direto",
-        "text": "Contacto comigo para dúvidas, contexto e proximidade ao longo das semanas."
-      },
-      {
-        "title": "Orientação alimentar inicial",
-        "text": "Dicas práticas para alinhar hábitos com o objetivo, sem substituir acompanhamento nutricional."
+        "title": "Ajustes pelo PT",
+        "text": "O treino evolui quando existe uma razão real para manter, progredir ou adaptar."
       }
     ]
   },
@@ -121,23 +113,19 @@
   "process": [
     {
       "title": "Candidatura",
-      "text": "Respondes a algumas perguntas para eu perceber o teu objetivo, contexto e disponibilidade."
+      "text": "Respondes a algumas perguntas para eu perceber o teu objetivo e contexto."
     },
     {
-      "title": "Análise",
-      "text": "Eu revejo a candidatura e confirmo se o EF Coaching é adequado ao que procuras."
+      "title": "Onboarding",
+      "text": "Se avançarmos, recolho a informação necessária para construir o acompanhamento."
     },
     {
-      "title": "Pagamento + onboarding",
-      "text": "Se avançarmos, fazes o pagamento único de 199 € e completas o onboarding para eu recolher a informação necessária."
-    },
-    {
-      "title": "Plano na app",
-      "text": "Recebes o plano personalizado na aplicação, com exercícios, vídeos e descrições."
+      "title": "Plano + App EF",
+      "text": "Recebes o plano personalizado na App EF, com tudo organizado para começar."
     },
     {
       "title": "Acompanhamento",
-      "text": "Ao longo das 12 semanas mantemos contacto, acompanho a resposta ao plano e ajustamos quando fizer sentido."
+      "text": "Ao longo das 12 semanas acompanho a resposta ao plano e ajustamos quando fizer sentido."
     }
   ],
   "progress": {
