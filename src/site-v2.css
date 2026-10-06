@@ -405,3 +405,213 @@ details p{color:var(--muted);padding:0 0 22px;margin:0}
   .orbit{animation:none!important}
   .orbital-stage{transition:none!important}
 }
+
+
+/* EF MOTION V2 — richer 3D + interaction */
+:root{
+  --mx:50vw;--my:30vh;
+}
+body:before{
+  content:"";
+  position:fixed;
+  z-index:-1;
+  inset:0;
+  pointer-events:none;
+  background:radial-gradient(520px circle at var(--mx) var(--my),rgba(227,188,102,.055),transparent 64%);
+}
+.orbital-webgl{
+  position:absolute;
+  z-index:2;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  opacity:.88;
+}
+.orbital-stage{z-index:4}
+.orbital-core{
+  animation:efCoreFloat 5.8s ease-in-out infinite;
+  will-change:transform;
+}
+.orbital-core img{
+  animation:efLogoBreath 4.8s ease-in-out infinite;
+  transform-origin:center;
+}
+@keyframes efCoreFloat{
+  0%,100%{transform:translate(-50%,-50%) translateZ(44px) rotateX(2deg) rotateY(-5deg)}
+  50%{transform:translate(-50%,-52.5%) translateZ(62px) rotateX(-2deg) rotateY(5deg)}
+}
+@keyframes efLogoBreath{
+  0%,100%{transform:scale(1) rotateZ(-.4deg)}
+  50%{transform:scale(1.035) rotateZ(.4deg)}
+}
+.hero-copy{
+  transform-style:preserve-3d;
+}
+.hero-copy>*{
+  will-change:transform,opacity,filter;
+}
+.motion-ready [data-reveal]{
+  opacity:0;
+  transform:translateY(34px) translateZ(-15px) scale(.985);
+  filter:blur(6px);
+  transition:
+    opacity .78s cubic-bezier(.2,.75,.2,1),
+    transform .78s cubic-bezier(.2,.75,.2,1),
+    filter .78s cubic-bezier(.2,.75,.2,1);
+  transition-delay:var(--delay,0ms);
+}
+.motion-ready [data-reveal].in-view{
+  opacity:1;
+  transform:none;
+  filter:none;
+}
+.motion-tilt{
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:transform .25s ease-out,box-shadow .3s ease,border-color .3s ease;
+}
+.motion-tilt:hover{
+  border-color:rgba(227,188,102,.38)!important;
+}
+.motion-tilt h3,.motion-tilt .num,.motion-tilt .label,.motion-tilt .eyebrow{
+  transform:translateZ(22px);
+}
+.motion-tilt p,.motion-tilt .text-link{
+  transform:translateZ(10px);
+}
+.screen-frame{
+  transform-style:preserve-3d;
+  transition:transform .4s cubic-bezier(.2,.75,.2,1),box-shadow .4s ease;
+}
+.screen-frame.motion-tilt:hover{
+  box-shadow:0 50px 120px rgba(0,0,0,.52),0 0 45px rgba(227,188,102,.07);
+}
+.teaser-photo,.hero-photo{
+  transform-style:preserve-3d;
+}
+.teaser-photo img,.hero-photo img{
+  will-change:transform;
+  transition:transform .8s cubic-bezier(.2,.75,.2,1),filter .5s ease;
+}
+.parallax-photo:hover img{
+  transform:scale(1.035);
+}
+.dark{
+  position:relative;
+  overflow:hidden;
+}
+.dark:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.75),transparent 86%);
+  transform:perspective(900px) rotateX(58deg) scale(1.35) translateY(-18%);
+  transform-origin:top center;
+  opacity:.42;
+}
+.dark>.wrap{position:relative;z-index:2}
+.card,.feature-box,.belief,.principle,.format,.fit-box,.route article,.journey article,.method-step{
+  position:relative;
+  overflow:hidden;
+}
+.card:after,.feature-box:after,.belief:after,.principle:after,.format:after,.fit-box:after,.route article:after,.journey article:after,.method-step:after{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  pointer-events:none;
+  background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.08) 49%,transparent 56%);
+  transform:translateX(-70%) rotate(8deg);
+  transition:transform .8s cubic-bezier(.2,.75,.2,1);
+}
+.card:hover:after,.feature-box:hover:after,.belief:hover:after,.principle:hover:after,.format:hover:after,.fit-box:hover:after,.route article:hover:after,.journey article:hover:after,.method-step:hover:after{
+  transform:translateX(70%) rotate(8deg);
+}
+.btn,.nav-cta{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.btn:before,.nav-cta:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:-2px;
+  background:linear-gradient(105deg,transparent 15%,rgba(255,255,255,.5) 46%,transparent 72%);
+  transform:translateX(-130%);
+  transition:transform .75s cubic-bezier(.2,.75,.2,1);
+}
+.btn:hover:before,.nav-cta:hover:before{transform:translateX(130%)}
+.site-nav{
+  transition:background .35s ease,border-color .35s ease,box-shadow .35s ease;
+}
+.site-nav.scrolled{
+  background:rgba(10,10,10,.89);
+  border-color:rgba(227,188,102,.18);
+  box-shadow:0 12px 40px rgba(0,0,0,.16);
+}
+.app-preview .screen-frame{
+  animation:efAppFloat 6.2s ease-in-out infinite;
+}
+@keyframes efAppFloat{
+  0%,100%{transform:perspective(1100px) rotateY(-5deg) rotateX(1.5deg) translateY(0)}
+  50%{transform:perspective(1100px) rotateY(4deg) rotateX(-1deg) translateY(-9px)}
+}
+.page-hero{
+  position:relative;
+  overflow:hidden;
+}
+.page-hero:after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  width:520px;
+  height:520px;
+  right:-140px;
+  top:-180px;
+  border-radius:50%;
+  border:1px solid rgba(227,188,102,.13);
+  box-shadow:
+    0 0 0 80px rgba(227,188,102,.025),
+    0 0 0 160px rgba(255,255,255,.012);
+  animation:efPageOrbit 20s linear infinite;
+}
+.page-hero>.wrap{position:relative;z-index:2}
+@keyframes efPageOrbit{to{transform:rotate(360deg)}}
+.final-cta{
+  position:relative;
+  overflow:hidden;
+}
+.final-cta:after{
+  content:"";
+  position:absolute;
+  inset:-60%;
+  pointer-events:none;
+  background:conic-gradient(from 70deg,transparent 0 77%,rgba(255,255,255,.20) 81%,transparent 86%);
+  animation:efGoldSweep 13s linear infinite;
+}
+.final-cta>.wrap{position:relative;z-index:2}
+@keyframes efGoldSweep{to{transform:rotate(360deg)}}
+@media(max-width:760px){
+  body:before{display:none}
+  .orbital-webgl{opacity:.62}
+  .motion-ready [data-reveal]{
+    transform:translateY(20px);
+    filter:blur(3px);
+  }
+  .motion-tilt{transform:none!important}
+  .app-preview .screen-frame{animation:efAppFloatMobile 7s ease-in-out infinite}
+  @keyframes efAppFloatMobile{
+    0%,100%{transform:translateY(0) rotateY(-2deg)}
+    50%{transform:translateY(-6px) rotateY(2deg)}
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .orbital-core,.orbital-core img,.app-preview .screen-frame,.page-hero:after,.final-cta:after{animation:none!important}
+  .motion-ready [data-reveal]{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+}

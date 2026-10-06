@@ -26,6 +26,7 @@ function home(d){
  return `${nav(d)}
  <main>
  <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow">${esc(h.hero.eyebrow)}</div><h1>${h.hero.title}</h1><p class="hero-sub">${esc(h.hero.subtitle)}</p><div class="hero-meta"><span>PLANO PERSONALIZADO</span><span>APP EF</span><span>CHECK-INS</span><span>AJUSTES PELO PT</span></div><div class="actions">${btn(d.site.application_url,'Quero candidatar-me')}${btn('./coaching.html','Ver como funciona','btn-light')}</div></div><div class="hero-visual-3d" id="ef-orbital">
+  <canvas class="orbital-webgl" id="orbital-webgl" aria-hidden="true"></canvas>
   <div class="orbital-stage">
     <div class="orbital-system" aria-hidden="true">
       <div class="orbital-glow"></div>
@@ -139,4 +140,5 @@ fetch('./content/site.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
  const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=d.site.description;
  const render={home,coaching,app:appPage,method:methodPage,about:aboutPage,presential:presencialPage}[PAGE]||home;
  ROOT.innerHTML=render(d);wireMenu();wireOrbital();
+ import('./src/motion-v2.js').then(m=>m.initMotion?.()).catch(()=>{});
 }).catch(()=>{ROOT.innerHTML='<p style="padding:40px">Não foi possível carregar o website.</p>'});
