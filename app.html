@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<title>App EF — Edgar Filipe Personal Trainer</title>
+<meta name="description" content="Conhece a App EF: treino do dia, plano, progresso, check-ins, feedback e Coaching EF no mesmo lugar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--black:#050505;--white:#fff;--gold:#d4af37;--paper:#f3f0e8;--muted:#a4a099;--line:#2a2925;--display:"Montserrat",Arial,sans-serif;--body:"Lato",Arial,sans-serif;--max:1180px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}html,body{margin:0;max-width:100%;overflow-x:hidden}body{font-family:var(--body);background:var(--black);color:var(--white)}img{display:block;max-width:100%}a{color:inherit}.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}
+.nav{position:sticky;top:0;z-index:50;background:rgba(5,5,5,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.09)}.nav .inner{width:min(var(--max),calc(100% - 48px));height:72px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}.nav img{width:124px}.nav nav{display:flex;align-items:center;gap:22px}.nav a{text-decoration:none;font-size:.84rem;font-weight:900}.nav .cta{background:var(--gold);color:#050505;padding:12px 15px}.menu-btn{display:none;background:none;border:1px solid #333;color:#fff;padding:9px 11px;font:800 .7rem var(--display);letter-spacing:.08em}.drawer{display:none;position:fixed;z-index:49;top:62px;left:0;right:0;padding:12px 18px 18px;background:#070707;border-bottom:1px solid #222}.drawer.open{display:grid}.drawer a{text-decoration:none;padding:14px 2px;border-bottom:1px solid #222;font-weight:900}.drawer .apply{margin-top:10px;background:var(--gold);color:#050505;text-align:center;border:0}
+.hero{position:relative;padding:96px 0 90px;background:radial-gradient(circle at 78% 18%,rgba(212,175,55,.14),transparent 28%),#050505}.hero-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:72px;align-items:center}.kicker{color:var(--gold);font:800 .75rem var(--display);letter-spacing:.16em;text-transform:uppercase}.hero h1,.showcase h2,.final h2{font-family:var(--display);letter-spacing:-.055em}.hero h1{font-size:clamp(4rem,7.6vw,8rem);line-height:.86;margin:16px 0 24px;max-width:8ch}.hero h1 span{color:var(--gold)}.hero p{color:#c3c0ba;font-size:1.15rem;line-height:1.62;max-width:49ch}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 20px;border:1px solid #555;text-decoration:none;font-weight:900}.button.gold{background:var(--gold);border-color:var(--gold);color:#050505}.phone{justify-self:center;width:min(390px,100%);padding:8px;background:#111;border:1px solid rgba(212,175,55,.32);box-shadow:0 36px 100px rgba(0,0,0,.5)}.phone img{width:100%;height:auto}.micro{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.micro span{font-size:.68rem;font-weight:900;letter-spacing:.07em;border:1px solid #2c2b27;padding:8px 10px;color:#b7b3aa}
+.showcase{padding:92px 0;border-top:1px solid #191919}.showcase.alt{background:var(--paper);color:#111}.show-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}.showcase.alt .copy{order:2}.showcase.alt .visual{order:1}.showcase h2{font-size:clamp(2.8rem,5vw,5.4rem);line-height:.92;margin:14px 0 22px;max-width:9ch}.showcase p{color:#aaa59d;font-size:1.07rem;line-height:1.65;max-width:48ch}.showcase.alt p{color:#5e5a53}.number{color:var(--gold);font:900 .74rem var(--display);letter-spacing:.12em}.bullets{display:grid;gap:10px;margin-top:26px}.bullets span{padding:11px 0;border-bottom:1px solid #282828;font-weight:800}.showcase.alt .bullets span{border-color:#d2cec4}.visual{display:flex;justify-content:center}.visual .phone{width:min(360px,100%)}
+.band{padding:46px 0;background:var(--gold);color:#070707}.band .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}.band strong{font-family:var(--display);font-size:clamp(1.7rem,3vw,3rem);line-height:1}.band p{margin:0;line-height:1.5}
+.final{padding:92px 0;background:#0b0b0b}.final-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:end}.final h2{font-size:clamp(3rem,6vw,6rem);line-height:.9;margin:0}.final p{color:#aaa;line-height:1.6}.footer{padding:28px 0;border-top:1px solid #1d1d1d;color:#888}.footer .wrap{display:flex;justify-content:space-between;align-items:center}.footer img{width:120px}
+.mobile-apply{display:none;position:fixed;z-index:60;left:10px;right:10px;bottom:10px;min-height:52px;align-items:center;justify-content:space-between;padding:0 17px;background:var(--gold);color:#050505;text-decoration:none;font-weight:900;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+@media(max-width:900px){.hero-grid,.show-grid,.final-grid,.band .wrap{grid-template-columns:1fr;gap:34px}.showcase.alt .copy,.showcase.alt .visual{order:initial}.hero{padding:76px 0}.phone{width:min(350px,84vw)}}
+@media(max-width:720px){body{padding-bottom:76px}.wrap,.nav .inner{width:calc(100% - 32px)}.nav .inner{height:62px}.nav img{width:108px}.nav nav{display:none}.menu-btn{display:block}.mobile-apply{display:flex}.hero{padding:52px 0 62px}.hero-grid{gap:30px}.hero h1{font-size:clamp(3.4rem,16vw,5rem);max-width:7.5ch}.hero p{font-size:1rem}.hero-actions .button{width:100%}.phone{width:100%;max-width:330px;padding:5px}.showcase{padding:66px 0}.show-grid{gap:26px}.showcase h2{font-size:clamp(2.7rem,13vw,4.2rem)}.showcase p{font-size:1rem}.band{padding:34px 0}.final{padding:70px 0}.footer .wrap{gap:20px}.footer{padding-bottom:92px}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="inner">
+    <a href="./index.html"><img src="./assets/images/logo-white.png" alt="EF"></a>
+    <nav>
+      <a href="./index.html">Início</a>
+      <a href="./app.html">App EF</a>
+      <a href="./metodo.html">Método EF</a>
+      <a href="./sobre.html">Sobre</a>
+      <a href="./index.html#presencial">Presencial</a>
+      <a class="cta apply-link" href="#">Candidatar-me</a>
+    </nav>
+    <button class="menu-btn" aria-expanded="false">MENU</button>
+  </div>
+</header>
+<div class="drawer" aria-hidden="true">
+  <a href="./index.html">Início</a><a href="./app.html">App EF</a><a href="./metodo.html">Método EF</a><a href="./sobre.html">Sobre</a><a href="./index.html#presencial">Presencial</a><a class="apply apply-link" href="#">Candidatar-me</a>
+</div>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">App EF · incluída no EF Coaching</div>
+      <h1>A tua evolução. <span>No mesmo lugar.</span></h1>
+      <p>Treino, progresso, feedback e acompanhamento reunidos numa única app, criada para tornar o processo mais simples para ti e mais preciso para o teu treinador.</p>
+      <div class="micro"><span>TREINO DO DIA</span><span>PROGRESSO</span><span>CHECK-IN</span><span>COACHING EF</span></div>
+      <div class="hero-actions"><a class="button gold apply-link" href="#">Candidatar-me ao EF Coaching</a><a class="button" href="#como-funciona">Ver como funciona</a></div>
+    </div>
+    <div class="phone"><img src="https://at.adobe.com/5B4gr0YkDey7p73V" alt="App EF — treino do dia"></div>
+  </div>
+</section>
+
+<section class="showcase alt" id="como-funciona">
+  <div class="wrap show-grid">
+    <div class="copy">
+      <div class="number">01 · PLANO</div>
+      <h2>Sabes sempre o que tens a seguir.</h2>
+      <p>O plano semanal mostra o foco da fase, os treinos realizados e a próxima sessão. A estrutura existe para reduzir dúvidas e tornar a execução simples.</p>
+      <div class="bullets"><span>Semana organizada</span><span>Foco do bloco visível</span><span>Próxima sessão clara</span></div>
+    </div>
+    <div class="visual"><div class="phone"><img src="https://at.adobe.com/CUqoAt5Q4vivL2TU" alt="App EF — plano semanal"></div></div>
+  </div>
+</section>
+
+<section class="showcase">
+  <div class="wrap show-grid">
+    <div class="copy">
+      <div class="number">02 · TREINO</div>
+      <h2>Executa a sessão com contexto.</h2>
+      <p>Dentro do treino vês a sessão completa, o progresso e os exercícios organizados por blocos. Quando necessário, tens alternativas EF aprovadas sem perder a lógica do plano.</p>
+      <div class="bullets"><span>Treino completo visível</span><span>Progresso da sessão</span><span>Alternativas aprovadas</span></div>
+    </div>
+    <div class="visual"><div class="phone"><img src="https://at.adobe.com/Asx6ya8DUbxEHfyq" alt="App EF — sessão ativa"></div></div>
+  </div>
+</section>
+
+<section class="showcase alt">
+  <div class="wrap show-grid">
+    <div class="copy">
+      <div class="number">03 · PROGRESSO</div>
+      <h2>Vê o que está realmente a mudar.</h2>
+      <p>Consistência, sessões e tendências ficam organizadas para que a evolução seja interpretada com contexto — não apenas pelo peso na balança.</p>
+      <div class="bullets"><span>Consistência ao longo do tempo</span><span>Histórico de sessões</span><span>Tendências de evolução</span></div>
+    </div>
+    <div class="visual"><div class="phone"><img src="https://at.adobe.com/JneRbZN2Ss6YvCQq" alt="App EF — progresso"></div></div>
+  </div>
+</section>
+
+<section class="showcase">
+  <div class="wrap show-grid">
+    <div class="copy">
+      <div class="number">04 · ACOMPANHAMENTO</div>
+      <h2>O acompanhamento continua depois do treino.</h2>
+      <p>Feedback pós-treino, check-in semanal, desafios e Coaching EF ajudam a construir informação ao longo do processo. As alterações importantes continuam dependentes da revisão do PT.</p>
+      <div class="bullets"><span>Feedback pós-treino</span><span>Check-in semanal</span><span>Coaching EF com IA</span></div>
+    </div>
+    <div class="visual"><div class="phone"><img src="https://at.adobe.com/yqUbIhwceG8Oltnr" alt="App EF — feedback, check-in e coaching"></div></div>
+  </div>
+</section>
+
+<section class="band"><div class="wrap"><strong>Não é só uma app de treino.</strong><p>É a ferramenta que liga o plano, a execução, o feedback e a evolução ao mesmo processo.</p></div></section>
+
+<section class="final">
+  <div class="wrap final-grid">
+    <h2>Tu focas-te em treinar.<br>Nós usamos o contexto para decidir melhor.</h2>
+    <div><p>A App EF está incluída no acompanhamento EF Coaching durante as 12 semanas.</p><a class="button gold apply-link" href="#">Candidatar-me ao EF Coaching</a></div>
+  </div>
+</section>
+</main>
+
+<footer class="footer"><div class="wrap"><img src="./assets/images/logo-white.png" alt="EF"><a href="./index.html">Voltar ao início</a></div></footer>
+<a class="mobile-apply apply-link" href="#"><span>Candidatar-me</span><b>→</b></a>
+<script>
+fetch('./content/site.json',{cache:'no-store'}).then(r=>r.json()).then(d=>document.querySelectorAll('.apply-link').forEach(a=>a.href=d.site.application_url)).catch(()=>{});
+const b=document.querySelector('.menu-btn'),d=document.querySelector('.drawer');if(b&&d){b.onclick=()=>{const o=d.classList.toggle('open');b.setAttribute('aria-expanded',o);d.setAttribute('aria-hidden',!o)};d.querySelectorAll('a').forEach(a=>a.onclick=()=>d.classList.remove('open'))}
+</script>
+</body>
+</html>
