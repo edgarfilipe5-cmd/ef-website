@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0A0A0A">
+<meta name="description" content="Candidatura ao EF Coaching — Edgar Filipe.">
+<title>Candidatura EF Coaching — Pré-visualização</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./src/candidatura.css">
+</head>
+<body>
+<div class="preview-flag" role="status">AMBIENTE DE PRÉ-VISUALIZAÇÃO · NÃO ENVIA CANDIDATURAS</div>
+<header class="topbar">
+  <div class="shell top-inner">
+    <a href="./index.html" aria-label="Página inicial EF"><img src="./assets/brand/ef-horizontal-white.svg" alt="Edgar Filipe Personal Trainer" width="198" height="44"></a>
+    <a class="backlink" href="./coaching.html">← Voltar ao Coaching</a>
+  </div>
+</header>
+<main>
+  <section class="intro shell">
+    <div class="intro-copy">
+      <div class="eyebrow">EF COACHING / 12 SEMANAS</div>
+      <h1>COMEÇA COM<br><span>UMA CONVERSA.</span></h1>
+      <p>O primeiro passo não é pagar nem criar uma conta. É perceber o teu objetivo e se o acompanhamento EF é adequado para ti.</p>
+      <div class="intro-points" aria-label="Como funciona">
+        <div><span class="index">01</span> Candidatura</div>
+        <div><span class="index">02</span> Contacto pessoal</div>
+        <div><span class="index">03</span> Decisão em conjunto</div>
+      </div>
+    </div>
+    <div class="price-box"><span>EF COACHING</span><strong>199 €</strong><small>12 semanas · pagamento único, apenas se decidirmos avançar</small><div class="price-line"></div><p>Treino personalizado · App EF · Check-ins · Acompanhamento pelo PT</p></div>
+  </section>
+
+  <section class="form-area">
+    <div class="shell form-grid">
+      <aside class="side-note">
+        <div class="eyebrow">O TEU PRÓXIMO PASSO</div>
+        <h2>Conta-me<br>o essencial.</h2>
+        <p>São apenas duas etapas. A anamnese completa e os dados clínicos ficam para mais tarde, já na App EF.</p>
+        <div class="care-card"><div>✦</div><p><strong>Atenção ao detalhe.</strong> As respostas são analisadas pessoalmente pelo Edgar. Não existe compra automática.</p></div>
+      </aside>
+      <div class="form-card">
+        <div class="form-head"><span id="stepIndicator">ETAPA 01 / 02</span><span id="progressPercent">50%</span></div>
+        <div class="progress-track" aria-hidden="true"><div id="progressFill"></div></div>
+        <form id="efApplication" novalidate>
+          <div class="step" data-step="1">
+            <div class="step-title">01 · O teu objetivo</div>
+            <h3>O que queres mudar?</h3>
+            <p class="step-desc">O suficiente para percebermos o ponto de partida. Não precisas de incluir problemas de saúde ou medicação aqui.</p>
+            <label for="goal">Principal objetivo <span class="required">*</span></label>
+            <select id="goal" name="goal" required>
+              <option value="">Seleciona o objetivo</option>
+              <option value="Perder gordura">Perder gordura</option>
+              <option value="Ganhar massa muscular">Ganhar massa muscular</option>
+              <option value="Recomposição corporal">Perder gordura e ganhar músculo</option>
+              <option value="Força / performance">Ganhar força / performance</option>
+              <option value="Saúde e consistência">Melhorar hábitos e consistência</option>
+              <option value="Hyrox / híbrido">Hyrox / treino híbrido</option>
+              <option value="Outro">Outro</option>
+            </select>
+            <label for="situation">Qual é a tua maior dificuldade neste momento? <span class="required">*</span></label>
+            <textarea id="situation" name="situation" required minlength="12" maxlength="600" rows="3" placeholder="Ex.: começo a treinar mas tenho dificuldade em manter a rotina."></textarea>
+            <div class="field-row">
+              <div><label for="experience">Experiência <span class="required">*</span></label><select id="experience" name="experience" required><option value="">Seleciona</option><option>Iniciante</option><option>Intermédio</option><option>Avançado</option><option>A regressar</option></select></div>
+              <div><label for="frequency">Dias disponíveis / semana <span class="required">*</span></label><select id="frequency" name="frequency" required><option value="">Seleciona</option><option value="2">2 dias</option><option value="3">3 dias</option><option value="4">4 dias</option><option value="5">5 dias</option><option value="6">6 dias</option><option value="7">7 dias</option><option value="1">1 dia</option></select></div>
+            </div>
+            <label for="environment">Onde pretendes treinar? <span class="required">*</span></label>
+            <select id="environment" name="environment" required><option value="">Seleciona</option><option>Ginásio</option><option>Casa</option><option>Ambos</option><option>Exterior</option><option>A decidir</option></select>
+            <div class="form-actions"><button type="button" class="button gold" id="nextButton">Continuar <span aria-hidden="true">→</span></button></div>
+          </div>
+          <div class="step" data-step="2" hidden>
+            <div class="step-title">02 · Contacto</div>
+            <h3>Vamos falar.</h3>
+            <p class="step-desc">Se fizer sentido avançarmos, entro em contacto contigo pessoalmente. Sem checkout nem conta obrigatória.</p>
+            <label for="fullName">Nome completo <span class="required">*</span></label><input id="fullName" name="fullName" autocomplete="name" required minlength="3" maxlength="100" placeholder="O teu nome">
+            <div class="field-row">
+              <div><label for="email">Email <span class="required">*</span></label><input id="email" name="email" type="email" autocomplete="email" required maxlength="180" placeholder="email@exemplo.pt"></div>
+              <div><label for="phone">Telemóvel / WhatsApp <span class="required">*</span></label><input id="phone" name="phone" type="tel" autocomplete="tel" required minlength="9" maxlength="25" placeholder="+351 9XX XXX XXX"></div>
+            </div>
+            <div class="field-row">
+              <div><label for="startWhen">Quando gostarias de começar?</label><select id="startWhen" name="startWhen"><option value="">Sem preferência</option><option>O quanto antes</option><option>Nas próximas 2 semanas</option><option>Dentro de 1 mês</option><option>Ainda estou a explorar</option></select></div>
+              <div><label for="commitment">Disponibilidade para te comprometeres <span class="required">*</span></label><select id="commitment" name="commitment" required><option value="">Seleciona</option><option>Sim, estou preparado(a)</option><option>Quero perceber melhor primeiro</option></select></div>
+            </div>
+            <label for="notes">Queres acrescentar alguma coisa?</label><textarea id="notes" name="notes" rows="2" maxlength="700" placeholder="Informação prática sobre horários, contexto ou expectativas. Evita dados de saúde."></textarea>
+            <div class="privacy-check"><label class="checkline"><input id="privacyAcknowledged" name="privacyAcknowledged" type="checkbox" required><span>Tomei conhecimento da <a href="./privacidade.html" target="_blank" rel="noopener">informação de privacidade</a> e quero ser contactado(a) para responder a esta candidatura. <b>*</b></span></label></div>
+            <div class="honeypot" aria-hidden="true"><label for="companyWebsite">Website da empresa</label><input id="companyWebsite" name="companyWebsite" tabindex="-1" autocomplete="off"></div>
+            <p class="disclaimer">Não é pedido pagamento nesta página. Esta versão é apenas uma demonstração e não envia nem guarda dados.</p>
+            <div class="form-actions split"><button type="button" class="button secondary" id="backButton">← Voltar</button><button type="submit" class="button gold" id="submitButton">Simular candidatura <span aria-hidden="true">→</span></button></div>
+          </div>
+        </form>
+        <div id="feedback" class="feedback" role="alert" aria-live="polite" hidden></div>
+        <section id="successState" class="success-state" hidden aria-live="polite">
+          <div class="success-mark">✓</div>
+          <div class="eyebrow">SIMULAÇÃO COMPLETA</div>
+          <h3>É este o próximo passo.</h3>
+          <p>O formulário está pronto para revisão visual. <strong>Nenhuma candidatura foi enviada ou guardada.</strong> A integração real só será ligada após testes técnicos e autorização.</p>
+          <button class="button secondary" type="button" id="restartButton">Testar novamente</button>
+        </section>
+      </div>
+    </div>
+  </section>
+  <section class="closing shell"><div class="eyebrow">MÉTODO EF</div><h2>MENOS PROMESSAS.<br><span>MAIS DIREÇÃO.</span></h2><p>Acompanhamento individual, um plano claro e decisões com base na tua evolução.</p></section>
+</main>
+<footer class="bottom"><div class="shell"><img src="./assets/brand/ef-horizontal-white.svg" alt="Edgar Filipe" width="165"><span>© EF · Pré-visualização</span><a href="./privacidade.html">Privacidade</a></div></footer>
+<script src="./src/candidatura.js" defer></script>
+</body>
+</html>
