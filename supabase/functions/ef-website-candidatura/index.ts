@@ -23,7 +23,8 @@ async function ipHash(ip:string){ const b=await crypto.subtle.digest("SHA-256",n
 function normalizeNotionText(value:string) {
   return [{type:"text",text:{content:value.slice(0,1800)}}];
 }
-async function syncDirectNotion(db:any, row:any, payload:Record<string,string>) {
+type QAPayload = { submissionKey:string,fullName:string,email:string,phone:string,goal:string,situation:string,experience:string,frequency:string,environment:string,startWhen:string,commitment:string,notes:string };
+async function syncDirectNotion(db:any, row:any, payload:QAPayload) {
   const key=Deno.env.get("EF_NOTION_TOKEN");
   if(!key) return {ok:false,reason:"notion_secret_unconfigured",pageId:null};
   const target="a877082e-2e54-42ef-a693-a9571987b0b2";
@@ -67,7 +68,7 @@ async function syncDirectNotion(db:any, row:any, payload:Record<string,string>) 
     return {ok:typeof result.id==="string",reason:typeof result.id==="string"?"":"notion_bad_result",pageId:result.id??null};
   }catch{return {ok:false,reason:"notion_unavailable",pageId:null};}
 }
-async function sendDirectEmail(row:any,payload:Record<string,string>,pageId:string|null){
+async function sendDirectEmail(row:any,payload:QAPayload,pageId:string|null){
   if(row.email_notified_at)return {ok:true,reason:""};
   const key=Deno.env.get("EF_RESEND_API_KEY");
   if(!key)return {ok:false,reason:"resend_secret_unconfigured"};
@@ -133,8 +134,8 @@ Deno.serve(async(req:Request)=>{
  const {data:admit,error:insertError}=await db.rpc("ef_accept_website_application",{p_payload:val,p_ip_hash:hash});
  if(insertError){console.error("ef candidate persist",insertError.code);return makeResponse({error:"storage_failure"},503,origin);}
  if(admit?.status==="RATE_LIMIT")return makeResponse({error:"rate_limit"},429,origin);
- if(admit?.status==="DUPLICATE")return makeResponse({ok:true,qa:true,duplicate:true},200,origin);
- if(admit?.status!=="CREATED"||typeof admit.id!=="string")return makeResponse({error:"invalid_candidate"},422,origin);
+
+ if(admit?.status!=="DUPLICATE"&&(admit?.status!=="CREATED"||typeof admit.id!=="string"))return makeResponse({error:"invalid_candidate"},422,origin);
 
  // Direct integrations: Supabase -> Notion and Resend. No Activepieces calls.
  // On re-submission of a previously stored candidate, never create another row.
