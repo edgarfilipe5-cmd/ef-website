@@ -47,10 +47,10 @@ async function sha256(value: string) {
 }
 async function notionSync(p: ReturnType<typeof normalize>["x"]): Promise<string> {
   const token = Deno.env.get("EF_NOTION_TOKEN");
-  const db = Deno.env.get("EF_NOTION_LEADS_DATABASE_ID");
+  const db = Deno.env.get("EF_NOTION_LEADS_DATA_SOURCE_ID");
   if (!token || !db) throw new Error("notion_unconfigured");
-  const headers = { Authorization:"Bearer "+token, "Notion-Version":"2022-06-28", "Content-Type":"application/json" };
-  const query = await fetch("https://api.notion.com/v1/databases/"+encodeURIComponent(db)+"/query",{
+  const headers = { Authorization:"Bearer "+token, "Notion-Version":"2025-09-03", "Content-Type":"application/json" };
+  const query = await fetch("https://api.notion.com/v1/data_sources/"+encodeURIComponent(db)+"/query",{
     method:"POST",headers,body:JSON.stringify({page_size:2,filter:{property:"Email",email:{equals:p.email}}})
   });
   if (!query.ok) throw new Error("notion_lookup_failed_"+query.status);
@@ -72,7 +72,7 @@ async function notionSync(p: ReturnType<typeof normalize>["x"]): Promise<string>
     "Notas: "+(p.notes||"—"),
   ].join("\n").slice(0,1900);
   const payload = {
-    parent:{ database_id:db },
+    parent:{ type:"data_source_id", data_source_id:db },
     properties:{
       "Lead":{title:plain(p.fullName)},
       "Email":{email:p.email},
