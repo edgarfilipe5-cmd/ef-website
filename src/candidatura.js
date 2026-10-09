@@ -67,9 +67,13 @@
    const detail=success.querySelector("p");
    if(detail)detail.textContent=data.duplicate
     ?"O registo fictício já existe. Não foi criado um segundo lead. Podes reiniciar para validar a interface."
-    :data.notified
-     ?"Candidatura fictícia guardada. O CRM e o aviso por email foram confirmados."
-     :"Candidatura fictícia guardada no servidor. A notificação por email ainda está pendente de autorização Gmail.";
+    :data.crmSynced && data.notified
+     ?"Candidatura fictícia guardada, sincronizada com o CRM e aviso aceite pelo serviço de email."
+     :data.crmSynced
+       ?"Candidatura guardada e sincronizada no CRM. O aviso por email continua pendente de configuração."
+       :data.notified
+         ?"Candidatura guardada e aviso enviado ao serviço de email. A sincronização com o CRM está pendente."
+         :"Candidatura fictícia guardada no servidor. A ligação direta ao CRM e o envio de email ainda requerem autorização.";
    success.scrollIntoView({behavior:"smooth",block:"center"});
   }catch(err){showError(err?.message||"Falha ao enviar. Nenhum sucesso foi confirmado.");}
   finally{submit.disabled=false;submit.innerHTML='Enviar candidatura de teste <span aria-hidden="true">→</span>';}
