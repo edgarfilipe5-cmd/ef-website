@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="./src/candidatura.css">
 </head>
 <body>
-<div class="preview-flag" role="status">AMBIENTE DE PRÉ-VISUALIZAÇÃO · NÃO ENVIA CANDIDATURAS</div>
+<div class="preview-flag" role="status">AMBIENTE DE TESTE · USA APENAS DADOS FICTÍCIOS</div>
 <header class="topbar">
   <div class="shell top-inner">
     <a href="./index.html" aria-label="Página inicial EF"><img src="./assets/brand/ef-horizontal-white.svg" alt="Edgar Filipe Personal Trainer" width="198" height="44"></a>
@@ -48,7 +48,7 @@
         <div class="progress-track" aria-hidden="true"><div id="progressFill"></div></div>
         <form id="efApplication" novalidate>
           <div class="step" data-step="1">
-            <div class="step-title">01 · O teu objetivo</div>
+            <div class="step-title">01 · O teu objetivo</div><p class="disclaimer">Para experimentar o envio sem dados reais: <button id="demoFillButton" type="button" class="button secondary" style="min-height:38px;margin-top:9px">Preencher dados fictícios</button></p>
             <h3>O que queres mudar?</h3>
             <p class="step-desc">O suficiente para percebermos o ponto de partida. Não precisas de incluir problemas de saúde ou medicação aqui.</p>
             <label for="goal">Principal objetivo <span class="required">*</span></label>
@@ -86,10 +86,10 @@
               <div><label for="commitment">Disponibilidade para te comprometeres <span class="required">*</span></label><select id="commitment" name="commitment" required><option value="">Seleciona</option><option>Sim, estou preparado(a)</option><option>Quero perceber melhor primeiro</option></select></div>
             </div>
             <label for="notes">Queres acrescentar alguma coisa?</label><textarea id="notes" name="notes" rows="2" maxlength="700" placeholder="Informação prática sobre horários, contexto ou expectativas. Evita dados de saúde."></textarea>
-            <div class="privacy-check"><label class="checkline"><input id="privacyAcknowledged" name="privacyAcknowledged" type="checkbox" required><span>Tomei conhecimento da <a href="./privacidade.html" target="_blank" rel="noopener">informação de privacidade</a> e quero ser contactado(a) para responder a esta candidatura. <b>*</b></span></label></div>
+            <div class="privacy-check"><label class="checkline"><input id="privacyAcknowledged" name="privacyAcknowledged" type="checkbox" required><span>Tomei conhecimento da <a href="./privacidade.html" target="_blank" rel="noopener">informação de teste e privacidade</a> e autorizo o envio destes dados fictícios para validar a integração. <b>*</b></span></label></div>
             <div class="honeypot" aria-hidden="true"><label for="companyWebsite">Website da empresa</label><input id="companyWebsite" name="companyWebsite" tabindex="-1" autocomplete="off"></div>
-            <p class="disclaimer">Não é pedido pagamento nesta página. Esta versão é apenas uma demonstração e não envia nem guarda dados.</p>
-            <div class="form-actions split"><button type="button" class="button secondary" id="backButton">← Voltar</button><button type="submit" class="button gold" id="submitButton">Simular candidatura <span aria-hidden="true">→</span></button></div>
+            <p class="disclaimer">Não é pedido pagamento nesta página. Este teste aceita apenas dados fictícios e guarda-os na área técnica de QA, para confirmar CRM e avisos.</p>
+            <div class="form-actions split"><button type="button" class="button secondary" id="backButton">← Voltar</button><button type="submit" class="button gold" id="submitButton">Enviar candidatura de teste <span aria-hidden="true">→</span></button></div>
           </div>
         </form>
         <div id="feedback" class="feedback" role="alert" aria-live="polite" hidden></div>
@@ -97,7 +97,7 @@
           <div class="success-mark">✓</div>
           <div class="eyebrow">SIMULAÇÃO COMPLETA</div>
           <h3>É este o próximo passo.</h3>
-          <p>O formulário está pronto para revisão visual. <strong>Nenhuma candidatura foi enviada ou guardada.</strong> A integração real só será ligada após testes técnicos e autorização.</p>
+          <p>O resultado do envio será apresentado aqui. Candidaturas reais ainda devem utilizar o formulário oficial do website.</p>
           <button class="button secondary" type="button" id="restartButton">Testar novamente</button>
         </section>
       </div>
