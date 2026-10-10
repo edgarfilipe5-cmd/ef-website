@@ -51,3 +51,9 @@
 - **PENDENTE**: validar de forma interativa na pré-visualização que Turnstile emite token real aceite e que a candidatura fictícia aparece no CRM e Resend; conferir compatibilidade mobile.
 - **PENDENTE**: política/operacionalização do ciclo de vida dos dados, sobretudo purga dos registos correspondentes no Notion e retenção final de 180 dias antes do cutover.
 - **Não apagar AP-01** nem trocar CTA de produção antes de aprovação/testes finais.
+
+## Diagnóstico de envio do preview — 10/10/2026
+- O utilizador confirmou tentativa de envio. Os logs da função pública mostram pedidos `POST 422` após a publicação; **nenhuma candidatura nova persistida**, nenhum lead novo no Notion e nenhum email Resend novo.
+- A causa específica não é dedutível dos logs atuais (sem payload pessoal). O serviço devolvia `invalid_fields` genérico para erros de campos.
+- Edge Function `ef-website-candidatura` v6: adicionado retorno de nomes dos campos rejeitados sem expor os valores. Teste de rejeição `frequency=0` devolve `422` e mensagem `Verifica os seguintes campos: dias disponíveis.`; corpo fictício válido + token Turnstile inválido devolve `403 verification_required`.
+- **Não publicar nem remover AP-01** até repetir o formulário no preview, ler a mensagem precisa e obter `202` acompanhado de lead Notion e email entregue.
