@@ -155,6 +155,25 @@ async function retryPending(req:Request){
   const result=await processStored(db,claimed[0]);
   processed++;if(result.complete)complete++;
  }
+ // Alert the trainer once a day when delivery repeatedly fails.
+ const {count:stuck}=await db.from("ef_website_applications")
+ .select("id",{count:"exact",head:true}).eq("state","DELIVERY_PENDING").gte("retry_attempts",6);
+ if((stuck||0)>0 && Deno.env.get("EF_RESEND_API_KEY")){
+  const today=new Date().toISOString().slice(0,10);
+  try{
+   await fetch("https://api.resend.com/emails",{
+    method:"POST",
+    headers:{"Authorization":"Bearer "+Deno.env.get("EF_RESEND_API_KEY"),
+      "Content-Type":"application/json","Idempotency-Key":"ef-lead-pending-alert-"+today},
+    body:JSON.stringify({
+     from:Deno.env.get("EF_RESEND_FROM")||"EF Coaching <candidaturas@edgarfilipe.pt>",
+     to:[Deno.env.get("EF_LEAD_NOTIFICATION_TO")||"edgarfilipe5@gmail.com"],
+     subject:"[EF] Atenção: candidaturas pendentes de entrega",
+     text:"Existem "+stuck+" candidatura(s) com 6+ tentativas de entrega. Rever estados DELIVERY_PENDING na área restrita Supabase. Não reenviar manualmente antes de verificar Notion e Resend."
+    }),signal:AbortSignal.timeout(9000)
+   });
+  }catch{console.error("EF delivery alert unavailable");}
+ }
  return makeResponse({ok:true,processed,completed:complete},200,null);
 }
 
