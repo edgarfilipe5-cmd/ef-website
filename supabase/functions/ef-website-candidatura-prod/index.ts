@@ -198,6 +198,10 @@ Deno.serve(async(req:Request)=>{
  commitment:clean(body.commitment,60),notes:clean(body.notes,700),
  privacyAcknowledged:body.privacyAcknowledged===true,companyWebsite:clean(body.companyWebsite,200)
  };
+ // Staging host is restricted to fictitious test identities; it must never accept real leads.
+ if(origin==="https://ef-candidatura-preview-20261009.onrender.com" &&
+   (!val.fullName.toUpperCase().startsWith("TESTE EF")||!val.email.endsWith("@example.com")))
+    return makeResponse({error:"preview_test_only",message:"Neste ambiente utiliza apenas dados fictícios: nome TESTE EF e email @example.com."},422,origin);
  if(!/^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(val.submissionKey)
     ||val.fullName.length<8||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.email)
     ||!/^\+?[0-9() .-]{9,25}$/.test(val.phone)
