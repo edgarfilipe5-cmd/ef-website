@@ -1,12 +1,10 @@
 // EF Coaching: controlled 180-day expiration of native website applications only.
 // Fails closed for converted leads, linked clients, manually protected leads and recent follow-ups.
-// The test bypass is scoped to one known synthetic example.com lead; remove after QA.
+// No test bypass exists in the production function.
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import {createClient} from "npm:@supabase/supabase-js@2.95.3";
 const site="https://twbriibfrrfcrksnsypd.supabase.co";
 const dataSource="a877082e-2e54-42ef-a693-a9571987b0b2";
-const fakeId="ccc1b204-e6a1-4349-8807-3641a3e48c49";
-const fakeEmail="ef-dominio-oficial-20261010@example.com";
 const cutoffDays=180;
 const reply=(obj:Record<string,unknown>,status=200)=>new Response(JSON.stringify(obj),{
  status,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}
@@ -57,24 +55,20 @@ Deno.serve(async(req:Request)=>{
  if(a.error||a.data!==true)return reply({error:"forbidden"},403);
  let body:any={};
  try{body=await req.json()}catch{return reply({error:"invalid_json"},400)}
- const testMode=body?.testMode===true&&body?.testId===fakeId;
- if(body?.testMode===true&&!testMode)return reply({error:"test_scope_invalid"},403);
  const {data:enabled,error:statusError}=await db.rpc("ef_is_website_retention_enabled");
  if(statusError)return reply({error:"configuration"},503);
- const execute=enabled===true||testMode;
+ const execute=enabled===true;
  const cutoff=Date.now()-cutoffDays*86400000;
  let query=db.from("ef_website_applications").select(
    "id,submission_key,email,state,created_at,notion_page_id,notion_owned,retention_exempt"
  ).eq("state","DELIVERED").eq("notion_owned",true).eq("retention_exempt",false)
   .lt("created_at",new Date(cutoff).toISOString()).order("created_at",{ascending:true}).limit(12);
- if(testMode)query=query.eq("id",fakeId).eq("email",fakeEmail);
  const {data:rows,error:listError}=await query;
  if(listError)return reply({error:"storage_failure"},503);
  const headers={"Authorization":"Bearer "+notion,"Notion-Version":"2025-09-03","Content-Type":"application/json"};
  let scanned=0,eligible=0,cleaned=0,skipped=0,errors=0;const reasons:Record<string,number>={};
  for(const row of rows||[]){
   scanned++;
-  if(testMode&&(row.id!==fakeId||row.email!==fakeEmail)){errors++;continue}
   if(typeof row.notion_page_id!=="string"||!/^[a-f0-9-]{32,36}$/i.test(row.notion_page_id)){skipped++;continue}
   try{
    const url="https://api.notion.com/v1/pages/"+row.notion_page_id;
@@ -108,5 +102,5 @@ Deno.serve(async(req:Request)=>{
    cleaned++;
   }catch{errors++}
  }
- return reply({ok:true,dryRun:!execute,syntheticTest:testMode,scanned,eligible,cleaned,skipped,errors,reasons});
+ return reply({ok:true,dryRun:!execute,scanned,eligible,cleaned,skipped,errors,reasons});
 });
