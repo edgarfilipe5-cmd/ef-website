@@ -57,3 +57,12 @@
 - A causa específica não é dedutível dos logs atuais (sem payload pessoal). O serviço devolvia `invalid_fields` genérico para erros de campos.
 - Edge Function `ef-website-candidatura` v6: adicionado retorno de nomes dos campos rejeitados sem expor os valores. Teste de rejeição `frequency=0` devolve `422` e mensagem `Verifica os seguintes campos: dias disponíveis.`; corpo fictício válido + token Turnstile inválido devolve `403 verification_required`.
 - **Não publicar nem remover AP-01** até repetir o formulário no preview, ler a mensagem precisa e obter `202` acompanhado de lead Notion e email entregue.
+
+## QA E2E aprovado — 10/10/2026, 11:26 UTC
+- Utilizador enviou pelo formulário interativo de **preview** com Cloudflare Turnstile real a identidade fictícia `TESTE EF — Turnstile 2026`.
+- Supabase: candidatura persistida, estado `DELIVERED`, `notion_page_id` preenchido, `email_notified_at` preenchido e `last_delivery_error = null`.
+- Notion: lead `TESTE EF — Turnstile 2026` confirmado independentemente no CRM Leads & Vendas, estado Novo: https://app.notion.com/3f56c72ffca981e6bf3efc4d552ad8fb
+- Resend: `[EF] Nova candidatura: TESTE EF — Turnstile 2026`, destinatário do treinador, **delivered**, confirmado independentemente no serviço.
+- Fluxo sem Activepieces nem Jotform: preview → Turnstile → Supabase → Notion + Resend **PASS**.
+- Testes anteriores de rejeição sem/invalid captcha 403 e preview não fictício 422 PASS.
+- **Ainda não é autorização para produção**: a política final de conservação/remoção também no Notion e o plano de corte/reversão exigem aprovação e implementação. `main` continua no formulário Jotform e AP-01 mantém-se ativo.
