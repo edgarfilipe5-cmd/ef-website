@@ -1,0 +1,169 @@
+// EF Website Candidatura -- QA ONLY. No real-candidate submissions allowed.
+// Published by approval only to staging function; official website remains on Jotform.
+// App EF accounts, client health data and payment tables are not modified.
+import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { createClient } from "npm:@supabase/supabase-js@2.95.3";
+
+const allowedOrigin="https://ef-candidatura-preview-20261009.onrender.com";
+const projectOrigin="https://twbriibfrrfcrksnsypd.supabase.co";
+const goals=new Set(["Perder gordura","Ganhar massa muscular","Recomposição corporal","Força / performance","Saúde e consistência","Hyrox / híbrido","Outro"]);
+const exp=new Set(["Iniciante","Intermédio","Avançado","A regressar"]);
+const places=new Set(["Ginásio","Casa","Ambos","Exterior","A decidir"]);
+const commits=new Set(["Sim, estou preparado(a)","Quero perceber melhor primeiro"]);
+const makeResponse=(data:Record<string,unknown>,status:number,origin:string|null)=>{
+ const headers=new Headers({"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store","Vary":"Origin","X-Content-Type-Options":"nosniff"});
+ if(origin===allowedOrigin) headers.set("Access-Control-Allow-Origin",allowedOrigin);
+ headers.set("Access-Control-Allow-Methods","OPTIONS,POST");
+ headers.set("Access-Control-Allow-Headers","content-type");
+ return new Response(JSON.stringify(data),{status,headers});
+};
+const clean=(x:unknown,max:number)=>typeof x==="string"?x.replace(/[\u0000-\u001f\u007f]/g," ").trim().slice(0,max):"";
+async function ipHash(ip:string){ const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("ef-preview-20261009:"+ip)); return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,"0")).join(""); }
+
+function normalizeNotionText(value:string) {
+  return [{type:"text",text:{content:value.slice(0,1800)}}];
+}
+type QAPayload = { submissionKey:string,fullName:string,email:string,phone:string,goal:string,situation:string,experience:string,frequency:string,environment:string,startWhen:string,commitment:string,notes:string };
+async function syncDirectNotion(db:any, row:any, payload:QAPayload) {
+  const key=Deno.env.get("EF_NOTION_TOKEN");
+  if(!key) return {ok:false,reason:"notion_secret_unconfigured",pageId:null};
+  const target="a877082e-2e54-42ef-a693-a9571987b0b2";
+  const headers={"Authorization":"Bearer "+key,"Notion-Version":"2025-09-03","Content-Type":"application/json"};
+  try {
+    if(row.notion_page_id) return {ok:true,reason:"",pageId:row.notion_page_id};
+    const query=await fetch("https://api.notion.com/v1/data_sources/"+target+"/query",{
+      method:"POST",headers,body:JSON.stringify({page_size:2,filter:{property:"Email",email:{equals:payload.email}}}),signal:AbortSignal.timeout(9500)
+    });
+    if(!query.ok)return {ok:false,reason:"notion_query_http_"+query.status,pageId:null};
+    const matches=await query.json();
+    if(matches.results?.length) return {ok:true,reason:"",pageId:matches.results[0].id};
+    const notes=[
+      "CANDIDATURA EF WEBSITE — QA (SEM PAGAMENTO)",
+      "Objetivo: "+payload.goal,
+      "Situação: "+payload.situation,
+      "Experiência: "+payload.experience,
+      "Dias/semana: "+payload.frequency,
+      "Local: "+payload.environment,
+      "Início: "+payload.startWhen,
+      "Compromisso: "+payload.commitment,
+      "Notas: "+payload.notes,
+      "Submissão: "+payload.submissionKey
+    ].join("\n");
+    const properties={
+      "Lead":{title:normalizeNotionText(payload.fullName)},
+      "Email":{email:payload.email},
+      "Telefone":{phone_number:payload.phone},
+      "Estado":{select:{name:"Novo"}},
+      "Interesse":{select:{name:"Online"}},
+      "Origem":{select:{name:"Outro"}},
+      "Valor potencial €":{number:199},
+      "Notas":{rich_text:normalizeNotionText(notes)}
+    };
+    const created=await fetch("https://api.notion.com/v1/pages",{
+      method:"POST",headers,body:JSON.stringify({parent:{type:"data_source_id",data_source_id:target},properties}),
+      signal:AbortSignal.timeout(9500)
+    });
+    if(!created.ok)return {ok:false,reason:"notion_create_http_"+created.status,pageId:null};
+    const result=await created.json();
+    return {ok:typeof result.id==="string",reason:typeof result.id==="string"?"":"notion_bad_result",pageId:result.id??null};
+  }catch{return {ok:false,reason:"notion_unavailable",pageId:null};}
+}
+async function sendDirectEmail(row:any,payload:QAPayload,pageId:string|null){
+  if(row.email_notified_at)return {ok:true,reason:""};
+  const key=Deno.env.get("EF_RESEND_API_KEY");
+  if(!key)return {ok:false,reason:"resend_secret_unconfigured"};
+  const from=Deno.env.get("EF_RESEND_FROM")||"EF Coaching <candidaturas@edgarfilipe.pt>";
+  const to=Deno.env.get("EF_LEAD_NOTIFICATION_TO")||"edgarfilipe5@gmail.com";
+  const message=[
+    "[TESTE EF] Candidatura de website (dados fictícios)",
+    "Nome: "+payload.fullName,"Email: "+payload.email,"WhatsApp: "+payload.phone,
+    "Objetivo: "+payload.goal,"Situação: "+payload.situation,
+    "Local: "+payload.environment,"Dias/semana: "+payload.frequency,
+    "CRM: "+(pageId?"https://www.notion.so/"+pageId.replace(/-/g,""):"sincronização pendente"),
+    "Sem pagamento, sem criação de conta na App EF."
+  ].join("\n");
+  try{
+    const result=await fetch("https://api.resend.com/emails",{
+      method:"POST",
+      headers:{"Authorization":"Bearer "+key,"Content-Type":"application/json",
+       "Idempotency-Key":"efqa-"+row.id},
+      body:JSON.stringify({from,to:[to],subject:"[EF QA] Candidatura: "+payload.fullName,
+       text:message}),signal:AbortSignal.timeout(10000)
+    });
+    return {ok:result.ok,reason:result.ok?"":"resend_http_"+result.status};
+  }catch{return {ok:false,reason:"resend_unavailable"};}
+}
+
+Deno.serve(async(req:Request)=>{
+ const origin=req.headers.get("Origin");
+ if(origin!==allowedOrigin)return makeResponse({error:"origin_not_allowed"},403,origin);
+ if(req.method==="OPTIONS")return makeResponse({ok:true},200,origin);
+ if(req.method!=="POST")return makeResponse({error:"method_not_allowed"},405,origin);
+ if((req.headers.get("content-type")||"").split(";")[0]!=="application/json")return makeResponse({error:"invalid_content_type"},415,origin);
+ const raw=await req.text();
+ if(raw.length>7000)return makeResponse({error:"payload_too_large"},413,origin);
+ let body:Record<string,unknown>;
+ try{body=JSON.parse(raw)}catch{return makeResponse({error:"invalid_json"},400,origin)}
+ if(!body||typeof body!=="object"||Array.isArray(body))return makeResponse({error:"invalid_payload"},422,origin);
+ const val={
+ submissionKey:clean(body.submissionKey,36),fullName:clean(body.fullName,100),
+ email:clean(body.email,180).toLowerCase(),phone:clean(body.phone,25),
+ goal:clean(body.goal,80),situation:clean(body.situation,600),
+ experience:clean(body.experience,40),frequency:clean(body.frequency,2),
+ environment:clean(body.environment,40),startWhen:clean(body.startWhen,60),
+ commitment:clean(body.commitment,60),notes:clean(body.notes,700),
+ privacyAcknowledged:body.privacyAcknowledged===true,companyWebsite:clean(body.companyWebsite,200)
+ };
+ // TEST-ONLY gate prevents real candidate PII while the privacy page and email OAuth are pending.
+ if(!val.email.endsWith("@example.com")||!val.fullName.toUpperCase().startsWith("TESTE EF"))
+  return makeResponse({error:"qa_only",message:"Nesta fase usa dados fictícios: nome TESTE EF e email @example.com."},422,origin);
+ if(!/^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(val.submissionKey)
+    ||val.fullName.length<8||!/^[^\s@]+@example\.com$/.test(val.email)
+    ||!/^\+?[0-9() .-]{9,25}$/.test(val.phone)
+    ||!goals.has(val.goal)||val.situation.length<12
+    ||!exp.has(val.experience)||!places.has(val.environment)
+    ||!commits.has(val.commitment)||!/^([1-7])$/.test(val.frequency)
+    ||!val.privacyAcknowledged)return makeResponse({error:"invalid_fields"},422,origin);
+ if(val.companyWebsite) return makeResponse({ok:true,qa:true},202,origin);
+ const su=Deno.env.get("SUPABASE_URL")||projectOrigin;
+ const secret=Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+ if(!secret)return makeResponse({error:"service_unconfigured"},503,origin);
+ const db=createClient(su,secret,{auth:{persistSession:false,autoRefreshToken:false}});
+ const ip=req.headers.get("cf-connecting-ip")||req.headers.get("x-real-ip")||req.headers.get("x-forwarded-for")?.split(",")[0]||"preview";
+ const hash=await ipHash(ip);
+ const {data:admit,error:insertError}=await db.rpc("ef_accept_website_application",{p_payload:val,p_ip_hash:hash});
+ if(insertError){console.error("ef candidate persist",insertError.code);return makeResponse({error:"storage_failure"},503,origin);}
+ if(admit?.status==="RATE_LIMIT")return makeResponse({error:"rate_limit"},429,origin);
+
+ if(admit?.status!=="DUPLICATE"&&(admit?.status!=="CREATED"||typeof admit.id!=="string"))return makeResponse({error:"invalid_candidate"},422,origin);
+
+ // Direct integrations: Supabase -> Notion and Resend. No Activepieces calls.
+ // On re-submission of a previously stored candidate, never create another row.
+ const existing = admit.status==="DUPLICATE"
+   ? await db.from("ef_website_applications")
+       .select("id,email,notion_page_id,notion_synced_at,email_notified_at,state")
+       .eq("email",val.email).eq("submitted_on",new Date().toLocaleDateString("en-CA",{timeZone:"Europe/Lisbon"}))
+       .limit(1).maybeSingle()
+   : await db.from("ef_website_applications")
+       .select("id,email,notion_page_id,notion_synced_at,email_notified_at,state")
+       .eq("id",admit.id).maybeSingle();
+ const row=existing.data;
+ if(existing.error||!row)return makeResponse({error:"saved_but_processing_pending"},503,origin);
+ if(row.state==="DELIVERED")return makeResponse({ok:true,qa:true,duplicate:true,notified:true},200,origin);
+ const notion=await syncDirectNotion(db,row,val);
+ const resend=await sendDirectEmail(row,val,notion.pageId);
+ const completed=notion.ok&&resend.ok;
+ const failures=[notion.reason,resend.reason].filter(Boolean).join(";").slice(0,180)||null;
+ const update=await db.from("ef_website_applications").update({
+   state:completed?"DELIVERED":"DELIVERY_PENDING",
+   notion_page_id:notion.pageId||row.notion_page_id,
+   notion_synced_at:notion.ok?(row.notion_synced_at||new Date().toISOString()):null,
+   email_notified_at:resend.ok?(row.email_notified_at||new Date().toISOString()):null,
+   last_delivery_error:failures
+ }).eq("id",row.id);
+ if(update.error)console.error("ef direct delivery update",update.error.code);
+ return makeResponse({ok:true,qa:true,received:true,notified:resend.ok,crmSynced:notion.ok,
+   duplicate:admit.status==="DUPLICATE",
+   message:completed?"Candidatura fictícia recebida no CRM com email entregue à API de envio."
+    :"Candidatura fictícia guardada. A sincronização/aviso está pendente de configuração."},202,origin);
+});

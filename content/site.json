@@ -6,7 +6,8 @@
     "instagram_url": "https://www.instagram.com/edgar_filipe__pt/",
     "price": "199 €",
     "duration": "12 semanas",
-    "payment_label": "pagamento único"
+    "payment_label": "pagamento único",
+    "turnstile_site_key": "0x4AAAAAAFS_kCXbYp1nmtnc"
   },
   "home": {
     "hero": {
