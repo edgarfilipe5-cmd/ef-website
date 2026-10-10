@@ -66,3 +66,17 @@
 - Fluxo sem Activepieces nem Jotform: preview → Turnstile → Supabase → Notion + Resend **PASS**.
 - Testes anteriores de rejeição sem/invalid captcha 403 e preview não fictício 422 PASS.
 - **Ainda não é autorização para produção**: a política final de conservação/remoção também no Notion e o plano de corte/reversão exigem aprovação e implementação. `main` continua no formulário Jotform e AP-01 mantém-se ativo.
+
+## Fase final aprovada — 10/10/2026, publicação controlada
+- PR #5 **merged** in main: https://github.com/edgarfilipe5-cmd/ef-website/pull/5. Official Render build **live**.
+- **Formulário novo no domínio real**: https://www.edgarfilipe.pt/candidatura-publica.html (noindex, não é o CTA por defeito).
+- **Privacidade no domínio real**: https://www.edgarfilipe.pt/privacidade-candidatura.html (ainda com nota de revisão).
+- **CTA oficial estável**: `https://form.jotform.com/262522804984059`. AP-01 mantido ativo.
+- SQL migração adicionou `notion_owned` (só nova página criada por esta integração) e `retention_exempt` (proteção contra eliminação).
+- Edge de candidatos atualizada para registar `notion_owned` apenas quando cria a página no Notion, e os emails de alerta de novas candidaturas já não incluem dados pessoais (apenas link para CRM).
+- Nova função privada `ef-website-retention` instalada; teste autorizado devolveu `ok=true,dryRun=true,checked=0,eligible=0,cleared=0`.
+- Agenda diária `ef-candidatura-retention-dryrun` criada, às 04:40 UTC; **não apaga dados**, mesmo após 180 dias, enquanto `EF_RETENTION_EXECUTE` não estiver ativada.
+- Rotina de elegibilidade: apenas leads criados originalmente pela integração, DELIVERED, pelo menos 180 dias desde criação e último contacto, estados não convertidos no Notion, sem relação de cliente, sem follow-up e sem exceção manual. Antes de eliminar, valida marcador de candidatura e email. Archiva no Notion antes de remover a linha Supabase; se falhar, não remove a linha.
+- **Passo dependente do dono:** ativar `Atualizar conteúdo` na conexão interna `EF Website Candidaturas` para permitir a eliminação coordenada; depois testar permissão numa candidatura fictícia.
+- **Passo dependente do dono:** submeter formulário com identidade fictícia em `www.edgarfilipe.pt/candidatura-publica.html` para provar que a validação do Turnstile funciona no domínio real, antes de alterar CTA.
+- Não executar corte AP-01 antes destas confirmações.
