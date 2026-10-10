@@ -615,3 +615,109 @@ body:before{
   .orbital-core,.orbital-core img,.app-preview .screen-frame,.page-hero:after,.final-cta:after{animation:none!important}
   .motion-ready [data-reveal]{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
 }
+
+
+/* EF RESPONSIVE 2026-10-11 — ajuste de apresentação para iPhone/Android.
+   Apenas apresentação; mantém o design desktop, CTAs e conteúdos existentes. */
+@media (max-width:1000px){
+  .hero-grid,.page-hero-grid,.grid-2,.app-grid,.section-head,.offer-panel,.faq-grid,.final-grid,.app-show{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .hero-grid>*,.page-hero-grid>*,.grid-2>*,.app-grid>*,.section-head>*,
+  .offer-panel>*,.faq-grid>*,.final-grid>*,.app-show>*{min-width:0}
+}
+@media (max-width:760px){
+  html{scroll-padding-top:78px}
+  body{padding-bottom:calc(78px + env(safe-area-inset-bottom,0px))}
+  .wrap,.nav-inner{width:calc(100% - 32px)}
+  .nav-inner{gap:10px}
+  .brand{display:block;min-width:0;flex:0 1 auto}
+  .brand img{width:min(190px,52vw);max-width:100%}
+  .menu-btn{flex:0 0 auto;min-width:60px;min-height:44px}
+  .drawer{
+    top:62px;max-height:calc(100dvh - 62px);
+    overflow-y:auto;overscroll-behavior:contain;
+    padding-bottom:calc(18px + env(safe-area-inset-bottom,0px));
+    box-shadow:0 18px 30px rgba(0,0,0,.35);
+  }
+  h1,h2,.app-show-copy h2,.page-hero h1{
+    overflow-wrap:anywhere;
+    word-break:normal;
+    max-width:100%;
+  }
+  h1{
+    font-size:clamp(2.15rem,10vw,3.6rem);
+    line-height:1.01;
+    letter-spacing:-.055em;
+  }
+  h2{
+    font-size:clamp(2.05rem,8.8vw,3.35rem);
+    line-height:1.07;
+    letter-spacing:-.05em;
+  }
+  .page-hero h1{
+    font-size:clamp(2.15rem,9.8vw,3.6rem);
+    line-height:1.04;
+  }
+  .page-hero h1[style]{max-width:100%!important}
+  .app-show-copy h2{font-size:clamp(2rem,8.5vw,3.1rem);line-height:1.08}
+  .hero-grid{padding:38px 0 46px;gap:28px}
+  .page-hero{padding:46px 0}
+  .page-hero-grid{gap:25px}
+  .hero-sub,.lead,.page-hero p{font-size:.98rem;line-height:1.62}
+  .actions{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin-top:24px}
+  .actions .btn{width:100%;min-width:0;text-align:center;min-height:50px}
+  .hero-meta{gap:6px;margin-top:20px}
+  .hero-meta span{font-size:.61rem;padding:7px 8px}
+  .hero-visual-3d{min-height:350px;width:100%}
+  .orbital-stage{transform:scale(.83)}
+  .orbital-system{width:min(320px,89vw)}
+  .hero-visual-3d .hero-price{
+    left:12px;bottom:58px;right:auto;
+    max-width:calc(100% - 24px);padding:9px 12px;
+  }
+  .hero-visual-3d .hero-price b{font-size:1.32rem}
+  .hero-visual-3d .hero-price span{font-size:.6rem;line-height:1.4}
+  .orbital-label{
+    left:12px;right:12px;bottom:12px;
+    gap:6px;align-items:flex-start;flex-wrap:wrap;
+    font-size:.48rem;letter-spacing:.08em;
+  }
+  .orbital-label b{font-size:.51rem}
+  .signal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .signal-grid div{min-width:0;padding:14px 11px}
+  .signal-grid b{font-size:.7rem}
+  .signal-grid span{font-size:.65rem;line-height:1.45}
+  .section{padding:58px 0}
+  .section-head{gap:16px;margin-bottom:25px}
+  .section-head p{font-size:.96rem;line-height:1.6}
+  .card,.format,.feature-box,.fit-box,.belief,.principle{min-width:0}
+  .teaser-photo{height:clamp(280px,92vw,420px)}
+  .hero-photo{height:clamp(280px,92vw,430px)}
+  .app-grid,.app-show{gap:24px}
+  .screen-frame{width:min(100%,340px);max-width:100%}
+  .app-show-visual{min-width:0}
+  .offer-included{grid-template-columns:minmax(0,1fr)}
+  .price-row strong{font-size:3.2rem}
+  .location-band{padding:30px 0}
+  .location-band strong{font-size:1.3rem;overflow-wrap:anywhere}
+  .final-cta{padding:60px 0}
+  .footer{padding:28px 0}
+  .footer img{width:min(195px,100%)}
+  .mobile-apply{
+    left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));
+    min-height:52px;
+  }
+  /* A animação de entrada não deve deixar painéis invisíveis em mobile */
+  .motion-ready [data-reveal]{filter:none}
+}
+@media (max-width:390px){
+  .wrap,.nav-inner{width:calc(100% - 28px)}
+  .brand img{width:min(175px,50vw)}
+  h1,.page-hero h1{font-size:clamp(2.05rem,9.5vw,2.6rem)}
+  h2{font-size:clamp(1.95rem,8.6vw,2.75rem)}
+  .hero-visual-3d{min-height:320px}
+  .orbital-stage{transform:scale(.75)}
+  .orbital-label{font-size:.45rem}
+  .mobile-apply{left:10px;right:10px}
+}
