@@ -205,8 +205,8 @@ Deno.serve(async(req:Request)=>{
  const errors:string[]=[];
  if(!/^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(val.submissionKey))errors.push("identificador");
  if(val.fullName.length<8)errors.push("nome completo");
- if(!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(val.email))errors.push("email");
- if(!/^\\+?[0-9() .-]{9,25}$/.test(val.phone))errors.push("telemóvel");
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.email))errors.push("email");
+ if(!/^\+?[0-9() .-]{9,25}$/.test(val.phone))errors.push("telemóvel");
  if(!goals.has(val.goal))errors.push("objetivo");
  if(val.situation.length<12)errors.push("dificuldade");
  if(!exp.has(val.experience))errors.push("experiência");
