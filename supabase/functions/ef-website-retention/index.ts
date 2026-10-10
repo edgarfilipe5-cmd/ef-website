@@ -76,10 +76,10 @@ Deno.serve(async(req:Request)=>{
    if(!trash.ok){errors++;continue;}
    const changed=await trash.json();
    if(changed.in_trash!==true&&changed.archived!==true){errors++;continue;}
-   const {error:deleted,error:deleteError}=await db.from("ef_website_applications").delete()
+   const {error:deleteError}=await db.from("ef_website_applications").delete()
      .eq("id",row.id).eq("notion_owned",true).eq("retention_exempt",false)
      .eq("state","DELIVERED").lt("created_at",new Date(cutoff).toISOString());
-   if(deleted||deleteError){errors++;continue;}
+   if(deleteError){errors++;continue;}
    cleared++;
   }catch{errors++;}
  }
