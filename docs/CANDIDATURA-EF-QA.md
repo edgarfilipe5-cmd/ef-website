@@ -20,6 +20,26 @@ Pagamento e convite para App EF continuam manuais; a candidatura nunca cria clie
 - AP-08, AP-02 e AP-03 apagados após serem substituídos ou estarem desativados. Credenciais AP do Supabase apagadas; a tabela temporária de integração foi eliminada.
 - **AP-01 mantém-se ativo** exclusivamente para o Jotform oficial; é a última dependência. Não desativar até cutover E2E comprovado.
 
+## Validação E2E — 10/10/2026
+
+Testes completos efetuados sobre a **Edge Function QA** com dados fictícios sem Activepieces:
+- POST autenticado pela origem de pré-visualização: HTTP `202`, `ok=true`, `crmSynced=true`, `notified=true`
+- Supabase: 1 entrada para `ef-qa-direto-20261010@example.com`, estado `DELIVERED`, `notion_page_id` preenchido e erro nulo.
+- Notion / Leads & Vendas: lead **TESTE EF — Integração Direta** no estado **Novo**, confirmado por consulta independente.
+- Resend: email destinado à caixa do treinador, estado do fornecedor **delivered**, confirmado através da lista de mensagens.
+- Repetição exata do POST: HTTP `200`, `duplicate=true`. Confirmados **1 único registo Supabase e 1 email Resend**.
+- Domínio `edgarfilipe.pt`: **verified**, todos os quatro registos validados.
+- Integrações/secretos: `EF_NOTION_TOKEN` e `EF_RESEND_API_KEY` configurados e testados sem mostrar os valores.
+
+**Não é um teste de produção**: a função QA recusa dados reais `TESTE EF / @example.com`, e o CTA oficial continua Jotform -> AP-01.
+
+### Obstáculos para cutover de produção
+1. Endpoint de produção separado, a aceitar candidaturas reais, protegido por mecanismo anti-bot adequado e limitação resiliente contra Origin/IP falsificados.
+2. Documento final de privacidade RGPD (identificação/contacto, fundamento, processadores Supabase, Notion e Resend, retenção, transferências internacionais, direitos).
+3. Recuperação automática ou painel administrativo para notificações `DELIVERY_PENDING` e alertas; sem isto, uma falha Notion/Resend poderia ficar silenciosa.
+4. Teste E2E de candidatura de produção autorizada, verificação dos links CTA internos, plano de reversão imediato para Jotform.
+5. Só após cutover comprovado: apagar AP-01 e desconectar Activepieces, não antes.
+
 ## Passos obrigatórios (sem introduzir tokens no chat ou GitHub)
 ### 1. Configurar DNS e validar Resend
 No painel DNS do fornecedor que gere `edgarfilipe.pt`, adicionar exatamente os registos gerados pelo Resend. Não alterar MX do email principal, SPF existente no domínio raiz, nem outros registos de website.
