@@ -107,5 +107,33 @@
  restart.addEventListener("click",()=>{
   form.reset();submissionKey=crypto.randomUUID();success.hidden=true;form.hidden=false;setStep(1);resetCaptcha();
  });
+ if(new URLSearchParams(location.search).get("teste_ef")==="1"){
+  const step=document.querySelector('.step[data-step="1"] .step-title');
+  if(step){
+   const button=document.createElement("button");
+   button.type="button";button.className="button secondary";
+   button.textContent="Preencher dados fictícios (teste EF)";
+   button.style.margin="12px 0 8px";button.style.minHeight="42px";
+   step.insertAdjacentElement("afterend",button);
+   button.addEventListener("click",()=>{
+    const fields={
+      goal:"Recomposição corporal",
+      situation:"Teste fictício do formulário EF no domínio oficial, sem dados pessoais.",
+      experience:"Iniciante",frequency:"3",environment:"Ginásio",
+      fullName:"TESTE EF — Domínio Oficial",
+      email:"ef-dominio-oficial-20261010@example.com",
+      phone:"+351900000089",
+      startWhen:"Nas próximas 2 semanas",
+      commitment:"Sim, estou preparado(a)",
+      notes:"QA — não contactar. Sem pagamento nem conta."
+    };
+    for(const [key,value] of Object.entries(fields)){
+      const el=document.getElementById(key);if(el)el.value=value;
+    }
+    document.getElementById("privacyAcknowledged").checked=true;
+    button.textContent="Dados fictícios preenchidos ✓";
+   });
+  }
+ }
  loadChallenge();
 })();
