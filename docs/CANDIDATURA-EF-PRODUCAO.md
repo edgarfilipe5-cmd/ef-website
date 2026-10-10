@@ -39,3 +39,15 @@
 - Após tudo passar, copiar `candidatura-publica.html` para `candidatura.html`, ajustar ligações e atualizar CTA `site.application_url` para `https://www.edgarfilipe.pt/candidatura.html` em main.
 - Fazer deploy e conferir domínio oficial, Notion, Resend e erros. Ter pronto rollback do `content/site.json` para Jotform.
 - **Só depois do período de verificação, apagar AP-01**, não os clientes nem o histórico do Notion.
+
+## Teste Turnstile de pré-lançamento — 10/10/2026 (após configuração do utilizador)
+- Site Key pública na branch de preparação: `0x4AAAAAAFS_kCXbYp1nmtnc`; Secret Key guardada pelo utilizador no Supabase (valor nunca lido/exposto).
+- Backend Edge Function `ef-website-candidatura` v5. Teste de token falso: `HTTP 403 verification_required`.
+- Origem de preview restringida no backend a nomes começados `TESTE EF` e emails `@example.com`. Teste de identidade não autorizada: `HTTP 422 preview_test_only`.
+- Formulário público com Turnstile e botão de preenchimento fictício servido só em **preview**, verificado deploy Render **live**: https://ef-candidatura-preview-20261009.onrender.com/candidatura-publica.html
+- Documento de privacidade em preview: https://ef-candidatura-preview-20261009.onrender.com/privacidade-candidatura.html
+- A branch QA mantém Jotform nas CTAs; `main` oficial mantém Jotform e AP-01.
+- Supabase Cron `ef-candidatura-pending-retry`: observado `succeeded` na execução automática de 10:00 UTC.
+- **PENDENTE**: validar de forma interativa na pré-visualização que Turnstile emite token real aceite e que a candidatura fictícia aparece no CRM e Resend; conferir compatibilidade mobile.
+- **PENDENTE**: política/operacionalização do ciclo de vida dos dados, sobretudo purga dos registos correspondentes no Notion e retenção final de 180 dias antes do cutover.
+- **Não apagar AP-01** nem trocar CTA de produção antes de aprovação/testes finais.
