@@ -111,7 +111,55 @@ async function verifyTurnstile(token:string, submissionKey:string):Promise<boole
  }catch{return false}
 }
 
+type DbClient = ReturnType<typeof createClient>;
+async function processStored(db:DbClient, row:any){
+ const payload:CandidatePayload={
+  submissionKey:row.submission_key,fullName:row.full_name,email:row.email,phone:row.phone,
+  goal:row.goal,situation:row.situation,experience:row.experience,
+  frequency:String(row.frequency),environment:row.environment,startWhen:row.start_when||"",
+  commitment:row.commitment,notes:row.notes||""
+ };
+ const notion=await syncDirectNotion(db,row,payload);
+ const resend=await sendDirectEmail(row,payload,notion.pageId);
+ const complete=notion.ok&&resend.ok;
+ const failures=[notion.reason,resend.reason].filter(Boolean).join(";").slice(0,190)||null;
+ const retryMinutes=Math.min(720,Math.pow(2,Math.min(8,row.retry_attempts||1))*5);
+ const {error}=await db.from("ef_website_applications").update({
+   state:complete?"DELIVERED":"DELIVERY_PENDING",
+   processing_until:null,
+   notion_page_id:notion.pageId||row.notion_page_id,
+   notion_synced_at:notion.ok?(row.notion_synced_at||new Date().toISOString()):null,
+   email_notified_at:resend.ok?(row.email_notified_at||new Date().toISOString()):null,
+   last_delivery_error:failures,
+   next_retry_at:complete?new Date().toISOString():new Date(Date.now()+retryMinutes*60000).toISOString()
+ }).eq("id",row.id);
+ if(error)console.error("ef processing status update failed",error.code);
+ return {complete,notionOk:notion.ok,emailAccepted:resend.ok};
+}
+async function retryPending(req:Request){
+ const db=createClient(Deno.env.get("SUPABASE_URL")||projectOrigin,Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")||"",{auth:{persistSession:false,autoRefreshToken:false}});
+ const token=req.headers.get("x-ef-retry-token")||"";
+ if(!/^[0-9a-f]{64}$/.test(token))return makeResponse({error:"not_authorized"},403,null);
+ const {data:valid,error:verifyError}=await db.rpc("ef_verify_website_retry_token",{p_token:token});
+ if(verifyError||valid!==true)return makeResponse({error:"not_authorized"},403,null);
+ const now=new Date().toISOString();
+ const {data:pending,error:queueError}=await db.from("ef_website_applications")
+ .select("id").in("state",["RECEIVED","DELIVERY_PENDING","PROCESSING"])
+ .lte("next_retry_at",now).lt("retry_attempts",12)
+ .order("created_at",{ascending:true}).limit(8);
+ if(queueError)return makeResponse({error:"queue_unavailable"},503,null);
+ let processed=0,complete=0;
+ for(const p of pending||[]){
+  const {data:claimed,error:claimError}=await db.rpc("ef_claim_website_application",{p_id:p.id});
+  if(claimError||!claimed?.length)continue;
+  const result=await processStored(db,claimed[0]);
+  processed++;if(result.complete)complete++;
+ }
+ return makeResponse({ok:true,processed,completed:complete},200,null);
+}
+
 Deno.serve(async(req:Request)=>{
+ if(req.method==="POST" && new URL(req.url).pathname.endsWith("/retry"))return retryPending(req);
  const origin=req.headers.get("Origin");
  if(!origin||!allowedOrigins.has(origin))return makeResponse({error:"origin_not_allowed"},403,origin);
  if(req.method==="OPTIONS")return makeResponse({ok:true},200,origin);
@@ -156,33 +204,21 @@ Deno.serve(async(req:Request)=>{
 
  if(admit?.status!=="DUPLICATE"&&(admit?.status!=="CREATED"||typeof admit.id!=="string"))return makeResponse({error:"invalid_candidate"},422,origin);
 
- // Direct integrations: Supabase -> Notion and Resend. No Activepieces calls.
- // On re-submission of a previously stored candidate, never create another row.
- const existing = admit.status==="DUPLICATE"
+ // Atomic claim protects against duplicate leads and concurrent in-flight email deliveries.
+ if(admit?.status!=="CREATED" && admit?.status!=="DUPLICATE")return makeResponse({error:"invalid_request"},422,origin);
+ const q=admit.status==="DUPLICATE"
    ? await db.from("ef_website_applications")
-       .select("id,email,notion_page_id,notion_synced_at,email_notified_at,state")
-       .eq("email",val.email).eq("submitted_on",new Date().toLocaleDateString("en-CA",{timeZone:"Europe/Lisbon"}))
-       .limit(1).maybeSingle()
-   : await db.from("ef_website_applications")
-       .select("id,email,notion_page_id,notion_synced_at,email_notified_at,state")
-       .eq("id",admit.id).maybeSingle();
- const row=existing.data;
- if(existing.error||!row)return makeResponse({error:"saved_but_processing_pending"},503,origin);
- if(row.state==="DELIVERED")return makeResponse({ok:true,duplicate:true,notified:true},200,origin);
- const notion=await syncDirectNotion(db,row,val);
- const resend=await sendDirectEmail(row,val,notion.pageId);
- const completed=notion.ok&&resend.ok;
- const failures=[notion.reason,resend.reason].filter(Boolean).join(";").slice(0,180)||null;
- const update=await db.from("ef_website_applications").update({
-   state:completed?"DELIVERED":"DELIVERY_PENDING",
-   notion_page_id:notion.pageId||row.notion_page_id,
-   notion_synced_at:notion.ok?(row.notion_synced_at||new Date().toISOString()):null,
-   email_notified_at:resend.ok?(row.email_notified_at||new Date().toISOString()):null,
-   last_delivery_error:failures
- }).eq("id",row.id);
- if(update.error)console.error("ef direct delivery update",update.error.code);
- return makeResponse({ok:true,received:true,notified:resend.ok,crmSynced:notion.ok,
-   duplicate:admit.status==="DUPLICATE",
-   message:completed?"Candidatura recebida no CRM e aviso de email aceite."
-    :"Candidatura recebida. A equipa irá tratar do pedido."},202,origin);
+       .select("id,state,email").eq("email",val.email)
+       .eq("submitted_on",new Date().toLocaleDateString("en-CA",{timeZone:"Europe/Lisbon"}))
+       .order("created_at",{ascending:false}).limit(1).maybeSingle()
+   : {data:{id:admit.id,state:"RECEIVED",email:val.email},error:null};
+ if(q.error||!q.data)return makeResponse({error:"processing_unavailable"},503,origin);
+ if(q.data.state==="DELIVERED")return makeResponse({ok:true,received:true,duplicate:true},200,origin);
+ const {data:claimed,error:claimError}=await db.rpc("ef_claim_website_application",{p_id:q.data.id});
+ if(claimError)return makeResponse({ok:true,received:true,pending:true},202,origin);
+ if(!claimed?.length)return makeResponse({ok:true,received:true,pending:true},202,origin);
+ const sent=await processStored(db,claimed[0]);
+ return makeResponse({ok:true,received:true,crmSynced:sent.notionOk,
+   notified:sent.emailAccepted,processingComplete:sent.complete,
+   duplicate:admit.status==="DUPLICATE"},202,origin);
 });
