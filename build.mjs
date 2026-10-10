@@ -3,7 +3,7 @@ import path from "node:path";
 const dist="dist";
 fs.rmSync(dist,{recursive:true,force:true});
 fs.mkdirSync(dist,{recursive:true});
-for(const page of ["index.html","coaching.html","app.html","metodo.html","sobre.html","presencial.html","candidatura-publica.html","privacidade-candidatura.html"]){
+for(const page of ["index.html","coaching.html","app.html","metodo.html","sobre.html","presencial.html","candidatura.html","candidatura-publica.html","privacidade-candidatura.html"]){
   if(fs.existsSync(page))fs.copyFileSync(page,path.join(dist,page));
 }
 fs.mkdirSync(path.join(dist,"src"),{recursive:true});
