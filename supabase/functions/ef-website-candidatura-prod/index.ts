@@ -96,19 +96,42 @@ async function sendDirectEmail(row:any,payload:CandidatePayload,pageId:string|nu
 }
 
 async function verifyTurnstile(token:string, submissionKey:string):Promise<boolean>{
- const secret=Deno.env.get("EF_TURNSTILE_SECRET");
- if(!secret || token.length<16 || token.length>2048) return false;
+ const secret=(Deno.env.get("EF_TURNSTILE_SECRET")||"").trim();
+ if(!secret || token.length<16 || token.length>2048) {
+   console.warn("ef turnstile precheck",{
+     secretConfigured:secret.length>0,
+     tokenPresent:token.length>0,
+     tokenLengthValid:token.length>=16&&token.length<=2048
+   });
+   return false;
+ }
  try{
   const form=new URLSearchParams({secret,response:token,idempotency_key:submissionKey});
   const result=await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify",{
     method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:form,
     signal:AbortSignal.timeout(9000)
   });
-  if(!result.ok)return false;
+  if(!result.ok){console.warn("ef turnstile upstream_http",{status:result.status});return false;}
   const verified=await result.json();
-  return verified.success===true && allowedChallengeHosts.has(verified.hostname)
-    && (!verified.action || verified.action==="ef-candidatura");
- }catch{return false}
+  const hostnameValid=typeof verified.hostname==="string"&&allowedChallengeHosts.has(verified.hostname);
+  const actionValid=!verified.action||verified.action==="ef-candidatura";
+  const success=verified.success===true;
+  if(!success||!hostnameValid||!actionValid){
+    // Diagnostic metadata only: never log token, secret, IP, form values or Cloudflare challenge metadata.
+    const known=new Set(["missing-input-secret","invalid-input-secret","missing-input-response",
+      "invalid-input-response","bad-request","timeout-or-duplicate","internal-error"]);
+    const reasons=Array.isArray(verified["error-codes"])
+      ? verified["error-codes"].filter((s:unknown)=>typeof s==="string"&&known.has(s))
+      : [];
+    console.warn("ef turnstile rejected",{
+      success,hostnameValid,actionValid,
+      returnedHostname:typeof verified.hostname==="string"?verified.hostname.slice(0,150):null,
+      returnedAction:typeof verified.action==="string"?verified.action.slice(0,50):null,
+      codes:reasons
+    });
+  }
+  return success&&hostnameValid&&actionValid;
+ }catch{console.warn("ef turnstile upstream_unavailable");return false}
 }
 
 type DbClient = ReturnType<typeof createClient>;
