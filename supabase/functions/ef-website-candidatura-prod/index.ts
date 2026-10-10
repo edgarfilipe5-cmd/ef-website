@@ -19,7 +19,7 @@ const makeResponse=(data:Record<string,unknown>,status:number,origin:string|null
  return new Response(JSON.stringify(data),{status,headers});
 };
 const clean=(x:unknown,max:number)=>typeof x==="string"?x.replace(/[\u0000-\u001f\u007f]/g," ").trim().slice(0,max):"";
-async function ipHash(ip:string){ const salt=Deno.env.get("EF_FORM_IP_SALT");if(!salt||salt.length<24)throw new Error("missing_form_ip_salt");const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(salt+":"+ip)); return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,"0")).join(""); }
+async function ipHash(ip:string){ const salt=Deno.env.get("EF_FORM_IP_SALT")||Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");if(!salt||salt.length<24)throw new Error("missing_form_ip_salt");const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(salt+":"+ip)); return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,"0")).join(""); }
 
 function normalizeNotionText(value:string) {
   return [{type:"text",text:{content:value.slice(0,1800)}}];
