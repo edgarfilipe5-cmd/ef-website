@@ -31,13 +31,13 @@ async function syncDirectNotion(db:any, row:any, payload:CandidatePayload) {
   const target="a877082e-2e54-42ef-a693-a9571987b0b2";
   const headers={"Authorization":"Bearer "+key,"Notion-Version":"2025-09-03","Content-Type":"application/json"};
   try {
-    if(row.notion_page_id) return {ok:true,reason:"",pageId:row.notion_page_id};
+    if(row.notion_page_id) return {ok:true,reason:"",pageId:row.notion_page_id,owned:row.notion_owned===true};
     const query=await fetch("https://api.notion.com/v1/data_sources/"+target+"/query",{
       method:"POST",headers,body:JSON.stringify({page_size:2,filter:{property:"Email",email:{equals:payload.email}}}),signal:AbortSignal.timeout(9500)
     });
     if(!query.ok)return {ok:false,reason:"notion_query_http_"+query.status,pageId:null};
     const matches=await query.json();
-    if(matches.results?.length) return {ok:true,reason:"",pageId:matches.results[0].id};
+    if(matches.results?.length) return {ok:true,reason:"",pageId:matches.results[0].id,owned:false};
     const notes=[
       "CANDIDATURA EF WEBSITE (SEM PAGAMENTO)",
       "Objetivo: "+payload.goal,
@@ -66,7 +66,7 @@ async function syncDirectNotion(db:any, row:any, payload:CandidatePayload) {
     });
     if(!created.ok)return {ok:false,reason:"notion_create_http_"+created.status,pageId:null};
     const result=await created.json();
-    return {ok:typeof result.id==="string",reason:typeof result.id==="string"?"":"notion_bad_result",pageId:result.id??null};
+    return {ok:typeof result.id==="string",reason:typeof result.id==="string"?"":"notion_bad_result",pageId:result.id??null,owned:typeof result.id==="string"};
   }catch{return {ok:false,reason:"notion_unavailable",pageId:null};}
 }
 async function sendDirectEmail(row:any,payload:CandidatePayload,pageId:string|null){
@@ -77,9 +77,9 @@ async function sendDirectEmail(row:any,payload:CandidatePayload,pageId:string|nu
   const to=Deno.env.get("EF_LEAD_NOTIFICATION_TO")||"edgarfilipe5@gmail.com";
   const message=[
     "Nova candidatura EF Coaching",
-    "Nome: "+payload.fullName,"Email: "+payload.email,"WhatsApp: "+payload.phone,
-    "Objetivo: "+payload.goal,"Situação: "+payload.situation,
-    "Local: "+payload.environment,"Dias/semana: "+payload.frequency,
+    "Consulta os dados da candidatura diretamente no CRM EF OS.",
+    "Candidatura recebida e guardada no Supabase.",
+    "Sem informações clínicas neste email.",
     "CRM: "+(pageId?"https://www.notion.so/"+pageId.replace(/-/g,""):"sincronização pendente"),
     "Sem pagamento, sem criação de conta na App EF."
   ].join("\n");
@@ -88,7 +88,7 @@ async function sendDirectEmail(row:any,payload:CandidatePayload,pageId:string|nu
       method:"POST",
       headers:{"Authorization":"Bearer "+key,"Content-Type":"application/json",
        "Idempotency-Key":"eflead-"+row.id},
-      body:JSON.stringify({from,to:[to],subject:"[EF] Nova candidatura: "+payload.fullName,
+      body:JSON.stringify({from,to:[to],subject:"[EF] Nova candidatura recebida",
        text:message}),signal:AbortSignal.timeout(10000)
     });
     return {ok:result.ok,reason:result.ok?"":"resend_http_"+result.status};
@@ -151,6 +151,7 @@ async function processStored(db:DbClient, row:any){
    state:complete?"DELIVERED":"DELIVERY_PENDING",
    processing_until:null,
    notion_page_id:notion.pageId||row.notion_page_id,
+   notion_owned:notion.ok?(notion.owned===true):row.notion_owned,
    notion_synced_at:notion.ok?(row.notion_synced_at||new Date().toISOString()):null,
    email_notified_at:resend.ok?(row.email_notified_at||new Date().toISOString()):null,
    last_delivery_error:failures,
