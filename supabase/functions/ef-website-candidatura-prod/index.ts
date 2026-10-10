@@ -202,13 +202,19 @@ Deno.serve(async(req:Request)=>{
  if(origin==="https://ef-candidatura-preview-20261009.onrender.com" &&
    (!val.fullName.toUpperCase().startsWith("TESTE EF")||!val.email.endsWith("@example.com")))
     return makeResponse({error:"preview_test_only",message:"Neste ambiente utiliza apenas dados fictícios: nome TESTE EF e email @example.com."},422,origin);
- if(!/^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(val.submissionKey)
-    ||val.fullName.length<8||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.email)
-    ||!/^\+?[0-9() .-]{9,25}$/.test(val.phone)
-    ||!goals.has(val.goal)||val.situation.length<12
-    ||!exp.has(val.experience)||!places.has(val.environment)
-    ||!commits.has(val.commitment)||!/^([1-7])$/.test(val.frequency)
-    ||!val.privacyAcknowledged)return makeResponse({error:"invalid_fields"},422,origin);
+ const errors:string[]=[];
+ if(!/^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(val.submissionKey))errors.push("identificador");
+ if(val.fullName.length<8)errors.push("nome completo");
+ if(!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(val.email))errors.push("email");
+ if(!/^\\+?[0-9() .-]{9,25}$/.test(val.phone))errors.push("telemóvel");
+ if(!goals.has(val.goal))errors.push("objetivo");
+ if(val.situation.length<12)errors.push("dificuldade");
+ if(!exp.has(val.experience))errors.push("experiência");
+ if(!places.has(val.environment))errors.push("local de treino");
+ if(!commits.has(val.commitment))errors.push("compromisso");
+ if(!/^([1-7])$/.test(val.frequency))errors.push("dias disponíveis");
+ if(!val.privacyAcknowledged)errors.push("privacidade");
+ if(errors.length)return makeResponse({error:"invalid_fields",message:"Verifica os seguintes campos: "+errors.join(", ")+".",fields:errors},422,origin);
  if(val.companyWebsite) return makeResponse({ok:true},202,origin);
  const captchaToken=clean(body.turnstileToken,2100);
  if(!await verifyTurnstile(captchaToken,val.submissionKey))
