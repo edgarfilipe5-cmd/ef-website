@@ -7,25 +7,30 @@ const btn=(href,label,cls='btn-gold')=>`<a class="btn ${cls}" href="${href}">${e
 const list=(items)=>items.map(x=>`<span>${esc(x)}</span>`).join('');
 const cards=(items,dark=false)=>items.map((x,i)=>`<article class="card"><div class="num">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('');
 function nav(d){
-  const links=[['./coaching.html','Coaching'],['./app.html','App EF'],['./metodo.html','Método EF'],['./presencial.html','Presencial'],['./sobre.html','Sobre']];
+  const links=[['./coaching.html','Online'],['./app.html','App EF'],['./presencial.html','Presencial'],['./sobre.html','O Edgar']];
   return `<header class="site-nav"><div class="nav-inner">
     <a class="brand" href="./index.html"><img src="./assets/brand/ef-horizontal-white.svg" alt="Edgar Filipe Personal Trainer"></a>
     <nav class="nav-links">${links.map(x=>`<a href="${x[0]}">${x[1]}</a>`).join('')}<a class="nav-cta" href="${d.site.application_url}">Candidatar-me</a></nav>
-    <button class="menu-btn" aria-expanded="false">MENU</button>
+    <button class="menu-btn" aria-label="Abrir menu de navegação" aria-controls="site-menu" aria-expanded="false">MENU</button>
   </div></header>
-  <div class="drawer" aria-hidden="true">${links.map(x=>`<a href="${x[0]}">${x[1]}</a>`).join('')}<a class="apply" href="${d.site.application_url}">Candidatar-me</a></div>`;
+  <div class="drawer" id="site-menu" aria-hidden="true">${links.map(x=>`<a href="${x[0]}">${x[1]}</a>`).join('')}<a class="apply" href="${d.site.application_url}">Candidatar-me</a></div>`;
 }
 function footer(d){
-  return `<footer class="footer"><div class="wrap footer-inner"><img src="./assets/brand/ef-horizontal-white.svg" alt="Edgar Filipe Personal Trainer"><div><a href="${d.site.instagram_url}" target="_blank" rel="noopener">Instagram</a></div></div></footer>
+  return `<footer class="footer"><div class="wrap footer-inner"><img src="./assets/brand/ef-horizontal-white.svg" alt="Edgar Filipe Personal Trainer"><div><a href="./metodo.html">Método EF</a> · <a href="${d.site.instagram_url}" target="_blank" rel="noopener">Instagram</a></div></div></footer>
   <a class="mobile-apply" href="${d.site.application_url}"><span>Candidatar-me</span><b>→</b></a>`;
 }
 function faq(d){return `<section class="section paper"><div class="wrap faq-grid"><div><div class="eyebrow">FAQ</div><h2>Antes de te candidatares.</h2></div><div>${d.faq.map(x=>`<details><summary>${esc(x.question)}</summary><p>${esc(x.answer)}</p></details>`).join('')}</div></div></section>`}
 function finalCTA(d,title='Se queres deixar de improvisar, começa pela candidatura.'){return `<section class="final-cta"><div class="wrap final-grid"><h2>${title}</h2><div><p>Primeiro percebo o teu contexto. Se fizer sentido avançarmos, tratamos do resto a partir daí.</p>${btn(d.site.application_url,'Quero candidatar-me','btn-dark')}</div></div></section>`}
 function home(d){
  const h=d.home;
- return `${nav(d)}
- <main>
- <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow">${esc(h.hero.eyebrow)}</div><h1>${h.hero.title}</h1><p class="hero-sub">${esc(h.hero.subtitle)}</p><div class="hero-meta"><span>PLANO PERSONALIZADO</span><span>APP EF</span><span>CHECK-INS</span><span>AJUSTES PELO PT</span></div><div class="actions">${btn(d.site.application_url,'Quero candidatar-me')}${btn('./coaching.html','Ver como funciona','btn-light')}</div></div><div class="hero-visual-3d" id="ef-orbital">
+ const benefits=[
+ {title:'Um plano para ti',text:'Treino adaptado ao teu objetivo, experiência, equipamento e tempo disponível.'},
+ {title:'Tudo na App EF',text:'Consulta o plano, regista os treinos e acompanha o teu histórico no mesmo lugar.'},
+ {title:'Contacto e feedback',text:'Check-in semanal, feedback após o treino e contacto por WhatsApp quando necessário.'},
+ {title:'Ajustes pelo teu treinador',text:'Analiso a tua evolução e o teu contexto para decidir o que manter ou alterar.'}
+ ];
+ return `${nav(d)}<main>
+ <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow">Acompanhamento online · ${esc(d.site.duration)}</div><h1>O teu treino.<br><span>Comigo a acompanhar.</span></h1><p class="hero-sub">Um plano adaptado a ti, uma app para te orientar e acompanhamento meu para ajustar o treino à tua rotina.</p><div class="actions">${btn(d.site.application_url,'Quero acompanhamento')}${btn('#inclui','O que está incluído','btn-light')}</div><p class="hero-note">Primeiro candidatas-te. Falamos antes de avançares.</p></div><div class="hero-visual-3d" id="ef-orbital">
   <canvas class="orbital-webgl" id="orbital-webgl" aria-hidden="true"></canvas>
   <div class="orbital-stage">
     <div class="orbital-system" aria-hidden="true">
@@ -50,19 +55,18 @@ function home(d){
       <div class="orbital-core"><img src="./assets/brand/ef-monogram-gold.svg" alt=""></div>
     </div>
   </div>
-  <div class="orbital-label"><span>EF / PERFORMANCE SYSTEM</span><b>MÉTODO · APP · COACHING</b></div>
-  <div class="hero-price"><b>${esc(d.site.price)}</b><span>${esc(d.site.duration)} · ${esc(d.site.payment_label)}</span></div>
+  <div class="orbital-label"><span>EDGAR FILIPE / PERSONAL TRAINER</span><b>TREINO · ACOMPANHAMENTO · APP EF</b></div>
 </div></div></section>
- <div class="signal-strip"><div class="wrap signal-grid"><div><b>MÉTODO EF</b><span>Decisões com lógica</span></div><div><b>APP EF</b><span>Processo ligado</span></div><div><b>ACOMPANHAMENTO</b><span>Contexto real</span></div><div><b>12 SEMANAS</b><span>Tempo para aprender e ajustar</span></div></div></div>
- <section class="section paper"><div class="wrap"><div class="section-head"><div><div class="eyebrow">${esc(h.problem.eyebrow)}</div><h2>${esc(h.problem.title)}</h2></div><p>${esc(h.problem.intro)}</p></div><div class="cards-3">${cards(h.problem.items)}</div></div></section>
- <section class="section dark"><div class="wrap"><div class="section-head"><div><div class="eyebrow">${esc(h.mechanism.eyebrow)}</div><h2>${esc(h.mechanism.title)}</h2></div><p>${esc(h.mechanism.intro)}</p></div><div class="cards-3">${h.mechanism.items.map(x=>`<article class="card mechanism-card"><div class="label">${esc(x.label)}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p><a class="text-link" href="${x.link}">Saber mais →</a></article>`).join('')}</div></div></section>
- <section class="section app-preview"><div class="wrap app-grid"><div class="app-copy"><div class="eyebrow">${esc(h.app_teaser.eyebrow)}</div><h2>${esc(h.app_teaser.title)}</h2><p class="lead">${esc(h.app_teaser.body)}</p><div class="bullet-list">${list(h.app_teaser.bullets)}</div>${btn('./app.html','Conhecer a App EF')}</div><div class="screen-frame">${img(h.app_teaser.image,'App EF — treino do dia')}</div></div></section>
- <section class="section"><div class="wrap"><div class="section-head"><div><div class="eyebrow">${esc(h.journey.eyebrow)}</div><h2>${esc(h.journey.title)}</h2></div><p>Tu vês clareza. Por trás existe um processo que recolhe contexto e transforma essa informação em melhores decisões.</p></div><div class="journey">${h.journey.items.map((x,i)=>`<article><div class="n">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div><a class="text-link" href="./coaching.html" style="margin-top:24px">Ver a rota completa de acompanhamento →</a></div></section>
- <section class="section dark"><div class="wrap offer-panel"><div><div class="eyebrow">${esc(h.offer.eyebrow)}</div><h2>${esc(h.offer.title)}</h2><p class="lead">${esc(h.offer.body)}</p><div class="price-row"><div><strong>${esc(d.site.price)}</strong><small>${esc(d.site.duration)} · ${esc(d.site.payment_label)}</small></div>${btn(d.site.application_url,'Candidatar-me')}</div></div><div class="offer-included">${h.offer.included.map(x=>`<span>${esc(x)}</span>`).join('')}</div></div></section>
- <section class="section paper"><div class="wrap grid-2"><div class="teaser-photo">${img(h.about_teaser.image,'Edgar Filipe')}</div><div class="teaser-copy"><div class="eyebrow">${esc(h.about_teaser.eyebrow)}</div><h2>${esc(h.about_teaser.title)}</h2><p class="lead">${esc(h.about_teaser.body)}</p><a class="text-link" href="./sobre.html">Conhecer o Edgar →</a></div></div></section>
- <section class="section"><div class="wrap grid-2"><div class="teaser-copy"><div class="eyebrow">${esc(h.presential_teaser.eyebrow)}</div><h2>${esc(h.presential_teaser.title)}</h2><p class="lead">${esc(h.presential_teaser.body)}</p><a class="text-link" href="./presencial.html">Conhecer o Personal Training →</a></div><div class="teaser-photo">${img(h.presential_teaser.image,'Personal Training EF')}</div></div></section>
- ${faq(d)}${finalCTA(d)} </main>${footer(d)}`;
+ <section class="section paper" id="inclui"><div class="wrap"><div class="section-head"><div><div class="eyebrow">O que recebes</div><h2>Treinas por tua conta.<br>Com acompanhamento.</h2></div><p>Durante ${esc(d.site.duration)}, o plano, a app e o contacto comigo fazem parte do mesmo acompanhamento.</p></div><div class="benefits-grid">${cards(benefits)}</div></div></section>
+ <section class="section" id="como-funciona"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Como funciona</div><h2>Do primeiro contacto<br>ao teu próximo treino.</h2></div><p>Começamos por perceber o que precisas. Depois, construímos e acompanhamos o teu plano.</p></div><div class="journey">${h.journey.items.map((x,i)=>`<article><div class="n">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div><a class="text-link" href="./coaching.html">Ver o acompanhamento em detalhe →</a></div></section>
+ <section class="section app-preview"><div class="wrap app-grid"><div class="app-copy"><div class="eyebrow">App EF · incluída</div><h2>Abres a app.<br>Sabes o que treinar.</h2><p class="lead">Tens o plano à mão, registas o treino e deixas feedback. Eu uso essa informação para acompanhar a tua evolução.</p><div class="bullet-list">${list(h.app_teaser.bullets)}</div>${btn('./app.html','Ver a App EF')}</div><div class="screen-frame">${img(h.app_teaser.image,'App EF — treino do dia')}</div></div></section>
+ <section class="section paper"><div class="wrap grid-2"><div class="teaser-photo">${img(h.about_teaser.image,'Edgar Filipe, Personal Trainer')}</div><div class="teaser-copy"><div class="eyebrow">O teu treinador</div><h2>Sou o Edgar.<br>Vamos treinar com método.</h2><p class="lead">Sou licenciado em Ciências do Desporto e trabalho com treino personalizado, online e presencial. O meu trabalho é construir um plano que faça sentido para ti e acompanhar a forma como respondes.</p><div class="actions">${btn('./sobre.html','Conhecer o Edgar','btn-dark')}<a class="text-link" href="./metodo.html">O Método EF →</a></div></div></div></section>
+ <section class="section dark" id="acompanhamento"><div class="wrap offer-panel"><div><div class="eyebrow">Acompanhamento online</div><h2>${esc(d.site.duration)}.<br>Plano, app e treinador.</h2><p class="lead">Preenche a candidatura para eu perceber o teu objetivo e a tua disponibilidade. Falamos e confirmamos se este acompanhamento faz sentido para ti.</p><div class="price-row"><div><strong>${esc(d.site.price)}</strong><small>${esc(d.site.duration)} · ${esc(d.site.payment_label)}</small></div>${btn(d.site.application_url,'Preencher candidatura')}</div></div><div class="offer-included">${h.offer.included.map(x=>`<span>${esc(x)}</span>`).join('')}<a class="text-link" href="./coaching.html">Ver condições e detalhes →</a></div></div></section>
+ ${faq(d)}
+ <section class="presential-note"><div class="wrap"><div><div class="eyebrow">Personal Training · Miramar</div><h3>Preferes treinar acompanhado presencialmente?</h3></div><a class="text-link" href="./presencial.html">Conhecer o presencial →</a></div></section>
+ </main>${footer(d)}`;
 }
+
 function coaching(d){
  const c=d.coaching;
  return `${nav(d)}<main>
@@ -141,5 +145,5 @@ fetch('./content/site.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
  const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=d.site.description;
  const render={home,coaching,app:appPage,method:methodPage,about:aboutPage,presential:presencialPage}[PAGE]||home;
  ROOT.innerHTML=render(d);wireMenu();wireOrbital();
- import('./src/motion-v2.js').then(m=>m.initMotion?.()).catch(()=>{});
+ import('./motion-v2.js').then(m=>m.initMotion?.()).catch(()=>{});
 }).catch(()=>{ROOT.innerHTML='<p style="padding:40px">Não foi possível carregar o website.</p>'});
