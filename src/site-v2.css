@@ -721,3 +721,24 @@ body:before{
   .orbital-label{font-size:.45rem}
   .mobile-apply{left:10px;right:10px}
 }
+
+/* EF editorial layout: clearer reading, restrained gold, existing 3D preserved. */
+h1{font-size:clamp(2.6rem,5.2vw,5rem);line-height:1.05;letter-spacing:-.055em}
+h2{font-size:clamp(2rem,3.5vw,3.6rem);line-height:1.12;letter-spacing:-.045em}
+h3{line-height:1.25}.section{padding:88px 0}.section-head{gap:55px;margin-bottom:36px}.section-head p{max-width:52ch}.card{padding:30px;border-radius:8px}.card h3{margin:24px 0 12px}.card p{font-size:.97rem}.btn{border-radius:4px;padding:0 22px;min-height:52px}.btn:focus-visible,.text-link:focus-visible,summary:focus-visible,.nav-links a:focus-visible,.menu-btn:focus-visible{outline:3px solid var(--gold-dark);outline-offset:5px}.nav-links{gap:25px}.nav-links a[aria-current=page]{text-decoration:underline;text-underline-offset:6px}.page-hero{padding-top:70px}.page-hero h1{max-width:15ch}.page-hero p{max-width:55ch;font-size:1.1rem;line-height:1.65}
+body[data-page=home] .hero{background:var(--paper);color:var(--ink)}
+body[data-page=home] .hero-grid{min-height:670px;gap:60px;padding:72px 0;grid-template-columns:1.1fr .9fr}
+body[data-page=home] .hero h1{font-size:clamp(3rem,5vw,4.8rem);line-height:1.06;max-width:13ch;margin:22px 0}
+body[data-page=home] .hero h1 span{color:#967029}
+body[data-page=home] .hero-sub{color:#59564e;font-size:1.1rem;line-height:1.75;max-width:43ch}
+body[data-page=home] .hero .btn-light{color:#292820;border-color:#b8b09f;background:transparent}
+body[data-page=home] .hero .hero-note{font-size:.8rem;line-height:1.5;color:#716b5e;margin:18px 0 0}
+body[data-page=home] .hero-visual-3d{background:#0b0c0a;border-radius:50% 50% 10px 10px;border:1px solid #77633a;min-height:480px;height:480px;box-shadow:0 24px 50px #28200c1a}
+body[data-page=home] .orbital-label{color:#bdb5a2;font-size:.57rem;bottom:28px}
+body[data-page=home] .orbital-label b{color:#e3bc66;font-size:.64rem}
+.benefits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.benefits-grid .card{background:#fff;border-color:#e0dacc}.benefits-grid .card h3{font-size:1.2rem;margin-top:26px}.benefits-grid .num{font-size:.8rem}
+body[data-page=home] #inclui{background:#fff}.presential-note{padding:40px 0;background:var(--paper);border-top:1px solid var(--line)}.presential-note>.wrap{display:flex;align-items:center;justify-content:space-between;gap:32px}.presential-note h3{margin:12px 0 0;font-size:1.25rem}.presential-note .text-link{white-space:nowrap}.footer-inner>div{line-height:1.8}.offer-included .text-link{color:var(--gold);margin-top:18px}.journey{border-radius:8px;overflow:hidden}.journey+.text-link{margin-top:24px}.teaser-photo{border-radius:8px}.teaser-copy .actions{align-items:center;gap:22px}.app-copy .lead{max-width:43ch}.faq-grid{grid-template-columns:.8fr 1.2fr}.price-row strong{letter-spacing:-.04em}
+@media(max-width:1100px){.benefits-grid{grid-template-columns:repeat(2,1fr)}body[data-page=home] .hero-grid{gap:32px}body[data-page=home] .hero-visual-3d{min-height:400px;height:400px}}
+@media(max-width:760px){.section{padding:58px 0}.wrap{width:calc(100% - 40px)}h1{font-size:2.65rem;line-height:1.08}h2{font-size:2.1rem;line-height:1.16}.section-head{gap:12px;margin-bottom:28px}.page-hero{padding:48px 0}.page-hero h1{font-size:2.8rem}.page-hero p{font-size:1rem}.grid-2{gap:32px}.app-grid{gap:35px}.benefits-grid{gap:12px}.benefits-grid .card{padding:21px}.benefits-grid .card h3{font-size:1.05rem;margin-top:18px}.benefits-grid .card p{font-size:.9rem}.hero-copy .actions{gap:10px}body[data-page=home] .hero-grid{padding:42px 0 36px;gap:32px;grid-template-columns:1fr;min-height:0}body[data-page=home] .hero h1{font-size:clamp(2.6rem,8.5vw,3.7rem);max-width:15ch;margin:18px 0}body[data-page=home] .hero-sub{font-size:1rem;line-height:1.65}body[data-page=home] .hero-visual-3d{height:330px;min-height:330px;width:100%;max-width:460px;justify-self:center;border-radius:160px 160px 8px 8px}body[data-page=home] .orbital-label{bottom:18px}.presential-note>.wrap{display:block}.presential-note .text-link{margin-top:22px}.faq-grid{grid-template-columns:1fr}.mobile-apply{left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));border-radius:4px}.footer{padding-bottom:105px}.hero-note{padding-bottom:0}.offer-panel{gap:32px}.journey article{padding:22px}.journey article h3{font-size:1.15rem}}
+@media(max-width:390px){.benefits-grid{grid-template-columns:1fr}.benefits-grid .card h3{margin-top:14px}body[data-page=home] .hero h1{font-size:2.65rem}body[data-page=home] .hero-visual-3d{height:300px;min-height:300px}.btn{font-size:.85rem;padding:0 15px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
