@@ -59,3 +59,8 @@
   .form-card{padding:22px 16px 27px}
   .button{min-height:50px}
 }
+/* Mobile conversion: direct entry, comfortable controls, no horizontal friction. */
+html{scroll-padding-top:85px}.form-start{display:inline-flex;margin:10px 0 24px;text-decoration:none;align-items:center;justify-content:center;min-height:50px;padding:12px 20px}.form-area{scroll-margin-top:80px}
+@media(max-width:720px){.intro{padding-top:32px;padding-bottom:32px;gap:22px}.intro h1{font-size:2.65rem;line-height:1.06}.intro-copy>p{font-size:1rem;line-height:1.6}.form-start{width:100%;font-size:.9rem}.intro-points{display:none}.price-box{padding:21px}.price-box strong{font-size:2.3rem}.price-box p{font-size:.85rem}.form-area{padding-top:35px}.side-note h2{font-size:2.2rem}.side-note>p{font-size:.95rem}.step h3{font-size:1.8rem}.step-desc,.disclaimer{font-size:.85rem;line-height:1.6}.form-card label{font-size:.88rem}.form-card input,.form-card select,.form-card textarea{font-size:16px;min-height:48px}.form-card input[type=checkbox]{min-height:22px;width:22px;height:22px;flex:0 0 22px}.form-card .button{min-height:50px;font-size:.85rem}.checkline span{font-size:.82rem;line-height:1.55}.top-inner .backlink{font-size:.75rem}}
+/* Keep the decorative orbit inside the intro; prevent it widening the mobile page. */
+.intro{overflow:hidden}.intro:before{width:min(400px,80%);height:auto;aspect-ratio:1;right:0}

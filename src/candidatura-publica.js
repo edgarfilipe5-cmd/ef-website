@@ -54,7 +54,7 @@
    script.onload=()=>{
     if(!window.turnstile){security.textContent="Verificação indisponível. Tenta novamente mais tarde.";return;}
     widgetId=window.turnstile.render("#turnstileMount",{
-     sitekey,action:"ef-candidatura",theme:"light",size:window.innerWidth<=360?"compact":"normal",
+     sitekey,action:"ef-candidatura",theme:"light",size:window.innerWidth<=720?"compact":"normal",
      callback(token){captchaToken=token;submit.disabled=false;security.textContent="Verificação concluída."},
      "expired-callback"(){captchaToken="";submit.disabled=true;security.textContent="Verificação expirada. Confirma novamente."},
      "error-callback"(){captchaToken="";submit.disabled=true;security.textContent="Não foi possível verificar a segurança. Atualiza a página."}

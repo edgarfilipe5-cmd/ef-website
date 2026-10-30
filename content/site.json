@@ -115,7 +115,7 @@
       "eyebrow": "Quem está do outro lado",
       "title": "Treinar bem é técnico. Aderir ao processo é humano.",
       "body": "Sou o Edgar Filipe, Personal Trainer e fundador da EF. Transformo princípios de treino em decisões práticas para que o plano funcione na tua vida — não apenas no papel.",
-      "image": "/assets/images/IMG_6773_site.jpg",
+      "image": "/assets/media/edgar-retrato-sentado.jpg",
       "focus_x": 50,
       "focus_y": 25,
       "zoom": 100
@@ -124,15 +124,15 @@
       "eyebrow": "Personal Training",
       "title": "Preferes acompanhamento cara a cara?",
       "body": "Em Miramar, o Método EF também existe presencialmente: avaliação, planeamento e acompanhamento próximo em sessões individuais, duo ou pequenos grupos.",
-      "image": "/assets/images/IMG_6823_site.jpg"
+      "image": "/assets/media/edgar-estudio.jpg"
     }
   },
   "coaching": {
     "hero": {
       "eyebrow": "EF Coaching · acompanhamento online",
-      "title": "DEIXA DE IMPROVISAR. <span>COMEÇA A TREINAR COM DIREÇÃO.</span>",
-      "subtitle": "12 semanas para construir um processo de treino personalizado, acompanhado e ajustado à tua vida real.",
-      "image": "/assets/images/IMG_6828_site.jpg"
+      "title": "ACOMPANHAMENTO ONLINE.<br><span>TREINO FEITO PARA TI.</span>",
+      "subtitle": "12 semanas com plano personalizado, App EF, check-ins e ajustes pelo teu treinador. 199 € · pagamento único.",
+      "image": "/assets/media/edgar-estudio.jpg"
     },
     "promise": {
       "title": "O produto não é o plano. É o acompanhamento.",
@@ -315,7 +315,7 @@
       "eyebrow": "Edgar Filipe · Personal Trainer",
       "title": "CIÊNCIA PARA ORIENTAR. <span>PESSOAS PARA DECIDIR.</span>",
       "subtitle": "A minha função não é tornar o treino mais complicado. É transformar informação em decisões que consigas executar e manter.",
-      "image": "/assets/images/IMG_6826_site.jpg",
+      "image": "/assets/media/edgar-natural.jpg",
       "focus_x": 50,
       "focus_y": 25,
       "zoom": 100
@@ -352,7 +352,7 @@
       "eyebrow": "Personal Training · Miramar",
       "title": "ATENÇÃO REAL. <span>EXECUÇÃO AO VIVO.</span>",
       "subtitle": "O Método EF aplicado cara a cara, com avaliação, planeamento e acompanhamento próximo.",
-      "image": "/assets/images/IMG_6823_site.jpg"
+      "image": "/assets/media/edgar-estudio.jpg"
     },
     "location": "The Clinic VIP · Miramar",
     "formats": [
@@ -398,6 +398,10 @@
     {
       "question": "E se eu tiver pouco tempo?",
       "answer": "O plano começa pela tua realidade. Um programa perfeito no papel e impossível de cumprir não serve."
+    },
+    {
+      "question": "Posso treinar em casa?",
+      "answer": "Sim. O plano é adaptado ao equipamento e ao espaço que tens disponíveis, em casa ou no ginásio."
     },
     {
       "question": "Recebo apenas um plano?",
