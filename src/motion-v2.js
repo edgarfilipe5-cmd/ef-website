@@ -1,4 +1,4 @@
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js";
+
 
 let started=false;
 const reduce=()=>window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -8,7 +8,7 @@ const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
 function reveal(){
   document.body.classList.add("motion-ready");
   const selectors=[
-    ".hero-copy>*",".signal-grid>div",".section-head>*",".card",".app-copy>*",".screen-frame",
+    ".signal-grid>div",".section-head>*",".card",".app-copy>*",".screen-frame",
     ".journey article",".offer-panel>*",".teaser-photo",".teaser-copy>*",".faq-grid>*",
     ".route article",".feature-box",".fit-box",".app-show-copy>*",".app-show-visual",
     ".method-step",".principle",".measure-row span",".belief",".format",".location-band .wrap>*",
@@ -84,11 +84,11 @@ function magneticButtons(){
   });
 }
 
-function orbitalWebGL(){
+function orbitalWebGL(THREE){
   const canvas=document.getElementById("orbital-webgl");
   if(!canvas||reduce())return;
   let renderer;
-  try{renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:"high-performance"})}catch(_){return}
+  try{renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:"low-power"})}catch(_){return}
   const scene=new THREE.Scene();
   const camera=new THREE.PerspectiveCamera(32,1,.1,100);
   camera.position.z=8.2;
@@ -164,12 +164,28 @@ function orbitalWebGL(){
     });
     pts.rotation.y=t*.015;
     renderer.render(scene,camera);
-    requestAnimationFrame(frame);
+    requestAnimationFrame(tick);
   }
-  frame();
+  let running=false, visible=false;
+  const tick=()=>{if(!visible||document.hidden||reduce()){running=false;return}frame()};
+  // Rendering starts below; visibility determines whether another frame is scheduled.
+  function start(){if(visible&&!document.hidden&&!reduce()&&!running){running=true;tick()}}
+  const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;start()},{threshold:0});
+  observer.observe(canvas);
+  document.addEventListener('visibilitychange',start);
+}
+
+
+function deferOrbital(){
+ const canvas=document.getElementById('orbital-webgl');
+ if(!canvas||reduce())return;
+ const load=()=>import('https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js').then(THREE=>orbitalWebGL(THREE)).catch(()=>{});
+ if(!('IntersectionObserver' in window)){load();return}
+ const io=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){io.disconnect();load()}},{rootMargin:'160px'});
+ io.observe(canvas);
 }
 
 export function initMotion(){
   if(started)return; started=true;
-  reveal();tilt();parallax();pointerGlow();navMotion();magneticButtons();orbitalWebGL();
+  reveal();tilt();parallax();pointerGlow();navMotion();magneticButtons();deferOrbital();
 }

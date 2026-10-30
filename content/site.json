@@ -130,8 +130,8 @@
   "coaching": {
     "hero": {
       "eyebrow": "EF Coaching · acompanhamento online",
-      "title": "DEIXA DE IMPROVISAR. <span>COMEÇA A TREINAR COM DIREÇÃO.</span>",
-      "subtitle": "12 semanas para construir um processo de treino personalizado, acompanhado e ajustado à tua vida real.",
+      "title": "ACOMPANHAMENTO ONLINE.<br><span>TREINO FEITO PARA TI.</span>",
+      "subtitle": "12 semanas com plano personalizado, App EF, check-ins e ajustes pelo teu treinador. 199 € · pagamento único.",
       "image": "/assets/media/edgar-estudio.jpg"
     },
     "promise": {
@@ -398,6 +398,10 @@
     {
       "question": "E se eu tiver pouco tempo?",
       "answer": "O plano começa pela tua realidade. Um programa perfeito no papel e impossível de cumprir não serve."
+    },
+    {
+      "question": "Posso treinar em casa?",
+      "answer": "Sim. O plano é adaptado ao equipamento e ao espaço que tens disponíveis, em casa ou no ginásio."
     },
     {
       "question": "Recebo apenas um plano?",
