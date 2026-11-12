@@ -9,7 +9,7 @@ const btn=(href,label,cls='btn-gold')=>`<a class="btn ${cls}" href="${href}">${e
 function nav(d){
   const links=[['./coaching.html','Online'],['./app.html','App EF'],['./presencial.html','Presencial'],['./sobre.html','O Edgar']];
   return `<a class="skip-link" href="#conteudo">Saltar para o conteúdo</a><header class="site-nav"><div class="nav-inner">
-    <a class="brand" href="./index.html"><img src="./assets/brand/ef-horizontal-white.svg" alt="Edgar Filipe Personal Trainer"></a>
+    <a class="brand" href="./"><img src="./assets/brand/ef-horizontal-white.svg" alt="Edgar Filipe Personal Trainer"></a>
     <nav class="nav-links">${links.map(x=>`<a href="${x[0]}"${({coaching:"Online",app:"App EF",presential:"Presencial",about:"O Edgar"})[PAGE]===x[1]?' aria-current="page"':''}>${x[1]}</a>`).join('')}<a class="nav-cta" href="${applicationURL(d)}">Candidatar-me</a></nav>
     <button class="menu-btn" aria-label="Abrir menu de navegação" aria-controls="site-menu" aria-expanded="false">MENU</button>
   </div></header>
