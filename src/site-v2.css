@@ -775,3 +775,13 @@ body[data-page=home] #inclui{background:#fff}.presential-note{padding:40px 0;bac
 .screen-frame{transform:perspective(1100px) rotateY(-5deg) rotateX(2deg);box-shadow:20px 35px 75px rgba(0,0,0,.35)}
 @media(max-width:900px){.ef-offer-grid{grid-template-columns:1fr}.ef-tilt-card,.hero-human,.screen-frame{transform:none}}
 @media(prefers-reduced-motion:reduce){.ef-tilt-card,.hero-human,.screen-frame{transition:none;transform:none}}
+
+/* Horizontal 3D swipe carousel: touch, keyboard, and desktop arrows */
+.ef-carousel-controls{display:flex;align-items:center;justify-content:flex-end;gap:15px;margin:0 0 18px;font-size:.78rem;font-weight:700;color:#756c5e}
+.ef-carousel-arrow{width:42px;height:42px;border:1px solid #c6bda8;background:#fff;color:#141414;border-radius:50%;cursor:pointer;font-size:1.35rem;transition:background .2s}
+.ef-carousel-arrow:hover,.ef-carousel-arrow:focus-visible{background:#f0dcac;outline:2px solid #b59044;outline-offset:2px}
+.ef-offer-grid{display:flex!important;gap:22px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scroll-padding-inline:calc((100% - min(360px,85%))/2);padding:26px max(12px,calc((100% - 360px)/2)) 45px;scrollbar-width:thin;perspective:1300px;align-items:stretch}
+.ef-offer-grid>.ef-tilt-card{flex:0 0 min(360px,85%);min-width:0;scroll-snap-align:center;position:relative;backface-visibility:hidden}
+.ef-offer-grid>.ef-tilt-card:nth-child(3){box-shadow:0 25px 70px rgba(186,145,64,.23)}
+@media(max-width:900px){.ef-offer-grid{display:flex!important;grid-template-columns:none!important;padding-inline:7.5%;scroll-padding-inline:7.5%}.ef-offer-grid>.ef-tilt-card{flex-basis:85%}.ef-carousel-controls{justify-content:center}}
+@media(prefers-reduced-motion:reduce){.ef-offer-grid{scroll-behavior:auto}}
