@@ -23,7 +23,7 @@
 <main>
   <section class="intro shell">
     <div class="intro-copy">
-      <div class="eyebrow">EF COACHING / 12 SEMANAS</div>
+      <div class="eyebrow">EF COACHING / CANDIDATURA</div>
       <h1>COMEÇA COM<br><span>UMA CONVERSA.</span></h1>
       <p>O primeiro passo não é pagar nem criar uma conta. É perceber o teu objetivo e se o acompanhamento EF é adequado para ti.</p>
       <a class="button gold form-start" href="#candidatura">Preencher candidatura →</a><div class="intro-points" aria-label="Como funciona">
@@ -32,7 +32,7 @@
         <div><span class="index">03</span> Decisão em conjunto</div>
       </div>
     </div>
-    <div class="price-box"><span>EF COACHING</span><strong>199 €</strong><small>12 semanas · pagamento único, apenas se decidirmos avançar</small><div class="price-line"></div><p>Treino personalizado · App EF · Check-ins · Acompanhamento pelo PT</p></div>
+    <div class="price-box"><span id="selectedPlanName">EF TRANSFORM</span><strong id="selectedPlanPrice">199 €</strong><small id="selectedPlanDuration">12 semanas · pagamento único, apenas se decidirmos avançar</small><div class="price-line"></div><p>Treino personalizado · App EF · Check-ins · Acompanhamento pelo PT</p></div>
   </section>
 
   <section class="form-area" id="candidatura">
@@ -46,7 +46,7 @@
       <div class="form-card">
         <div class="form-head"><span id="stepIndicator">ETAPA 01 / 02</span><span id="progressPercent">50%</span></div>
         <div class="progress-track" aria-hidden="true"><div id="progressFill"></div></div>
-        <form id="efApplication" novalidate>
+        <form id="efApplication" novalidate><div style="margin:0 0 24px"><label for="selectedPlan">O acompanhamento que pretendes <span class="required">*</span></label><select id="selectedPlan" required><option value="4">EF START · 4 semanas · 99 €</option><option value="8">EF EVOLVE · 8 semanas · 149 €</option><option value="12" selected>EF TRANSFORM · 12 semanas · 199 €</option></select><p class="disclaimer">Podes alterar a escolha antes de enviar. Não pagas nesta página.</p></div>
           <div class="step" data-step="1">
             <div class="step-title">01 · O teu objetivo</div>
             <h3>O que queres mudar?</h3>
