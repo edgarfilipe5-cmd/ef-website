@@ -895,3 +895,22 @@ html,body{overflow-x:clip}
  .program-compare .compare-recommended{background:#1d1913;color:var(--gold);border-color:#9c8053}
  .experience-visual .app-device{width:min(58%,143px)}
 }
+
+.app-benefits{grid-template-columns:repeat(4,minmax(0,1fr))}
+.app-benefits .card{min-width:0}
+.app-benefits .card h3{margin:0 0 8px;overflow-wrap:anywhere}
+.app-benefits .card p{margin:0}
+.training-photo-grid{align-items:center}
+.training-photo{width:min(100%,400px);margin:0;justify-self:center}
+.training-photo img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 38%;border-radius:16px}
+@media(max-width:1100px){
+ .app-benefits{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+ .app-benefits{grid-template-columns:minmax(0,1fr);gap:12px}
+ .app-benefits .card{display:block;padding:18px;border:1px solid #e0dacc;border-radius:12px}
+ .app-benefits .card h3{margin:0 0 8px}
+ .training-photo img{aspect-ratio:1/1}
+ body[data-page=app] .mobile-apply,body[data-page=presential] .mobile-apply{display:none}
+ body[data-page=app] .footer,body[data-page=presential] .footer{padding-bottom:32px}
+}
