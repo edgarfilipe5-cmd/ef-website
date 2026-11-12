@@ -764,3 +764,14 @@ body[data-page=home] #inclui{background:#fff}.presential-note{padding:40px 0;bac
 .btn,.nav-cta,.mobile-apply{border-radius:10px}
 .screen-frame{border-radius:24px;box-shadow:18px 30px 65px rgba(0,0,0,.28)}
 @media(prefers-reduced-motion:reduce){#planos-online article{transition:none}#planos-online article:hover{transform:none}}
+
+/* EF 3D depth system: perspective, lighting, accessible motion */
+.ef-offer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;perspective:1200px}
+.ef-tilt-card{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transform-style:preserve-3d;will-change:transform;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 18px 40px rgba(0,0,0,.11),inset 0 1px rgba(255,255,255,.35)}
+.ef-tilt-card:hover{box-shadow:0 28px 65px rgba(0,0,0,.23)}
+.ef-tilt-card .eyebrow,.ef-tilt-card h3,.ef-tilt-card .btn{transform:translateZ(18px)}
+.ef-tilt-card::before{content:'';pointer-events:none;position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 15% 0%,rgba(255,255,255,.16),transparent 55%)}
+.hero-human{transform:perspective(1300px) rotateY(-3deg);filter:drop-shadow(0 26px 44px rgba(216,179,106,.16))}
+.screen-frame{transform:perspective(1100px) rotateY(-5deg) rotateX(2deg);box-shadow:20px 35px 75px rgba(0,0,0,.35)}
+@media(max-width:900px){.ef-offer-grid{grid-template-columns:1fr}.ef-tilt-card,.hero-human,.screen-frame{transform:none}}
+@media(prefers-reduced-motion:reduce){.ef-tilt-card,.hero-human,.screen-frame{transition:none;transform:none}}
