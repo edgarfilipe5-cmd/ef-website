@@ -863,3 +863,19 @@ html,body{overflow-x:clip}
  body[data-page=home] .footer{padding-bottom:32px}
 }
 .paper .eyebrow,.presential-note .eyebrow{color:#785b22}
+
+/* Current EF Online screen and approved studio photography */
+.ef-intro .hero-human{background:#12100e}
+.ef-intro .hero-human>img{object-position:center 35%}
+.app-device{width:min(100%,320px);transform:none;filter:none}
+.app-device-shell{padding:9px;border:1px solid #9c8053;border-radius:27px;background:linear-gradient(145deg,#382b18,#111 60%);box-shadow:12px 22px 46px #0009;transform:perspective(1150px) rotateY(-8deg) rotateX(3deg)}
+.app-device .app-device-shell img{border:0;border-radius:19px;outline:0;box-shadow:none}
+.app-device figcaption{line-height:1.35}
+.experience-visual .app-device{width:min(62%,165px)}
+.experience-visual .app-device-shell{padding:5px;border-radius:19px}
+.experience-visual .app-device-shell img{border-radius:14px}
+@media(max-width:760px){
+ .experience-visual .app-device{width:min(56%,134px)}
+ .experience-visual .app-device figcaption{margin-top:7px}
+}
+@media(prefers-reduced-motion:reduce){.app-device-shell{transform:none}}

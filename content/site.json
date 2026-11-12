@@ -136,7 +136,7 @@
       "eyebrow": "Quem está do outro lado",
       "title": "Treinar bem é técnico. Aderir ao processo é humano.",
       "body": "Sou o Edgar Filipe, Personal Trainer e fundador da EF. Transformo princípios de treino em decisões práticas para que o plano funcione na tua vida — não apenas no papel.",
-      "image": "/assets/media/edgar-retrato-sentado.webp",
+      "image": "/assets/media/edgar-equipa-drive.webp",
       "focus_x": 50,
       "focus_y": 25,
       "zoom": 100
@@ -145,7 +145,7 @@
       "eyebrow": "Personal Training",
       "title": "Preferes acompanhamento cara a cara?",
       "body": "Em Miramar, o Método EF também existe presencialmente: avaliação, planeamento e acompanhamento próximo em sessões individuais, duo ou pequenos grupos.",
-      "image": "/assets/media/edgar-estudio.webp"
+      "image": "/assets/media/edgar-presencial-drive.webp"
     }
   },
   "coaching": {
@@ -153,7 +153,7 @@
       "eyebrow": "EF Coaching · acompanhamento online",
       "title": "ACOMPANHAMENTO ONLINE.<br><span>TREINO FEITO PARA TI.</span>",
       "subtitle": "Treino personalizado, App EF, check-ins e ajustes pelo teu treinador. Escolhe 4, 8 ou 12 semanas, desde 99 €.",
-      "image": "/assets/media/edgar-estudio.webp"
+      "image": "/assets/media/edgar-presencial-drive.webp"
     },
     "promise": {
       "title": "O produto não é o plano. É o acompanhamento.",
@@ -336,7 +336,7 @@
       "eyebrow": "Edgar Filipe · Personal Trainer",
       "title": "CIÊNCIA PARA ORIENTAR. <span>PESSOAS PARA DECIDIR.</span>",
       "subtitle": "A minha função não é tornar o treino mais complicado. É transformar informação em decisões que consigas executar e manter.",
-      "image": "/assets/media/edgar-natural.webp",
+      "image": "/assets/media/edgar-sobre-drive.webp",
       "focus_x": 50,
       "focus_y": 25,
       "zoom": 100
@@ -373,7 +373,7 @@
       "eyebrow": "Personal Training · Miramar",
       "title": "ATENÇÃO REAL. <span>EXECUÇÃO AO VIVO.</span>",
       "subtitle": "O Método EF aplicado cara a cara, com avaliação, planeamento e acompanhamento próximo.",
-      "image": "/assets/media/edgar-estudio.webp"
+      "image": "/assets/media/edgar-presencial-drive.webp"
     },
     "location": "The Clinic VIP · Miramar",
     "formats": [

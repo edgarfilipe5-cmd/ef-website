@@ -33,12 +33,12 @@ function offerChoices(d){
  <p class="program-note">Preço total por programa. O pagamento só é combinado após o contacto.</p>
  </div></section>`;
 }
-function appScreen(progress=false){
- return `<figure class="app-device"><img src="./assets/media/ef-app-${progress?'progress-demo':'demo'}.webp" width="390" height="${progress?880:920}" alt="${progress?'Ecrã de progresso com consistência e histórico de treino':'Ecrã inicial com treino do dia e check-in'}" loading="lazy" decoding="async"><figcaption>App EF · dados de demonstração</figcaption></figure>`;
+function appScreen(){
+ return `<figure class="app-device"><div class="app-device-shell"><img src="./assets/media/ef-app-online-atual.webp" width="600" height="840" alt="App EF Online no iPhone com o treino do dia, botão para retomar a sessão e acesso à evolução" loading="lazy" decoding="async"></div><figcaption>Captura da App EF Online no iPhone</figcaption></figure>`;
 }
 function experience(){
  const slides=[
-  ['Método EF','Acompanhamento personalizado','Construo o treino à tua medida e ajusto-o com base na tua evolução.','./metodo.html','Conhecer o método',`<img src="./assets/media/edgar-remada.webp" alt="Edgar Filipe a treinar remada no estúdio" loading="lazy" decoding="async">`],
+  ['Método EF','Acompanhamento personalizado','Construo o treino à tua medida e ajusto-o com base na tua evolução.','./metodo.html','Conhecer o método',`<img src="./assets/media/edgar-metodo-drive.webp" alt="Edgar Filipe a treinar remada no estúdio" loading="lazy" decoding="async">`],
   ['App EF Online','O teu treino na App EF','Tens o plano, os registos de treino e os check-ins num só lugar.','./app.html','Conhecer a App EF',appScreen()],
   ['Programas EF','Escolhe o teu programa','O acompanhamento é igual nas três durações.','#planos-online','Comparar programas','<ul class="experience-prices"><li>4 semanas <b>99 €</b></li><li>8 semanas <b>149 €</b></li><li>12 semanas <b>199 €</b></li></ul>'],
   ['Candidatura','Começa a tua transformação','Escolhe o programa e envia a candidatura. Analiso as tuas respostas e falo contigo antes de começarmos.','#planos-online','Escolher programa','<ol class="experience-steps"><li>Escolher programa</li><li>Enviar candidatura</li><li>Falar com o Edgar</li><li>Iniciar o acompanhamento</li></ol>']
@@ -58,7 +58,7 @@ function home(d){
  <p class="hero-sub">Treina no ginásio ou em casa com um plano feito para ti, acompanhamento do teu treinador e a App EF.</p>
  <div class="actions">${btn('#planos-online','Ver os 3 programas')}${btn('#acompanhamento','Explorar o acompanhamento','btn-light')}</div>
  <p class="hero-note">Desde 99 € · candidatura gratuita</p></div>
- <figure class="hero-human"><img src="./assets/media/edgar-sorriso-800.webp" srcset="./assets/media/edgar-sorriso-480.webp 480w, ./assets/media/edgar-sorriso-800.webp 800w" sizes="(max-width:760px) calc(100vw - 40px), 480px" alt="Edgar Filipe, Personal Trainer" fetchpriority="high" decoding="async" width="900" height="1600"><figcaption><strong>Edgar Filipe</strong><span>Personal Trainer</span></figcaption></figure>
+ <figure class="hero-human"><img src="./assets/media/retrato-ef-drive.webp" srcset="./assets/media/retrato-ef-drive-mobile.webp 480w, ./assets/media/retrato-ef-drive.webp 880w" sizes="(max-width:760px) calc(100vw - 40px), 480px" alt="Edgar Filipe, Personal Trainer" fetchpriority="high" decoding="async" width="880" height="1564"><figcaption><strong>Edgar Filipe</strong><span>Personal Trainer</span></figcaption></figure>
  </div></section>
  ${experience()}
  ${offerChoices(d)}
@@ -72,7 +72,7 @@ function home(d){
 
 function coaching(d){
  return `${nav(d)}<main id="conteudo">
- <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">Acompanhamento online</div><h1>Treino feito para ti. <span>Acompanhado online.</span></h1><p>Se queres ganhar força, melhorar a composição corporal ou voltar a treinar com consistência, construo um plano para o teu objetivo, rotina e equipamento.</p><div class="actions">${btn('#planos-online','Ver programas')}${btn('#rota','Como funciona','btn-light')}</div></div><div class="hero-photo">${img('/assets/media/edgar-puxada.webp','Edgar Filipe a treinar na polia')}</div></div></section>
+ <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">Acompanhamento online</div><h1>Treino feito para ti. <span>Acompanhado online.</span></h1><p>Se queres ganhar força, melhorar a composição corporal ou voltar a treinar com consistência, construo um plano para o teu objetivo, rotina e equipamento.</p><div class="actions">${btn('#planos-online','Ver programas')}${btn('#rota','Como funciona','btn-light')}</div></div><div class="hero-photo">${img('/assets/media/edgar-online-drive.webp','Edgar Filipe a treinar na polia')}</div></div></section>
  ${offerChoices(d)}
  <section class="section" id="rota"><div class="wrap"><div class="section-head"><h2>Da candidatura ao primeiro treino</h2></div><ol class="coaching-steps">
  <li><h3>Escolhe um programa</h3><p>Seleciona 4, 8 ou 12 semanas e envia a candidatura com o teu objetivo.</p></li>
@@ -85,21 +85,20 @@ function coaching(d){
 }
 function appPage(d){
  return `${nav(d)}<main id="conteudo">
- <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">Incluída em todos os programas</div><h1>O teu treino na <span>App EF</span></h1><p>Consulta o que tens para treinar, regista as sessões e partilha o teu feedback comigo.</p><div class="actions">${btn('./coaching.html#planos-online','Ver programas')}</div></div>${appScreen()}</div></section>
- <section class="section paper"><div class="wrap"><div class="section-head"><h2>Do treino ao check-in</h2></div><div class="benefits-grid">
+ <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">Incluída em todos os programas</div><h1>O teu treino na <span>App EF</span></h1><p>Abre o treino do dia, retoma uma sessão em curso e consulta a tua evolução. O plano que preparo para ti está sempre à mão.</p><div class="actions">${btn('./coaching.html#planos-online','Ver programas')}</div></div>${appScreen()}</div></section>
+ <section class="section paper"><div class="wrap"><div class="section-head"><h2>Do plano à tua evolução</h2></div><div class="benefits-grid">
  <article class="card"><h3>Treino do dia</h3><p>Consulta o plano que preparei e os exercícios da sessão.</p></article>
- <article class="card"><h3>Registo</h3><p>Regista as sessões para acompanharmos a tua consistência.</p></article>
- <article class="card"><h3>Check-ins</h3><p>Partilha como correu a semana e como estás a responder ao treino.</p></article>
+ <article class="card"><h3>Retomar a sessão</h3><p>Vê quantos exercícios já concluíste e continua o treino em curso.</p></article>
+ <article class="card"><h3>Progresso</h3><p>Consulta a consistência das sessões e a evolução ao longo do plano.</p></article>
  <article class="card"><h3>Feedback</h3><p>Uso os teus registos para orientar a progressão e ajustar o plano.</p></article>
  </div></div></section>
- <section class="section dark"><div class="wrap app-grid"><div><h2>Revê a tua evolução</h2><p class="lead">Os registos ajudam-nos a perceber a tua consistência e a decidir quando ajustar o plano.</p></div>${appScreen(true)}</div></section>
  ${finalCTA(d,'Treina com um plano feito para ti')}
  </main>${footer(d)}`;
 }
 function methodPage(d){
  const m=d.method;
  return `${nav(d)}<main id="conteudo">
- <section class="page-hero"><div class="wrap"><div class="eyebrow">${esc(m.hero.eyebrow)}</div><h1 style="max-width:10ch">${m.hero.title}</h1><p>${esc(m.hero.subtitle)}</p><div class="actions">${btn(applicationURL(d),'Candidatar-me')}${btn('#passos','Ver o método','btn-light')}</div></div></section>
+ <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">${esc(m.hero.eyebrow)}</div><h1 style="max-width:10ch">${m.hero.title}</h1><p>${esc(m.hero.subtitle)}</p><div class="actions">${btn(applicationURL(d),'Candidatar-me')}${btn('#passos','Ver o método','btn-light')}</div></div><div class="hero-photo">${img('/assets/media/edgar-metodo-drive.webp','Edgar Filipe a executar uma remada com halter')}</div></div></section>
  <section class="section paper" id="passos"><div class="wrap"><div class="section-head"><h2>Quatro decisões. Um processo.</h2><p>O objetivo não é complicar o treino. É garantir que cada decisão tem uma razão.</p></div><div class="method-steps">${m.steps.map((x,i)=>`<article class="method-step"><div class="n">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div></div></section>
  <section class="section dark"><div class="wrap"><div class="section-head"><h2>O que orienta as decisões.</h2><p>A ciência dá princípios. O acompanhamento transforma esses princípios em decisões úteis para uma pessoa real.</p></div><div class="principles">${m.principles.map(x=>`<article class="principle"><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div></div></section>
  <section class="section"><div class="wrap"><div class="section-head"><h2>O que observamos.</h2><p>Não dependemos de uma única métrica. Cruzamos informação de acordo com o objetivo.</p></div><div class="measure-row">${m.measure.map(x=>`<span>${esc(x)}</span>`).join('')}</div></div></section>
