@@ -1,13 +1,34 @@
 {
   "site": {
     "title": "EF — Edgar Filipe Personal Trainer",
-    "description": "EF Coaching: 12 semanas de acompanhamento personalizado com Método EF, App EF e acompanhamento contínuo.",
+    "description": "EF Online: treino personalizado e acompanhamento com App EF. Escolhe 4 semanas por 99 €, 8 semanas por 149 € ou 12 semanas por 199 €.",
     "application_url": "https://www.edgarfilipe.pt/candidatura.html",
     "instagram_url": "https://www.instagram.com/edgar_filipe__pt/",
     "price": "199 €",
     "duration": "12 semanas",
     "payment_label": "pagamento único",
-    "turnstile_site_key": "0x4AAAAAAFS_kCXbYp1nmtnc"
+    "turnstile_site_key": "0x4AAAAAAFS_kCXbYp1nmtnc",
+    "offers": [
+      {
+        "name": "EF START",
+        "weeks": 4,
+        "price": "99 €",
+        "weekly": "24,75 €/semana"
+      },
+      {
+        "name": "EF EVOLVE",
+        "weeks": 8,
+        "price": "149 €",
+        "weekly": "18,63 €/semana"
+      },
+      {
+        "name": "EF TRANSFORM",
+        "weeks": 12,
+        "price": "199 €",
+        "weekly": "16,58 €/semana",
+        "recommended": true
+      }
+    ]
   },
   "home": {
     "hero": {
@@ -131,7 +152,7 @@
     "hero": {
       "eyebrow": "EF Coaching · acompanhamento online",
       "title": "ACOMPANHAMENTO ONLINE.<br><span>TREINO FEITO PARA TI.</span>",
-      "subtitle": "12 semanas com plano personalizado, App EF, check-ins e ajustes pelo teu treinador. 199 € · pagamento único.",
+      "subtitle": "Treino personalizado, App EF, check-ins e ajustes pelo teu treinador. Escolhe 4, 8 ou 12 semanas, desde 99 €.",
       "image": "/assets/media/edgar-estudio.jpg"
     },
     "promise": {
