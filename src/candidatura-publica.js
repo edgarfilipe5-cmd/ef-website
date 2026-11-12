@@ -3,6 +3,15 @@
  "use strict";
  const form=document.getElementById("efApplication");
  if(!form)return;
+ const planSelect=document.getElementById("selectedPlan");
+ const planName=document.getElementById("selectedPlanName");
+ const planPrice=document.getElementById("selectedPlanPrice");
+ const planDuration=document.getElementById("selectedPlanDuration");
+ const plans={"4":["EF START","99 €"],"8":["EF EVOLVE","149 €"],"12":["EF TRANSFORM","199 €"]};
+ function updatePlan(){const weeks=planSelect.value;const plan=plans[weeks]||plans["12"];planName.textContent=plan[0];planPrice.textContent=plan[1];planDuration.textContent=weeks+" semanas · pagamento único, apenas se decidirmos avançar";}
+ const selectedWeeks=new URLSearchParams(location.search).get("plano");
+ if(Object.hasOwn(plans,selectedWeeks))planSelect.value=selectedWeeks;
+ planSelect.addEventListener("change",updatePlan);updatePlan();
  const stage1=form.querySelector('[data-step="1"]');
  const stage2=form.querySelector('[data-step="2"]');
  const next=document.getElementById("nextButton");
@@ -81,6 +90,9 @@
   if(form.companyWebsite.value.trim())return;
   if(!captchaToken){error("Confirma a verificação de segurança antes de enviar.");return;}
   const payload=Object.fromEntries(new FormData(form).entries());
+  // Preserve backend schema: include selected offer in the existing free-text notes.
+  const selectedOffer=plans[planSelect.value];
+  payload.notes="Plano pretendido: "+selectedOffer[0]+" ("+planSelect.value+" semanas, "+selectedOffer[1]+")."+(payload.notes?"\\n"+payload.notes:"");
   payload.submissionKey=submissionKey;
   payload.privacyAcknowledged=payload.privacyAcknowledged==="on";
   payload.turnstileToken=captchaToken;
@@ -105,7 +117,7 @@
   }
  });
  restart.addEventListener("click",()=>{
-  form.reset();submissionKey=crypto.randomUUID();success.hidden=true;form.hidden=false;setStep(1);resetCaptcha();
+  form.reset();updatePlan();submissionKey=crypto.randomUUID();success.hidden=true;form.hidden=false;setStep(1);resetCaptcha();
  });
  if(new URLSearchParams(location.search).get("teste_ef")==="1"){
   const step=document.querySelector('.step[data-step="1"] .step-title');
