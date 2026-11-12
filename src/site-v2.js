@@ -1,7 +1,7 @@
 const ROOT=document.getElementById('site-root');
 const PAGE=document.body.dataset.page||'home';
 const esc=(v='')=>String(v).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const planURL=weeks=>`./candidatura.html?plano=${encodeURIComponent(String(weeks))}`;
+const planURL=weeks=>`./candidatura.html?plano=${encodeURIComponent(String(weeks))}#candidatura`;
 const applicationURL=d=>{try{const u=new URL(d.site.application_url,location.href);return u.hostname==='www.edgarfilipe.pt'&&u.pathname==='/candidatura.html'?'./candidatura.html':u.href}catch{return './candidatura.html'}};
 const path=v=>v&&v.startsWith('/')?'.'+v:v;
 const img=(src,alt='',cls='')=>`<img class="${cls}" src="${path(src)}" alt="${esc(alt)}" loading="lazy" decoding="async">`;
@@ -25,7 +25,10 @@ function offerChoices(d){
  const offers=d.site.offers;
  return `<section class="section paper" id="planos-online"><div class="wrap">
  <div class="section-head"><h2>Escolhe o teu programa</h2><p>Em todas as durações tens plano de treino personalizado, acesso à App EF, check-ins, feedback e ajustes pelo treinador.</p></div>
- <div class="programs">${offers.map(o=>`<article class="program ${o.recommended?'program-featured':''}">
+ <nav class="program-compare" aria-label="Comparação rápida dos programas">
+ ${offers.map(o=>`<a class="${o.recommended?'compare-recommended':''}" href="#programa-${o.weeks}"><span>${esc(o.name)}</span><strong>${esc(o.price)}</strong><small>${o.weeks} semanas</small></a>`).join('')}
+ </nav>
+ <div class="programs">${offers.map(o=>`<article id="programa-${o.weeks}" class="program ${o.recommended?'program-featured':''}">
  <h3>${esc(o.name)}</h3>${o.recommended?'<p class="program-value">Menor preço por semana</p>':''}
  <strong>${esc(o.price)}</strong><p>${o.weeks} semanas · ${esc(o.weekly)}</p>
  ${btn(planURL(o.weeks),'Escolher '+o.weeks+' semanas',o.recommended?'btn-gold':'btn-outline')}
@@ -62,7 +65,8 @@ function home(d){
  </div></section>
  ${experience()}
  ${offerChoices(d)}
- <section class="section dark" id="como-funciona"><div class="wrap app-grid"><div class="app-copy"><div class="eyebrow">Incluída nos três programas</div><h2>O teu plano sempre à mão</h2><p class="lead">Consulta o treino do dia, regista as sessões e partilha como estás a responder ao plano. Uso essa informação para acompanhar a tua evolução e ajustar o treino.</p>${btn('./app.html','Ver a App EF')}</div>${appScreen()}</div></section>
+ <section class="section dark" id="como-funciona"><div class="wrap app-grid"><div class="app-copy"><div class="eyebrow">Incluída nos três programas</div><h2>O teu plano sempre à mão</h2><p class="lead">O teu plano, o treino em curso e a tua evolução ficam no mesmo lugar.</p><ul class="app-actions"><li>Ver o treino do dia</li><li>Retomar a sessão</li><li>Consultar a evolução</li></ul>${btn('./app.html','Ver a App EF')}</div>${appScreen()}</div></section>
+ <section class="section paper"><div class="wrap grid-2 coaching-example"><div><div class="eyebrow">Exemplo de um check-in</div><h2>O plano acompanha a tua semana</h2></div><p>Imagina que só consegues treinar duas vezes numa semana em que tinhas três sessões. No check-in, revemos o que fizeste e ajusto as duas sessões seguintes aos exercícios prioritários e ao tempo que tens disponível.</p></div></section>
  <section class="section paper"><div class="wrap grid-2"><div class="teaser-photo">${img(d.home.about_teaser.image,'Edgar Filipe, Personal Trainer')}</div><div class="teaser-copy"><h2>Sou o Edgar Filipe</h2><p class="lead">Sou licenciado em Ciências do Desporto e trabalho com treino personalizado online e presencial. O teu objetivo e a tua rotina orientam o plano. O que registas no treino e o teu feedback ajudam-me a decidir quando progredir ou ajustar.</p><div class="actions">${btn('./sobre.html','Conhecer o Edgar','btn-dark')}<a class="text-link" href="./metodo.html">Ver o Método EF →</a></div></div></div></section>
  ${faq(d)}
  <section class="presential-note"><div class="wrap"><h3>Preferes treinar presencialmente em Miramar?</h3><a class="text-link" href="./presencial.html">Conhecer o presencial →</a></div></section>

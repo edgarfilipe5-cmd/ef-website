@@ -879,3 +879,19 @@ html,body{overflow-x:clip}
  .experience-visual .app-device figcaption{margin-top:7px}
 }
 @media(prefers-reduced-motion:reduce){.app-device-shell{transform:none}}
+
+.program-compare{display:none}
+.app-actions{display:grid;gap:8px;padding-left:1.3em;margin:0 0 24px;color:#e2d8c6}
+.app-actions li::marker{color:var(--gold)}
+.experience-visual .app-device{width:min(65%,184px)}
+.coaching-example{align-items:center}
+.coaching-example p{max-width:46ch;line-height:1.7;margin:0}
+@media(max-width:760px){
+ .program-compare{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:0 0 20px}
+ .program-compare a{display:grid;gap:3px;padding:10px 4px;border:1px solid #ded2bd;border-radius:10px;text-align:center;text-decoration:none;color:var(--ink)}
+ .program-compare span{font-size:clamp(.61rem,2.65vw,.8rem);font-weight:700}
+ .program-compare strong{font-size:1.15rem}
+ .program-compare small{font-size:.7rem}
+ .program-compare .compare-recommended{background:#1d1913;color:var(--gold);border-color:#9c8053}
+ .experience-visual .app-device{width:min(58%,143px)}
+}

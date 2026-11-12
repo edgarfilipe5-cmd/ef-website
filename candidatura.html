@@ -19,28 +19,20 @@
   </div>
 </header>
 <main>
-  <section class="intro shell">
-    <div class="intro-copy">
-      <div class="eyebrow">ACOMPANHAMENTO ONLINE</div>
-      <h1>Candidatura ao<br><span>acompanhamento</span></h1>
-      <p>Conta-me o teu objetivo e a tua disponibilidade. Analiso as respostas e entro em contacto contigo antes de combinarmos o pagamento.</p>
-      <a class="button gold form-start" href="#candidatura">Preencher candidatura →</a>
-    </div>
-    <div class="price-box"><span id="selectedPlanName">EF TRANSFORM</span><strong id="selectedPlanPrice">199 €</strong><small id="selectedPlanDuration">12 semanas · pagamento único, apenas se decidirmos avançar</small><div class="price-line"></div><p>Treino personalizado · App EF · Check-ins · Acompanhamento pelo PT</p></div>
-  </section>
-
-  <section class="form-area" id="candidatura">
+  <section class="form-area" id="candidatura" aria-labelledby="application-title">
     <div class="shell form-grid">
-      <aside class="side-note">
-        <div class="eyebrow">O TEU PRÓXIMO PASSO</div>
-        <h2>Conta-me<br>o essencial.</h2>
-        <p>São apenas duas etapas. A anamnese completa e os dados clínicos ficam para mais tarde, já na App EF.</p>
-        <div class="care-card"><div>✦</div><p><strong>Atenção ao detalhe.</strong> As respostas são analisadas pessoalmente pelo Edgar. Não existe compra automática.</p></div>
-      </aside>
+      <header class="application-intro">
+        <h1 id="application-title">Candidatura ao acompanhamento</h1>
+        <p>Envia o teu objetivo e contacto. Falamos antes de combinares qualquer pagamento.</p>
+      </header>
       <div class="form-card">
+        <div class="application-plan" aria-live="polite">
+          <div><strong id="selectedPlanName">EF TRANSFORM</strong><small id="selectedPlanDuration">12 semanas · preço total</small></div>
+          <strong id="selectedPlanPrice">199 €</strong>
+        </div>
         <div class="form-head"><span id="stepIndicator">ETAPA 01 / 02</span><span id="progressPercent">50%</span></div>
         <div class="progress-track" aria-hidden="true"><div id="progressFill"></div></div>
-        <form id="efApplication" novalidate><div style="margin:0 0 24px"><label for="selectedPlan">O acompanhamento que pretendes <span class="required">*</span></label><select id="selectedPlan" required><option value="4">EF START · 4 semanas · 99 €</option><option value="8">EF EVOLVE · 8 semanas · 149 €</option><option value="12" selected>EF TRANSFORM · 12 semanas · 199 €</option></select><p class="disclaimer">Podes alterar a escolha antes de enviar. Não pagas nesta página.</p></div>
+        <form id="efApplication" novalidate><div style="margin:0 0 24px"><label for="selectedPlan">Programa escolhido</label><select id="selectedPlan" required><option value="4">EF START</option><option value="8">EF EVOLVE</option><option value="12" selected>EF TRANSFORM</option></select></div>
           <div class="step" data-step="1">
             <div class="step-title">01 · O teu objetivo</div>
             <h3>O que queres mudar?</h3>
@@ -56,14 +48,14 @@
               <option value="Hyrox / híbrido">Hyrox / treino híbrido</option>
               <option value="Outro">Outro</option>
             </select>
-            <label for="situation">Qual é a tua maior dificuldade neste momento? <span class="required">*</span></label>
-            <textarea id="situation" name="situation" required minlength="12" maxlength="600" rows="3" placeholder="Ex.: começo a treinar mas tenho dificuldade em manter a rotina."></textarea>
             <div class="field-row">
               <div><label for="experience">Experiência <span class="required">*</span></label><select id="experience" name="experience" required><option value="">Seleciona</option><option>Iniciante</option><option>Intermédio</option><option>Avançado</option><option>A regressar</option></select></div>
               <div><label for="frequency">Dias disponíveis / semana <span class="required">*</span></label><select id="frequency" name="frequency" required><option value="">Seleciona</option><option value="2">2 dias</option><option value="3">3 dias</option><option value="4">4 dias</option><option value="5">5 dias</option><option value="6">6 dias</option><option value="7">7 dias</option><option value="1">1 dia</option></select></div>
             </div>
             <label for="environment">Onde pretendes treinar? <span class="required">*</span></label>
             <select id="environment" name="environment" required><option value="">Seleciona</option><option>Ginásio</option><option>Casa</option><option>Ambos</option><option>Exterior</option><option>A decidir</option></select>
+            <label for="situation">Qual é a tua maior dificuldade neste momento? <span>(opcional)</span></label>
+            <textarea id="situation" name="situation" minlength="12" maxlength="600" rows="3" placeholder="Ex.: começo a treinar mas tenho dificuldade em manter a rotina."></textarea>
             <div class="form-actions"><button type="button" class="button gold" id="nextButton">Continuar <span aria-hidden="true">→</span></button></div>
           </div>
           <div class="step" data-step="2" hidden>

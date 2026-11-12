@@ -72,3 +72,19 @@ html{scroll-padding-top:85px}.form-start{display:inline-flex;margin:10px 0 24px;
 .button{border-radius:10px}
 .form-area{padding-block:clamp(40px,6vw,80px)}
 @media(max-width:720px){.intro h1{font-size:clamp(2rem,9vw,3.2rem)}}
+
+.form-area#candidatura{scroll-margin-top:0}
+.application-intro{padding-top:16px}
+.application-intro h1{font-size:clamp(2rem,4vw,3.8rem);line-height:1.05;letter-spacing:-.045em;margin:0 0 14px}
+.application-intro p{max-width:36ch;margin:0;color:var(--muted);line-height:1.6}
+.application-plan{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;margin-bottom:20px;background:#f7f2e6;border:1px solid #dcccaa;border-radius:12px}
+.application-plan small{display:block;margin-top:4px;color:#574a36}
+.application-plan strong{font-size:1.05rem}
+@media(max-width:720px){
+ .form-area#candidatura{padding-top:18px}
+ .application-intro{padding-top:0}
+ .application-intro h1{font-size:1.8rem;margin-bottom:8px}
+ .application-intro p{font-size:.9rem}
+ .form-grid{gap:18px}
+ .form-card .progress-track{margin-bottom:18px}
+}

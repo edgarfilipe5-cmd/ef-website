@@ -8,7 +8,7 @@
  const planPrice=document.getElementById("selectedPlanPrice");
  const planDuration=document.getElementById("selectedPlanDuration");
  const plans={"4":["EF START","99 €"],"8":["EF EVOLVE","149 €"],"12":["EF TRANSFORM","199 €"]};
- function updatePlan(){const weeks=planSelect.value;const plan=plans[weeks]||plans["12"];planName.textContent=plan[0];planPrice.textContent=plan[1];planDuration.textContent=weeks+" semanas · pagamento único, apenas se decidirmos avançar";}
+ function updatePlan(){const weeks=planSelect.value;const plan=plans[weeks]||plans["12"];planName.textContent=plan[0];planPrice.textContent=plan[1];planDuration.textContent=weeks+" semanas · preço total";}
  const selectedWeeks=new URLSearchParams(location.search).get("plano");
  planSelect.value=Object.hasOwn(plans,selectedWeeks)?selectedWeeks:"12";
  planSelect.addEventListener("change",updatePlan);updatePlan();
@@ -47,6 +47,14 @@
   }
   return true;
  }
+ function validSituation(){
+  const value=document.getElementById("situation").value.trim();
+  if(value && value.length<12){
+   error("Descreve a dificuldade em pelo menos 12 caracteres ou deixa o campo em branco.");
+   return false;
+  }
+  return true;
+ }
  function resetCaptcha(){
   captchaToken="";submit.disabled=true;
   if(window.turnstile&&widgetId!==null)window.turnstile.reset(widgetId);
@@ -80,7 +88,7 @@
  }
  next.addEventListener("click",()=>{
   if(!valid(stage1))return;
-  if(document.getElementById("situation").value.trim().length<12){error("Descreve um pouco melhor a dificuldade.");return;}
+  if(!validSituation())return;
   setStep(2);
  });
  back.addEventListener("click",()=>setStep(1));
@@ -88,10 +96,12 @@
   event.preventDefault();
   if(sending||form.hidden)return;
   if(!valid(stage1)){setStep(1);return;}
-  if(!valid(stage2))return;
+  if(!validSituation()||!valid(stage2))return;
   if(form.companyWebsite.value.trim())return;
   if(!captchaToken){error("Confirma a verificação de segurança antes de enviar.");return;}
   const payload=Object.fromEntries(new FormData(form).entries());
+  // The existing endpoint expects a non-empty description.
+  payload.situation=payload.situation.trim()||"Sem dificuldade específica indicada na candidatura.";
   // Preserve backend schema: include selected offer in the existing free-text notes.
   const selectedOffer=plans[planSelect.value];
   payload.notes="Plano pretendido: "+selectedOffer[0]+" ("+planSelect.value+" semanas, "+selectedOffer[1]+")."+(payload.notes?"\n"+payload.notes:"");
