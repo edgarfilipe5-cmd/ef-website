@@ -10,7 +10,7 @@
  const plans={"4":["EF START","99 €"],"8":["EF EVOLVE","149 €"],"12":["EF TRANSFORM","199 €"]};
  function updatePlan(){const weeks=planSelect.value;const plan=plans[weeks]||plans["12"];planName.textContent=plan[0];planPrice.textContent=plan[1];planDuration.textContent=weeks+" semanas · pagamento único, apenas se decidirmos avançar";}
  const selectedWeeks=new URLSearchParams(location.search).get("plano");
- if(Object.hasOwn(plans,selectedWeeks))planSelect.value=selectedWeeks;
+ planSelect.value=Object.hasOwn(plans,selectedWeeks)?selectedWeeks:"12";
  planSelect.addEventListener("change",updatePlan);updatePlan();
  const stage1=form.querySelector('[data-step="1"]');
  const stage2=form.querySelector('[data-step="2"]');
@@ -27,6 +27,7 @@
  const endpoint="https://twbriibfrrfcrksnsypd.supabase.co/functions/v1/ef-website-candidatura";
  let submissionKey=crypto.randomUUID();
  let captchaToken="";
+ let sending=false;
  let widgetId=null;
  submit.disabled=true;
  function error(message){
@@ -38,7 +39,7 @@
   percent.textContent=(step===1?50:100)+"%";
   progress.style.width=(step===1?50:100)+"%";feedback.hidden=true;
   const title=(step===1?stage1:stage2).querySelector("h3");
-  if(title){title.tabIndex=-1;title.focus({preventScroll:true});}
+  if(title){title.tabIndex=-1;title.focus();}
  }
  function valid(el){
   for(const field of el.querySelectorAll("[required]")) {
@@ -85,6 +86,7 @@
  back.addEventListener("click",()=>setStep(1));
  form.addEventListener("submit",async event=>{
   event.preventDefault();
+  if(sending||form.hidden)return;
   if(!valid(stage1)){setStep(1);return;}
   if(!valid(stage2))return;
   if(form.companyWebsite.value.trim())return;
@@ -92,11 +94,12 @@
   const payload=Object.fromEntries(new FormData(form).entries());
   // Preserve backend schema: include selected offer in the existing free-text notes.
   const selectedOffer=plans[planSelect.value];
-  payload.notes="Plano pretendido: "+selectedOffer[0]+" ("+planSelect.value+" semanas, "+selectedOffer[1]+")."+(payload.notes?"\\n"+payload.notes:"");
+  payload.notes="Plano pretendido: "+selectedOffer[0]+" ("+planSelect.value+" semanas, "+selectedOffer[1]+")."+(payload.notes?"\n"+payload.notes:"");
+  delete payload.selectedPlan;
   payload.submissionKey=submissionKey;
   payload.privacyAcknowledged=payload.privacyAcknowledged==="on";
   payload.turnstileToken=captchaToken;
-  submit.disabled=true;submit.textContent="A enviar candidatura…";feedback.hidden=true;
+  sending=true;submit.disabled=true;submit.textContent="A enviar candidatura…";feedback.hidden=true;
   try {
    const result=await fetch(endpoint,{
     method:"POST",headers:{"Content-Type":"application/json"},
@@ -107,11 +110,12 @@
    if(data.ok!==true)throw new Error("Não foi possível confirmar a candidatura.");
    form.hidden=true;success.hidden=false;
    indicator.textContent="CANDIDATURA RECEBIDA";percent.textContent="100%";progress.style.width="100%";
-   success.scrollIntoView({behavior:"smooth",block:"start"});
+   success.focus();
   }catch(e){
    error(e?.message||"Não foi possível confirmar o envio. Tenta novamente.");
    resetCaptcha();
   }finally {
+   sending=false;
    submit.textContent="Enviar candidatura →";
    if(captchaToken)submit.disabled=false;
   }
@@ -119,33 +123,5 @@
  restart.addEventListener("click",()=>{
   form.reset();updatePlan();submissionKey=crypto.randomUUID();success.hidden=true;form.hidden=false;setStep(1);resetCaptcha();
  });
- if(new URLSearchParams(location.search).get("teste_ef")==="1"){
-  const step=document.querySelector('.step[data-step="1"] .step-title');
-  if(step){
-   const button=document.createElement("button");
-   button.type="button";button.className="button secondary";
-   button.textContent="Preencher dados fictícios (teste EF)";
-   button.style.margin="12px 0 8px";button.style.minHeight="42px";
-   step.insertAdjacentElement("afterend",button);
-   button.addEventListener("click",()=>{
-    const fields={
-      goal:"Recomposição corporal",
-      situation:"Teste fictício do formulário EF no domínio oficial, sem dados pessoais.",
-      experience:"Iniciante",frequency:"3",environment:"Ginásio",
-      fullName:"TESTE EF — Domínio Oficial",
-      email:"ef-dominio-oficial-20261010@example.com",
-      phone:"+351900000089",
-      startWhen:"Nas próximas 2 semanas",
-      commitment:"Sim, estou preparado(a)",
-      notes:"QA — não contactar. Sem pagamento nem conta."
-    };
-    for(const [key,value] of Object.entries(fields)){
-      const el=document.getElementById(key);if(el)el.value=value;
-    }
-    document.getElementById("privacyAcknowledged").checked=true;
-    button.textContent="Dados fictícios preenchidos ✓";
-   });
-  }
- }
  loadChallenge();
 })();

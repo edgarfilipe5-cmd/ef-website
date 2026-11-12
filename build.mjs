@@ -16,7 +16,7 @@ if(fs.existsSync("edit"))fs.cpSync("edit",path.join(dist,"edit"),{recursive:true
 // Render the public pages at build time: useful content and the hero image arrive in HTML.
 const data=JSON.parse(fs.readFileSync('content/site.json','utf8'));
 const client=fs.readFileSync('src/site-v2.js','utf8');
-const template=client.slice(0,client.indexOf("fetch('./content/site.json'"));
+const template=client.slice(0,client.indexOf("if(ROOT.querySelector('main'))"));
 const pages={"index.html":['home','home'],"coaching.html":['coaching','coaching'],"app.html":['app','appPage'],"metodo.html":['method','methodPage'],"sobre.html":['about','aboutPage'],"presencial.html":['presential','presencialPage']};
 for(const [name,[page,fn]] of Object.entries(pages)){
  const html=vm.runInNewContext(template+`\n${fn}(siteContent)`,{document:{getElementById:()=>null,body:{dataset:{page}}},URL,location:{href:'https://www.edgarfilipe.pt/'},siteContent:data});

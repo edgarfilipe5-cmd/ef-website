@@ -6,97 +6,99 @@ const applicationURL=d=>{try{const u=new URL(d.site.application_url,location.hre
 const path=v=>v&&v.startsWith('/')?'.'+v:v;
 const img=(src,alt='',cls='')=>`<img class="${cls}" src="${path(src)}" alt="${esc(alt)}" loading="lazy" decoding="async">`;
 const btn=(href,label,cls='btn-gold')=>`<a class="btn ${cls}" href="${href}">${esc(label)}</a>`;
-const list=(items)=>items.map(x=>`<span>${esc(x)}</span>`).join('');
-const cards=(items,dark=false)=>items.map((x,i)=>`<article class="card"><div class="num">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('');
 function nav(d){
-  const links=[[PAGE==='home'?'#planos-online':'./coaching.html#planos-online','Acompanhamento'],['./app.html','App EF'],['./presencial.html','Presencial'],['./sobre.html','O Edgar']];
-  return `<header class="site-nav"><div class="nav-inner">
+  const links=[['./coaching.html','Online'],['./app.html','App EF'],['./presencial.html','Presencial'],['./sobre.html','O Edgar']];
+  return `<a class="skip-link" href="#conteudo">Saltar para o conteúdo</a><header class="site-nav"><div class="nav-inner">
     <a class="brand" href="./index.html"><img src="./assets/brand/ef-horizontal-white.svg" alt="Edgar Filipe Personal Trainer"></a>
-    <nav class="nav-links">${links.map(x=>`<a href="${x[0]}">${x[1]}</a>`).join('')}<a class="nav-cta" href="${applicationURL(d)}">Candidatar-me</a></nav>
+    <nav class="nav-links">${links.map(x=>`<a href="${x[0]}"${({coaching:"Online",app:"App EF",presential:"Presencial",about:"O Edgar"})[PAGE]===x[1]?' aria-current="page"':''}>${x[1]}</a>`).join('')}<a class="nav-cta" href="${applicationURL(d)}">Candidatar-me</a></nav>
     <button class="menu-btn" aria-label="Abrir menu de navegação" aria-controls="site-menu" aria-expanded="false">MENU</button>
   </div></header>
-  <div class="drawer" id="site-menu" aria-hidden="true">${links.map(x=>`<a href="${x[0]}">${x[1]}</a>`).join('')}<a class="apply" href="${applicationURL(d)}">Candidatar-me</a></div>`;
+  <div class="drawer" id="site-menu" aria-hidden="true">${links.map(x=>`<a href="${x[0]}"${({coaching:"Online",app:"App EF",presential:"Presencial",about:"O Edgar"})[PAGE]===x[1]?' aria-current="page"':''}>${x[1]}</a>`).join('')}<a class="apply" href="${applicationURL(d)}">Candidatar-me</a></div>`;
 }
 function footer(d){
-  return `<footer class="footer"><div class="wrap footer-inner"><img src="./assets/brand/ef-horizontal-white.svg" alt="Edgar Filipe Personal Trainer"><div><a href="./metodo.html">Método EF</a> · <a href="${d.site.instagram_url}" target="_blank" rel="noopener">Instagram</a></div></div></footer>
+  return `<footer class="footer"><div class="wrap footer-inner"><img src="./assets/brand/ef-horizontal-white.svg" alt="Edgar Filipe Personal Trainer"><div><a href="./metodo.html">Método EF</a> · <a href="./privacidade-candidatura.html">Privacidade</a> · <a href="${d.site.instagram_url}" target="_blank" rel="noopener">Instagram</a></div></div></footer>
   <a class="mobile-apply" href="${applicationURL(d)}"><span>Quero acompanhamento</span><b>→</b></a>`;
 }
 function faq(d){return `<section class="section paper"><div class="wrap faq-grid"><div><div class="eyebrow">FAQ</div><h2>Antes de te candidatares.</h2></div><div>${d.faq.map(x=>`<details><summary>${esc(x.question)}</summary><p>${esc(x.answer)}</p></details>`).join('')}</div></div></section>`}
 function finalCTA(d,title='Se queres deixar de improvisar, começa pela candidatura.'){return `<section class="final-cta"><div class="wrap final-grid"><h2>${title}</h2><div><p>Primeiro percebo o teu contexto. Se fizer sentido avançarmos, tratamos do resto a partir daí.</p>${btn(applicationURL(d),'Quero candidatar-me','btn-dark')}</div></div></section>`}
-function offerChoices(d){const offers=d.site.offers||[];return `<section class="section paper" id="planos-online"><div class="wrap"><div class="section-head"><div><div class="eyebrow">EF Online · modalidades</div><h2>Escolhe o tempo. Mantém o acompanhamento.</h2></div><p>O mesmo treino personalizado, App EF, check-ins e ajustes em todas as modalidades. O que muda é a duração.</p></div><div class="ef-carousel-controls"><button type="button" class="ef-carousel-arrow" data-direction="-1" aria-label="Plano anterior">←</button><span>Desliza para comparar os planos</span><button type="button" class="ef-carousel-arrow" data-direction="1" aria-label="Plano seguinte">→</button></div><div class="ef-offer-grid" role="region" aria-label="Planos EF Online" tabindex="0">${offers.map(o=>`<article class="ef-tilt-card" style="border:${o.recommended?'2px solid #b99a57':'1px solid #9996'};border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px;background:${o.recommended?'#171717':'transparent'};color:${o.recommended?'#fff':'inherit'}"><div class="eyebrow">${esc(o.name)}${o.recommended?' · MELHOR VALOR':''}</div><h3 style="font-size:38px;margin:0;color:${o.recommended?'#d6b978':'inherit'}">${esc(o.price)}</h3><p style="margin:0">${esc(o.weeks)} semanas · ${esc(o.weekly)}</p><p style="margin:0;flex:1">Treino personalizado, App EF, check-ins, feedback e ajustes pelo treinador.</p>${btn(planURL(o.weeks),'Escolher '+o.weeks+' semanas')}</article>`).join('')}</div><p style="margin-top:20px">Valores totais por modalidade. Seleciona um plano para iniciares uma candidatura sem pagamento. A adesão e as condições são confirmadas contigo antes de avançares.</p></div></section>`}
-function home(d){
- const h=d.home;
- const benefits=[
- {title:'Um plano para ti',text:'Treino adaptado ao teu objetivo, experiência, equipamento e tempo disponível.'},
- {title:'Tudo na App EF',text:'Consulta o plano, regista os treinos e acompanha o teu histórico no mesmo lugar.'},
- {title:'Contacto e feedback',text:'Check-in semanal, feedback após o treino e contacto por WhatsApp quando necessário.'},
- {title:'Ajustes pelo teu treinador',text:'Analiso a tua evolução e o teu contexto para decidir o que manter ou alterar.'}
+function offerChoices(d){
+ const offers=d.site.offers;
+ return `<section class="section paper" id="planos-online"><div class="wrap">
+ <div class="section-head"><h2>Escolhe o teu programa</h2><p>Em todas as durações tens plano de treino personalizado, acesso à App EF, check-ins, feedback e ajustes pelo treinador.</p></div>
+ <div class="programs">${offers.map(o=>`<article class="program ${o.recommended?'program-featured':''}">
+ <h3>${esc(o.name)}</h3>${o.recommended?'<p class="program-value">Menor preço por semana</p>':''}
+ <strong>${esc(o.price)}</strong><p>${o.weeks} semanas · ${esc(o.weekly)}</p>
+ ${btn(planURL(o.weeks),'Escolher '+o.weeks+' semanas',o.recommended?'btn-gold':'btn-outline')}
+ </article>`).join('')}</div>
+ <p class="program-note">Preço total por programa. O pagamento só é combinado após o contacto.</p>
+ </div></section>`;
+}
+function appScreen(progress=false){
+ return `<figure class="app-device"><img src="./assets/media/ef-app-${progress?'progress-demo':'demo'}.webp" width="390" height="${progress?880:920}" alt="${progress?'Ecrã de progresso com consistência e histórico de treino':'Ecrã inicial com treino do dia e check-in'}" loading="lazy" decoding="async"><figcaption>App EF · dados de demonstração</figcaption></figure>`;
+}
+function experience(){
+ const slides=[
+  ['Método EF','Acompanhamento personalizado','Construo o treino à tua medida e ajusto-o com base na tua evolução.','./metodo.html','Conhecer o método',`<img src="./assets/media/edgar-remada.webp" alt="Edgar Filipe a treinar remada no estúdio" loading="lazy" decoding="async">`],
+  ['App EF Online','O teu treino na App EF','Tens o plano, os registos de treino e os check-ins num só lugar.','./app.html','Conhecer a App EF',appScreen()],
+  ['Programas EF','Escolhe o teu programa','O acompanhamento é igual nas três durações.','#planos-online','Comparar programas','<ul class="experience-prices"><li>4 semanas <b>99 €</b></li><li>8 semanas <b>149 €</b></li><li>12 semanas <b>199 €</b></li></ul>'],
+  ['Candidatura','Começa a tua transformação','Escolhe o programa e envia a candidatura. Analiso as tuas respostas e falo contigo antes de começarmos.','#planos-online','Escolher programa','<ol class="experience-steps"><li>Escolher programa</li><li>Enviar candidatura</li><li>Falar com o Edgar</li><li>Iniciar o acompanhamento</li></ol>']
  ];
- return `${nav(d)}<main>
- <section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow">Acompanhamento online · 4, 8 ou 12 semanas</div><h1>O teu treino.<br><span>Comigo a acompanhar.</span></h1><p class="hero-sub">Plano de treino personalizado, App EF e acompanhamento meu para adaptar o treino ao teu objetivo e à tua rotina.</p><div class="hero-offer"><strong>Desde 99 €</strong><span>4, 8 ou 12 semanas de acompanhamento<br>${esc(d.site.payment_label)}</span></div><div class="actions">${btn(applicationURL(d),'Ver planos e candidatar-me')}${btn('#acompanhamento','Ver o acompanhamento','btn-light')}</div><p class="hero-note">A candidatura não tem pagamento. Falamos antes de avançares.</p></div><figure class="hero-human"><img src="./assets/media/edgar-sorriso-800.webp" srcset="./assets/media/edgar-sorriso-480.webp 480w, ./assets/media/edgar-sorriso-800.webp 800w" sizes="(max-width:760px) calc(100vw - 40px), 480px" alt="Edgar Filipe, Personal Trainer" fetchpriority="high" decoding="async" width="900" height="1600"><figcaption><strong>Edgar Filipe</strong><span>O teu Personal Trainer.</span></figcaption></figure></div></section>
- <section class="section paper" id="inclui"><div class="wrap"><div class="section-head"><div><div class="eyebrow">O que recebes</div><h2>Treinas por tua conta.<br>Com acompanhamento.</h2></div><p>Durante o período escolhido, o plano, a app e o contacto comigo fazem parte do mesmo acompanhamento.</p></div><div class="benefits-grid">${cards(benefits)}</div></div></section>
- <section class="section dark" id="acompanhamento"><div class="wrap offer-panel"><div><div class="eyebrow">Acompanhamento online</div><h2>O mesmo acompanhamento.<br>Três durações.</h2><p class="lead">Preenche a candidatura para eu perceber o teu objetivo e a tua disponibilidade. Falamos e confirmamos se este acompanhamento faz sentido para ti.</p><div class="price-row"><div><strong>Desde 99 €</strong><small>4, 8 ou 12 semanas · pagamento único</small></div>${btn(applicationURL(d),'Preencher candidatura')}</div></div><div class="offer-included">${h.offer.included.map(x=>`<span>${esc(x)}</span>`).join('')}<a class="text-link" href="./coaching.html">Ver condições e detalhes →</a></div></div></section>
+ return `<section class="experience" id="acompanhamento" aria-labelledby="experience-title">
+ <div class="wrap experience-heading"><h2 id="experience-title">Como vais treinar com a EF</h2></div>
+ <div class="experience-stage" role="region" aria-label="Carrossel da experiência EF" tabindex="0">
+ ${slides.map(([label,title,body,href,cta,visual],i)=>`<article class="experience-slide" data-slide="${i}"><div class="experience-copy"><p class="eyebrow">${label}</p><h3>${title}</h3><p>${body}</p>${btn(href,cta,'btn-light')}</div><div class="experience-visual">${visual}</div></article>`).join('')}
+ </div>
+ <div class="experience-controls" hidden><button type="button" data-step="-1" aria-label="Cartão anterior">←</button><span class="experience-status" aria-live="polite"></span><button type="button" data-step="1" aria-label="Cartão seguinte">→</button></div>
+ </section>`;
+}
+function home(d){
+ return `${nav(d)}<main id="conteudo">
+ <section class="hero ef-intro"><div class="wrap hero-grid">
+ <div class="hero-copy"><div class="eyebrow">Personal training online</div><h1>O teu treino.<br><span>Comigo a acompanhar.</span></h1>
+ <p class="hero-sub">Treina no ginásio ou em casa com um plano feito para ti, acompanhamento do teu treinador e a App EF.</p>
+ <div class="actions">${btn('#planos-online','Ver os 3 programas')}${btn('#acompanhamento','Explorar o acompanhamento','btn-light')}</div>
+ <p class="hero-note">Desde 99 € · candidatura gratuita</p></div>
+ <figure class="hero-human"><img src="./assets/media/edgar-sorriso-800.webp" srcset="./assets/media/edgar-sorriso-480.webp 480w, ./assets/media/edgar-sorriso-800.webp 800w" sizes="(max-width:760px) calc(100vw - 40px), 480px" alt="Edgar Filipe, Personal Trainer" fetchpriority="high" decoding="async" width="900" height="1600"><figcaption><strong>Edgar Filipe</strong><span>Personal Trainer</span></figcaption></figure>
+ </div></section>
+ ${experience()}
  ${offerChoices(d)}
- <section class="section" id="como-funciona"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Como funciona</div><h2>Do primeiro contacto<br>ao teu próximo treino.</h2></div><p>Começamos por perceber o que precisas. Depois, construímos e acompanhamos o teu plano.</p></div><div class="journey">${h.journey.items.map((x,i)=>`<article><div class="n">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div><a class="text-link" href="./coaching.html">Ver o acompanhamento em detalhe →</a></div></section>
- <section class="section method-highlight"><div class="wrap method-grid"><div><div class="eyebrow">Método EF</div><h2>O plano tem uma lógica.<br>E uma pessoa por trás.</h2><p class="lead">O teu objetivo e a tua rotina orientam o treino. O que registas na app e o feedback que me dás ajudam-me a acompanhar e ajustar.</p><a class="text-link" href="./metodo.html">Conhecer o Método EF →</a></div><div class="hero-visual-3d" id="ef-orbital">
-  <canvas class="orbital-webgl" id="orbital-webgl" aria-hidden="true"></canvas>
-  <div class="orbital-stage">
-    <div class="orbital-system" aria-hidden="true">
-      <div class="orbital-glow"></div>
-      <div class="orbit orbit-1">
-        <i class="orbital-dot lg" style="--x:180px;--y:-5px;--z:22px"></i>
-        <i class="orbital-dot silver sm" style="--x:-156px;--y:18px;--z:-8px"></i>
-      </div>
-      <div class="orbit orbit-2">
-        <i class="orbital-dot silver" style="--x:120px;--y:-68px;--z:20px"></i>
-        <i class="orbital-dot sm" style="--x:-92px;--y:92px;--z:-14px"></i>
-      </div>
-      <div class="orbit orbit-3">
-        <i class="orbital-dot" style="--x:190px;--y:55px;--z:28px"></i>
-        <i class="orbital-dot silver sm" style="--x:-190px;--y:-50px;--z:0px"></i>
-        <i class="orbital-dot sm" style="--x:24px;--y:-120px;--z:34px"></i>
-      </div>
-      <div class="orbit orbit-4">
-        <i class="orbital-dot silver" style="--x:38px;--y:154px;--z:18px"></i>
-        <i class="orbital-dot sm" style="--x:-52px;--y:-154px;--z:0px"></i>
-      </div>
-      <div class="orbital-core"><img src="./assets/brand/ef-monogram-gold.svg" alt=""></div>
-    </div>
-  </div>
-  <div class="orbital-label"><span>EDGAR FILIPE / PERSONAL TRAINER</span><b>TREINO · ACOMPANHAMENTO · APP EF</b></div>
-</div></div></section>
- <section class="section app-preview"><div class="wrap app-grid"><div class="app-copy"><div class="eyebrow">App EF · incluída</div><h2>Abres a app.<br>Sabes o que treinar.</h2><p class="lead">Tens o plano à mão, registas o treino e deixas feedback. Eu uso essa informação para acompanhar a tua evolução.</p><div class="bullet-list">${list(h.app_teaser.bullets)}</div>${btn('./app.html','Ver a App EF')}</div><div class="screen-frame">${img(h.app_teaser.image,'App EF — treino do dia')}</div></div></section>
- <section class="section paper"><div class="wrap grid-2"><div class="teaser-photo">${img(h.about_teaser.image,'Edgar Filipe, Personal Trainer')}</div><div class="teaser-copy"><div class="eyebrow">O teu treinador</div><h2>Sou o Edgar.<br>Vamos treinar com método.</h2><p class="lead">Sou licenciado em Ciências do Desporto e trabalho com treino personalizado, online e presencial. O meu trabalho é construir um plano que faça sentido para ti e acompanhar a forma como respondes.</p><div class="actions">${btn('./sobre.html','Conhecer o Edgar','btn-dark')}<a class="text-link" href="./metodo.html">O Método EF →</a></div></div></div></section>
-
+ <section class="section dark" id="como-funciona"><div class="wrap app-grid"><div class="app-copy"><div class="eyebrow">Incluída nos três programas</div><h2>O teu plano sempre à mão</h2><p class="lead">Consulta o treino do dia, regista as sessões e partilha como estás a responder ao plano. Uso essa informação para acompanhar a tua evolução e ajustar o treino.</p>${btn('./app.html','Ver a App EF')}</div>${appScreen()}</div></section>
+ <section class="section paper"><div class="wrap grid-2"><div class="teaser-photo">${img(d.home.about_teaser.image,'Edgar Filipe, Personal Trainer')}</div><div class="teaser-copy"><h2>Sou o Edgar Filipe</h2><p class="lead">Sou licenciado em Ciências do Desporto e trabalho com treino personalizado online e presencial. O teu objetivo e a tua rotina orientam o plano. O que registas no treino e o teu feedback ajudam-me a decidir quando progredir ou ajustar.</p><div class="actions">${btn('./sobre.html','Conhecer o Edgar','btn-dark')}<a class="text-link" href="./metodo.html">Ver o Método EF →</a></div></div></div></section>
  ${faq(d)}
- <section class="presential-note"><div class="wrap"><div><div class="eyebrow">Personal Training · Miramar</div><h3>Preferes treinar acompanhado presencialmente?</h3></div><a class="text-link" href="./presencial.html">Conhecer o presencial →</a></div></section>
+ <section class="presential-note"><div class="wrap"><h3>Preferes treinar presencialmente em Miramar?</h3><a class="text-link" href="./presencial.html">Conhecer o presencial →</a></div></section>
+ ${finalCTA(d,'Vamos falar sobre o teu treino?')}
  </main>${footer(d)}`;
 }
 
 function coaching(d){
- const c=d.coaching;
- return `${nav(d)}<main>
- <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">${esc(c.hero.eyebrow)}</div><h1>${c.hero.title}</h1><p>${esc(c.hero.subtitle)}</p><div class="actions">${btn(applicationURL(d),'Quero candidatar-me')}${btn('#rota','Ver a rota','btn-light')}</div></div><div class="hero-photo">${img(c.hero.image,'EF Coaching')}</div></div></section>
- <section class="section paper"><div class="wrap grid-2"><div><div class="eyebrow">A proposta</div><h2>${esc(c.promise.title)}</h2></div><p class="lead muted">${esc(c.promise.body)}</p></div></section>
- <section class="section" id="rota"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Rota de acompanhamento</div><h2>Do primeiro contacto às decisões semanais.</h2></div><p>O objetivo é saberes sempre o que está a acontecer e qual é o próximo passo.</p></div><div class="route">${c.route.map((x,i)=>`<article><div class="n">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div></div></section>
- <section class="section dark"><div class="wrap"><div class="section-head"><div><div class="eyebrow">O que recebes</div><h2>Um sistema completo, durante o tempo que escolheres.</h2></div><p>O plano, a App e o acompanhamento existem para funcionar em conjunto.</p></div><div class="feature-grid">${c.included.map((x,i)=>`<article class="feature-box"><div class="eyebrow">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div></div></section>
+ return `${nav(d)}<main id="conteudo">
+ <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">Acompanhamento online</div><h1>Treino feito para ti. <span>Acompanhado online.</span></h1><p>Se queres ganhar força, melhorar a composição corporal ou voltar a treinar com consistência, construo um plano para o teu objetivo, rotina e equipamento.</p><div class="actions">${btn('#planos-online','Ver programas')}${btn('#rota','Como funciona','btn-light')}</div></div><div class="hero-photo">${img('/assets/media/edgar-puxada.webp','Edgar Filipe a treinar na polia')}</div></div></section>
  ${offerChoices(d)}
- <section class="section paper"><div class="wrap fit-grid"><div class="fit-box"><div class="eyebrow">Para quem é</div><h3>${esc(c.fit.good_title)}</h3><ul>${c.fit.good.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="fit-box"><div class="eyebrow">Limites claros</div><h3>${esc(c.fit.bad_title)}</h3><ul>${c.fit.bad.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></div></section>
- <section class="section dark"><div class="wrap offer-panel"><div><div class="eyebrow">EF Coaching</div><h2>Escolhe 4, 8 ou 12 semanas.</h2><p class="lead">Primeiro candidatas-te. Só avançamos se o acompanhamento fizer sentido para ti.</p></div><div><div class="price-row"><div><strong>Desde 99 €</strong><small>Pagamento posterior à aprovação</small></div>${btn(applicationURL(d),'Preencher candidatura')}</div></div></div></section>
-<section class="section paper"><div class="wrap training-video-grid"><div><div class="eyebrow">Edgar Filipe · em treino</div><h2>Preparar.<br>Executar.<br>Repetir com intenção.</h2><p class="lead muted">Um pouco do meu treino no estúdio. No teu acompanhamento, os exercícios e a organização são escolhidos para ti.</p></div><figure class="training-video"><video controls playsinline muted loop preload="none" poster="./assets/media/treino-poster.jpg" aria-label="Edgar a preparar a polia, executar uma remada e treinar com bola"><source src="./assets/media/edgar-treino-web.mp4" type="video/mp4">O teu navegador não suporta vídeo.</video><figcaption>Imagens do meu treino · vídeo sem áudio.</figcaption></figure></div></section> ${faq(d)}${finalCTA(d,'Treino personalizado. Acompanhamento real. Uma direção clara.')} </main>${footer(d)}`;
+ <section class="section" id="rota"><div class="wrap"><div class="section-head"><h2>Da candidatura ao primeiro treino</h2></div><ol class="coaching-steps">
+ <li><h3>Escolhe um programa</h3><p>Seleciona 4, 8 ou 12 semanas e envia a candidatura com o teu objetivo.</p></li>
+ <li><h3>Falamos sobre o teu treino</h3><p>Analiso o teu contexto e entro em contacto. Se avançarmos, combinamos o pagamento e o início.</p></li>
+ <li><h3>Começa na App EF</h3><p>Recebes o plano personalizado. Revemos os teus registos e o teu feedback para ajustar o treino ao longo do programa.</p></li>
+ </ol></div></section>
+ <section class="section dark"><div class="wrap app-grid"><div><h2>Da sessão ao feedback</h2><p class="lead">Na App EF consultas o treino e partilhas os teus registos comigo. Nos check-ins revemos como correu a semana e o que precisa de ser ajustado.</p>${btn('./app.html','Conhecer a App EF')}</div>${appScreen()}</div></section>
+ ${faq(d)}${finalCTA(d,'Queres começar a treinar com acompanhamento?')}
+ </main>${footer(d)}`;
 }
 function appPage(d){
- const a=d.app;
- return `${nav(d)}<main>
- <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">${esc(a.hero.eyebrow)}</div><h1>${a.hero.title}</h1><p>${esc(a.hero.subtitle)}</p><div class="actions">${btn(applicationURL(d),'Candidatar-me ao EF Coaching')}${btn('#experiencia','Ver a experiência','btn-light')}</div></div><div class="screen-frame">${img(a.hero.image,'App EF')}</div></div></section>
- <section class="section paper"><div class="wrap grid-2"><h2>${esc(a.intro_title)}</h2><p class="lead muted">${esc(a.intro_body)}</p></div></section>
- <div id="experiencia">${a.screens.map((x,i)=>`<section class="app-section ${i%2?'paper':''}"><div class="wrap app-show"><div class="app-show-copy"><div class="eyebrow">${esc(x.label)}</div><h2>${esc(x.title)}</h2><p class="lead">${esc(x.text)}</p></div><div class="app-show-visual"><div class="screen-frame">${img(x.image,x.title)}</div></div></div></section>`).join('')}</div>
- <section class="section dark"><div class="wrap grid-2"><h2>${esc(a.closing_title)}</h2><p class="lead">${esc(a.closing_body)}</p></div></section>
- ${finalCTA(d,'A App EF está incluída no acompanhamento.')} </main>${footer(d)}`;
+ return `${nav(d)}<main id="conteudo">
+ <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">Incluída em todos os programas</div><h1>O teu treino na <span>App EF</span></h1><p>Consulta o que tens para treinar, regista as sessões e partilha o teu feedback comigo.</p><div class="actions">${btn('./coaching.html#planos-online','Ver programas')}</div></div>${appScreen()}</div></section>
+ <section class="section paper"><div class="wrap"><div class="section-head"><h2>Do treino ao check-in</h2></div><div class="benefits-grid">
+ <article class="card"><h3>Treino do dia</h3><p>Consulta o plano que preparei e os exercícios da sessão.</p></article>
+ <article class="card"><h3>Registo</h3><p>Regista as sessões para acompanharmos a tua consistência.</p></article>
+ <article class="card"><h3>Check-ins</h3><p>Partilha como correu a semana e como estás a responder ao treino.</p></article>
+ <article class="card"><h3>Feedback</h3><p>Uso os teus registos para orientar a progressão e ajustar o plano.</p></article>
+ </div></div></section>
+ <section class="section dark"><div class="wrap app-grid"><div><h2>Revê a tua evolução</h2><p class="lead">Os registos ajudam-nos a perceber a tua consistência e a decidir quando ajustar o plano.</p></div>${appScreen(true)}</div></section>
+ ${finalCTA(d,'Treina com um plano feito para ti')}
+ </main>${footer(d)}`;
 }
 function methodPage(d){
  const m=d.method;
- return `${nav(d)}<main>
+ return `${nav(d)}<main id="conteudo">
  <section class="page-hero"><div class="wrap"><div class="eyebrow">${esc(m.hero.eyebrow)}</div><h1 style="max-width:10ch">${m.hero.title}</h1><p>${esc(m.hero.subtitle)}</p><div class="actions">${btn(applicationURL(d),'Candidatar-me')}${btn('#passos','Ver o método','btn-light')}</div></div></section>
  <section class="section paper" id="passos"><div class="wrap"><div class="section-head"><h2>Quatro decisões. Um processo.</h2><p>O objetivo não é complicar o treino. É garantir que cada decisão tem uma razão.</p></div><div class="method-steps">${m.steps.map((x,i)=>`<article class="method-step"><div class="n">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div></div></section>
  <section class="section dark"><div class="wrap"><div class="section-head"><h2>O que orienta as decisões.</h2><p>A ciência dá princípios. O acompanhamento transforma esses princípios em decisões úteis para uma pessoa real.</p></div><div class="principles">${m.principles.map(x=>`<article class="principle"><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div></div></section>
@@ -105,7 +107,7 @@ function methodPage(d){
 }
 function aboutPage(d){
  const a=d.about;
- return `${nav(d)}<main>
+ return `${nav(d)}<main id="conteudo">
  <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">${esc(a.hero.eyebrow)}</div><h1>${a.hero.title}</h1><p>${esc(a.hero.subtitle)}</p><div class="actions">${btn(applicationURL(d),'Candidatar-me')}${btn('./metodo.html','Conhecer o Método EF','btn-light')}</div></div><div class="hero-photo">${img(a.hero.image,'Edgar Filipe')}</div></div></section>
  <section class="section paper"><div class="wrap grid-2"><h2>${esc(a.bio_title)}</h2><div class="bio-list">${a.bio.map(x=>`<p>${esc(x)}</p>`).join('')}</div></div></section>
  <section class="section dark"><div class="wrap"><div class="section-head"><h2>O que valorizo no acompanhamento.</h2><p>Não procuro impressionar com complexidade. Procuro tornar as decisões mais claras e o processo mais sustentável.</p></div><div class="beliefs">${a.beliefs.map(x=>`<article class="belief"><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div></div></section>
@@ -114,7 +116,7 @@ function aboutPage(d){
 }
 function presencialPage(d){
  const p=d.presential;
- return `${nav(d)}<main>
+ return `${nav(d)}<main id="conteudo">
  <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">${esc(p.hero.eyebrow)}</div><h1>${p.hero.title}</h1><p>${esc(p.hero.subtitle)}</p><div class="actions">${btn(d.site.instagram_url,'Pedir disponibilidade')}${btn('#formatos','Ver formatos','btn-light')}</div></div><div class="hero-photo">${img(p.hero.image,'Personal Training EF')}</div></div></section>
  <div class="location-band"><div class="wrap"><strong>${esc(p.location)}</strong><span>Sessões por marcação · disponibilidade limitada pelo horário presencial.</span></div></div>
  <section class="section paper" id="formatos"><div class="wrap"><div class="section-head"><h2>Escolhe o contexto. O acompanhamento mantém-se.</h2><p>O formato muda; a atenção à execução, progressão e contexto continua.</p></div><div class="formats">${p.formats.map((x,i)=>`<article class="format"><div class="eyebrow">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div></div></section>
@@ -122,25 +124,54 @@ function presencialPage(d){
  <section class="section dark"><div class="wrap grid-2"><h2>${esc(p.closing_title)}</h2><div><p class="lead">${esc(p.closing_body)}</p>${btn(d.site.instagram_url,'Falar comigo no Instagram')}</div></div></section>
 <section class="section paper"><div class="wrap training-video-grid"><div><div class="eyebrow">Edgar Filipe · em treino</div><h2>Preparar.<br>Executar.<br>Repetir com intenção.</h2><p class="lead muted">Um pouco do meu treino no estúdio. No teu acompanhamento, os exercícios e a organização são escolhidos para ti.</p></div><figure class="training-video"><video controls playsinline muted loop preload="none" poster="./assets/media/treino-poster.jpg" aria-label="Edgar a preparar a polia, executar uma remada e treinar com bola"><source src="./assets/media/edgar-treino-web.mp4" type="video/mp4">O teu navegador não suporta vídeo.</video><figcaption>Imagens do meu treino · vídeo sem áudio.</figcaption></figure></div></section> </main>${footer(d)}`;
 }
-function wireOfferCarousel(){const track=document.querySelector('.ef-offer-grid');if(!track)return;const cards=[...track.querySelectorAll('.ef-tilt-card')];const controls=document.querySelectorAll('.ef-carousel-arrow');const nearest=()=>{const center=track.scrollLeft+track.clientWidth/2;let best=0,dist=Infinity;cards.forEach((c,i)=>{const p=c.offsetLeft+c.offsetWidth/2;const d=Math.abs(p-center);if(d<dist){dist=d;best=i}});return best};const go=i=>{const c=cards[Math.max(0,Math.min(cards.length-1,i))];if(c)track.scrollTo({left:c.offsetLeft-(track.clientWidth-c.clientWidth)/2,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})};controls.forEach(b=>b.addEventListener('click',()=>go(nearest()+Number(b.dataset.direction))));track.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();go(nearest()+(e.key==='ArrowRight'?1:-1))}});if(window.matchMedia('(max-width: 900px)').matches)requestAnimationFrame(()=>go(2))}
-function wireOfferTilt(){const cards=document.querySelectorAll('.ef-tilt-card');if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||!window.matchMedia('(pointer:fine)').matches)return;cards.forEach(card=>{card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.setProperty('--rx',(-y*7).toFixed(2)+'deg');card.style.setProperty('--ry',(x*7).toFixed(2)+'deg')});card.addEventListener('pointerleave',()=>{card.style.setProperty('--rx','0deg');card.style.setProperty('--ry','0deg')})})}
-function wireOrbital(){
- const stage=document.querySelector('#ef-orbital .orbital-stage');
- if(!stage||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
- if(window.matchMedia('(pointer:fine)').matches){
-   const host=document.getElementById('ef-orbital');
-   host.addEventListener('pointermove',e=>{
-     const r=host.getBoundingClientRect();
-     const x=(e.clientX-r.left)/r.width-.5;
-     const y=(e.clientY-r.top)/r.height-.5;
-     stage.style.setProperty('--tilt-y',(x*7).toFixed(2)+'deg');
-     stage.style.setProperty('--tilt-x',(-y*5).toFixed(2)+'deg');
-   });
-   host.addEventListener('pointerleave',()=>{
-     stage.style.setProperty('--tilt-y','0deg');
-     stage.style.setProperty('--tilt-x','0deg');
-   });
+function wireExperience(){
+ const stage=document.querySelector('.experience-stage');
+ if(!stage)return;
+ const slides=[...stage.querySelectorAll('.experience-slide')];
+ const controls=document.querySelector('.experience-controls');
+ const status=controls.querySelector('.experience-status');
+ let current=0;
+ let start=null;
+ function show(index){
+  current=(index+slides.length)%slides.length;
+  slides.forEach((slide,i)=>{
+   let offset=i-current;
+   if(offset>2)offset-=slides.length;
+   if(offset<-1)offset+=slides.length;
+   slide.dataset.position=String(offset);
+   slide.inert=offset!==0;
+   slide.setAttribute('aria-hidden',String(offset!==0));
+  });
+  status.textContent=`${current+1} de ${slides.length} · ${slides[current].querySelector('h3').textContent}`;
  }
+ stage.classList.add('is-interactive');
+ controls.hidden=false;
+ show(0);
+ controls.querySelectorAll('button').forEach(button=>{
+  button.addEventListener('click',()=>show(current+Number(button.dataset.step)));
+ });
+ stage.addEventListener('keydown',event=>{
+  const keys={ArrowLeft:current-1,ArrowRight:current+1,Home:0,End:slides.length-1};
+  if(!Object.hasOwn(keys,event.key))return;
+  event.preventDefault();
+  stage.focus({preventScroll:true});
+  show(keys[event.key]);
+ });
+ stage.addEventListener('touchstart',event=>{
+  start=event.touches.length===1?event.touches[0]:null;
+ },{passive:true});
+ stage.addEventListener('touchcancel',()=>{start=null});
+ stage.addEventListener('touchend',event=>{
+  if(!start)return;
+  const touch=event.changedTouches[0];
+  const dx=touch.clientX-start.clientX;
+  const dy=touch.clientY-start.clientY;
+  start=null;
+  if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.4){
+   if(stage.contains(document.activeElement))stage.focus({preventScroll:true});
+   show(current+(dx<0?1:-1));
+  }
+ },{passive:true});
 }
 function wireMenu(){
  const b=document.querySelector('.menu-btn'),d=document.querySelector('.drawer');
@@ -148,17 +179,7 @@ function wireMenu(){
  b.addEventListener('click',()=>{const o=d.classList.toggle('open');b.setAttribute('aria-expanded',String(o));d.setAttribute('aria-hidden',String(!o))});
  d.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{d.classList.remove('open');b.setAttribute('aria-expanded','false');d.setAttribute('aria-hidden','true')}));
 }
-function wireMobileApply(){
- const sticky=document.querySelector('.mobile-apply'),primary=document.querySelector('.hero-copy .btn-gold');
- if(!sticky||!primary||!('IntersectionObserver' in window))return;
- sticky.classList.add('contextual');
- new IntersectionObserver(([entry])=>sticky.classList.toggle('show',!entry.isIntersecting),{rootMargin:'-75px 0px 0px 0px'}).observe(primary);
+if(ROOT.querySelector('main')){
+ wireMenu();
+ wireExperience();
 }
-fetch('./content/site.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
- const pageTitles={home:d.site.title,coaching:'EF Coaching — Edgar Filipe',app:'App EF — Edgar Filipe',method:'Método EF — Edgar Filipe',about:'Sobre Edgar Filipe — EF',presential:'Personal Training — Edgar Filipe'};
- document.title=pageTitles[PAGE]||d.site.title;
- const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=d.site.description;
- const render={home,coaching,app:appPage,method:methodPage,about:aboutPage,presential:presencialPage}[PAGE]||home;
- ROOT.innerHTML=render(d);wireMenu();wireOrbital();wireOfferTilt();wireOfferCarousel();wireMobileApply();
- import('./motion-v2.js').then(m=>m.initMotion?.()).catch(()=>{});
-}).catch(()=>{if(ROOT.querySelector('main')){wireMenu();wireOrbital();wireMobileApply();return}ROOT.innerHTML='<main style="padding:40px;font:18px Arial;line-height:1.6"><h1>EF — Acompanhamento online</h1><p>Não foi possível carregar esta página.</p><a href="./candidatura.html">Preencher candidatura</a> · <a href="mailto:edgarfilipe5@gmail.com">Contactar o Edgar</a></main>'});

@@ -1,3 +1,4 @@
+@font-face{font-family:Montserrat;src:url(../assets/fonts/montserrat.woff2) format("woff2");font-style:normal;font-weight:100 900;font-display:swap}
 :root{--black:#0a0a0a;--gold:#e3bc66;--light-gold:#f6da8e;--gold-dark:#b8903f;--paper:#f7f5f0;--ink:#181715;--muted:#74706b;--line:#e2ded5;--max:1200px}
 *{box-sizing:border-box}html{font-size:16px}body{margin:0;font-family:Montserrat,Arial,sans-serif;background:var(--black);color:white;min-width:320px}img{display:block;max-width:100%}button,input,select,textarea{font:inherit}a{color:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:3px}.shell{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
 .preview-flag{padding:10px 20px;background:var(--gold);color:var(--black);text-align:center;font-size:.68rem;letter-spacing:.12em;font-weight:800}
@@ -64,3 +65,10 @@ html{scroll-padding-top:85px}.form-start{display:inline-flex;margin:10px 0 24px;
 @media(max-width:720px){.intro{padding-top:32px;padding-bottom:32px;gap:22px}.intro h1{font-size:2.65rem;line-height:1.06}.intro-copy>p{font-size:1rem;line-height:1.6}.form-start{width:100%;font-size:.9rem}.intro-points{display:none}.price-box{padding:21px}.price-box strong{font-size:2.3rem}.price-box p{font-size:.85rem}.form-area{padding-top:35px}.side-note h2{font-size:2.2rem}.side-note>p{font-size:.95rem}.step h3{font-size:1.8rem}.step-desc,.disclaimer{font-size:.85rem;line-height:1.6}.form-card label{font-size:.88rem}.form-card input,.form-card select,.form-card textarea{font-size:16px;min-height:48px}.form-card input[type=checkbox]{min-height:22px;width:22px;height:22px;flex:0 0 22px}.form-card .button{min-height:50px;font-size:.85rem}.checkline span{font-size:.82rem;line-height:1.55}.top-inner .backlink{font-size:.75rem}}
 /* Keep the decorative orbit inside the intro; prevent it widening the mobile page. */
 .intro{overflow:hidden}.intro:before{width:min(400px,80%);height:auto;aspect-ratio:1;right:0}
+
+.intro{padding-block:clamp(32px,5vw,66px);align-items:center}
+.intro h1{font-size:clamp(2.15rem,5.5vw,5.2rem);line-height:1.04}
+.price-box,.form-card{border-radius:18px}
+.button{border-radius:10px}
+.form-area{padding-block:clamp(40px,6vw,80px)}
+@media(max-width:720px){.intro h1{font-size:clamp(2rem,9vw,3.2rem)}}
