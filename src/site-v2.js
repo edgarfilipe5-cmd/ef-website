@@ -39,6 +39,9 @@ function offerChoices(d){
 function appScreen(){
  return `<figure class="app-device"><div class="app-device-shell"><img src="./assets/media/ef-online-inicio.webp" width="660" height="1275" alt="App EF Online no iPhone com o treino do dia, botão para retomar a sessão e acesso à evolução" loading="lazy" decoding="async"></div><figcaption>Vista de aluno da App EF Online</figcaption></figure>`;
 }
+function carouselControls(){
+ return `<div class="experience-controls" hidden><button type="button" data-step="-1" aria-label="Cartão anterior">←</button><span class="experience-status" aria-live="polite"></span><button type="button" data-step="1" aria-label="Cartão seguinte">→</button></div>`;
+}
 function experience(){
  const slides=[
   ['Método EF','Acompanhamento personalizado','Construo o treino à tua medida e ajusto-o com base na tua evolução.','./metodo.html','Conhecer o método',`<img src="./assets/media/edgar-metodo-drive.webp" alt="Edgar Filipe a treinar remada no estúdio" loading="lazy" decoding="async">`],
@@ -51,7 +54,7 @@ function experience(){
  <div class="experience-stage" role="region" aria-label="Carrossel da experiência EF" tabindex="0">
  ${slides.map(([label,title,body,href,cta,visual],i)=>`<article class="experience-slide" data-slide="${i}"><div class="experience-copy"><p class="eyebrow">${label}</p><h3>${title}</h3><p>${body}</p>${btn(href,cta,'btn-light')}</div><div class="experience-visual">${visual}</div></article>`).join('')}
  </div>
- <div class="experience-controls" hidden><button type="button" data-step="-1" aria-label="Cartão anterior">←</button><span class="experience-status" aria-live="polite"></span><button type="button" data-step="1" aria-label="Cartão seguinte">→</button></div>
+ ${carouselControls()}
  </section>`;
 }
 function home(d){
@@ -108,20 +111,21 @@ function appGallery(){
   ['Perfil e lembretes','No perfil, podes configurar lembretes de treino e de check-in.',[
    ['preferencias',660,437,'Preferências do perfil com lembretes de treino e check-in']]],
  ];
- return `<div class="app-gallery">${features.map(([title,description,screens])=>`<article class="card app-feature">
-  <h3>${esc(title)}</h3><p>${esc(description)}</p>
+ return `<div class="experience-stage app-gallery" role="region" aria-label="Carrossel de funcionalidades da App EF" tabindex="0">${features.map(([title,description,screens])=>`<article class="experience-slide app-feature">
+  <div class="experience-copy"><h3>${esc(title)}</h3><p>${esc(description)}</p></div>
   <div class="app-feature-screens">${screens.map(([file,width,height,alt])=>{
    const src=`./assets/media/ef-online-${file}.webp`;
    return `<a href="${src}" aria-label="${esc('Ampliar: '+alt)}"><img src="${src}" width="${width}" height="${height}" alt="${esc(alt)}" loading="lazy" decoding="async"></a>`;
   }).join('')}</div>
- </article>`).join('')}</div>`;
+ </article>`).join('')}</div>
+ ${carouselControls()}`;
 }
 function appPage(d){
  return `${nav(d)}<main id="conteudo">
  <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">Incluída em todos os programas</div><h1>O teu treino na <span>App EF</span></h1><p>Abre o treino do dia, retoma uma sessão em curso e consulta a tua evolução. O plano que preparo para ti está sempre à mão.</p><div class="actions">${btn('./coaching.html#planos-online','Ver programas')}</div></div>${appScreen()}</div></section>
- <section class="section paper" id="funcionalidades"><div class="wrap"><div class="section-head"><h2>Vê como funciona a App EF</h2><p>Abre uma captura para veres os detalhes.</p></div>
+ <section class="experience app-experience" id="funcionalidades" aria-labelledby="app-features-title"><div class="wrap experience-heading"><h2 id="app-features-title">Vê como funciona a App EF</h2><p>Seleciona uma captura para veres os detalhes.</p></div>
  ${appGallery()}
- </div></section>
+ </section>
  ${finalCTA(d,'Treina com um plano feito para ti')}
  </main>${footer(d)}`;
 }
@@ -157,16 +161,15 @@ function wireExperience(){
  const stage=document.querySelector('.experience-stage');
  if(!stage)return;
  const slides=[...stage.querySelectorAll('.experience-slide')];
- const controls=document.querySelector('.experience-controls');
+ const controls=stage.nextElementSibling;
  const status=controls.querySelector('.experience-status');
  let current=0;
  let start=null;
  function show(index){
   current=(index+slides.length)%slides.length;
   slides.forEach((slide,i)=>{
-   let offset=i-current;
-   if(offset>2)offset-=slides.length;
-   if(offset<-1)offset+=slides.length;
+   const distance=(i-current+slides.length)%slides.length;
+   const offset=distance===slides.length-1?-1:Math.min(distance,2);
    slide.dataset.position=String(offset);
    slide.inert=offset!==0;
    slide.setAttribute('aria-hidden',String(offset!==0));

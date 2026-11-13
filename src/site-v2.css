@@ -915,38 +915,58 @@ html,body{overflow-x:clip}
  body[data-page=app] .footer,body[data-page=presential] .footer{padding-bottom:32px}
 }
 
-.app-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(14px, 2vw, 24px);
+.app-experience .experience-heading p {
+  color: #d4cbbd;
+  margin-bottom: 18px;
 }
-.app-feature {
-  min-width: 0;
+.app-gallery .app-feature {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+}
+.app-gallery.is-interactive {
+  height: 520px;
+}
+.app-gallery.is-interactive .app-feature {
+  height: 480px;
 }
 .app-feature-screens {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 12px;
-  margin-top: 18px;
+  min-width: 0;
+  min-height: 0;
+  padding: 16px;
+  background: #141210;
 }
 .app-feature-screens a {
-  display: block;
-  flex: 1 1 160px;
-  max-width: 300px;
-  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 1 220px;
+  min-width: 0;
+  height: 100%;
+  max-height: 440px;
+  border-radius: 12px;
 }
 .app-feature-screens a:focus-visible {
-  outline: 3px solid #815d24;
-  outline-offset: 4px;
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
 }
 .app-feature-screens img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
   border-radius: inherit;
-  background: #0c0c0c;
 }
-@media (max-width: 700px) {
-  .app-gallery { grid-template-columns: 1fr; }
+@media (max-width: 740px) {
+  .app-gallery .app-feature {
+    grid-template-columns: 1fr;
+  }
+  .app-gallery.is-interactive .app-feature {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .app-feature-screens {
+    padding: 10px 14px 16px;
+  }
 }
