@@ -92,32 +92,36 @@ function coaching(d){
 }
 function appGallery(){
  const features=[
-  ['Plano semanal e histórico','Consulta os treinos da semana, vê quanto tempo está previsto para cada sessão e volta a abrir os treinos concluídos.',[
-   ['plano',660,993,'Calendário e resumo de uma semana com três treinos concluídos'],
-   ['historico',660,742,'Três sessões concluídas com a opção Ver treino']]],
-  ['Exercícios e registo de cargas','Consulta a ilustração, as instruções, as séries, as repetições e o descanso. Podes registar o que fizeste ou marcar o exercício como concluído.',[
-   ['exercicio',653,1245,'Ficha ilustrada da puxada na polia alta com séries e repetições'],
-   ['registo',660,555,'Registo opcional de séries, repetições e peso e opção de concluir o exercício']]],
-  ['Progresso e hábitos','Vê a tua consistência ao longo das semanas e acompanha a meta diária de passos e os dados do último check-in.',[
-   ['progresso',660,978,'Gráfico de consistência semanal'],
-   ['habitos',660,632,'Meta diária de passos e registos de sono, energia e recuperação']]],
-  ['Check-in semanal','Conta-me como correu a semana. Uso o teu feedback sobre sono, energia, stress, recuperação e cumprimento do plano para orientar os ajustes.',[
-   ['check-in',660,1280,'Check-in semanal com a pergunta sobre a qualidade do sono']]],
-  ['Desafios e conquistas','Participa no desafio da semana, assinala os dias cumpridos e acompanha os pontos e níveis que vais conquistando.',[
-   ['desafios',660,1096,'Desafio da semana com a meta e o progresso'],
-   ['conquistas',660,304,'Conquistas EF com nível, XP e acesso à classificação']]],
-  ['Coaching EF','Tira dúvidas com o assistente de IA sobre exercícios, repetições em reserva e descanso. As alterações relevantes ao plano passam pelo teu treinador.',[
-   ['coaching',660,920,'Coaching EF com atalhos para perguntas sobre o treino']]],
-  ['Perfil e lembretes','No perfil, podes configurar lembretes de treino e de check-in.',[
-   ['preferencias',660,437,'Preferências do perfil com lembretes de treino e check-in']]],
+  ['Plano semanal','Consulta os treinos da semana e a duração prevista de cada sessão.',
+   'plano',660,993,'Calendário e resumo de uma semana com três treinos concluídos'],
+  ['Histórico de treinos','Volta a abrir os treinos que já concluíste.',
+   'historico',660,742,'Três sessões concluídas com a opção Ver treino'],
+  ['Exercícios','Consulta a ilustração, as instruções, as séries, as repetições e o descanso.',
+   'exercicio',653,1245,'Ficha ilustrada da puxada na polia alta com séries e repetições'],
+  ['Registo de cargas','Regista as séries, as repetições e o peso ou marca o exercício como concluído.',
+   'registo',660,555,'Registo opcional de séries, repetições e peso e opção de concluir o exercício'],
+  ['Progresso','Vê a tua consistência ao longo das semanas.',
+   'progresso',660,978,'Gráfico de consistência semanal'],
+  ['Hábitos','Acompanha a meta diária de passos e os dados do último check-in.',
+   'habitos',660,632,'Meta diária de passos e registos de sono, energia e recuperação'],
+  ['Check-in semanal','Conta-me como correu a semana. Uso o teu feedback sobre sono, energia, stress, recuperação e cumprimento do plano para orientar os ajustes.',
+   'check-in',660,1280,'Check-in semanal com a pergunta sobre a qualidade do sono'],
+  ['Desafios','Participa no desafio da semana e assinala os dias cumpridos.',
+   'desafios',660,1096,'Desafio da semana com a meta e o progresso'],
+  ['Conquistas','Acompanha os pontos e níveis que vais conquistando.',
+   'conquistas',660,304,'Conquistas EF com nível, XP e acesso à classificação'],
+  ['Coaching EF','Tira dúvidas com o assistente de IA sobre exercícios, repetições em reserva e descanso. As alterações relevantes ao plano passam pelo teu treinador.',
+   'coaching',660,920,'Coaching EF com atalhos para perguntas sobre o treino'],
+  ['Perfil e lembretes','No perfil, podes configurar lembretes de treino e de check-in.',
+   'preferencias',660,437,'Preferências do perfil com lembretes de treino e check-in'],
  ];
- return `<div class="experience-stage app-gallery" role="region" aria-label="Carrossel de funcionalidades da App EF" tabindex="0">${features.map(([title,description,screens])=>`<article class="experience-slide app-feature">
-  <div class="experience-copy"><h3>${esc(title)}</h3><p>${esc(description)}</p></div>
-  <div class="app-feature-screens">${screens.map(([file,width,height,alt])=>{
-   const src=`./assets/media/ef-online-${file}.webp`;
-   return `<a href="${src}" aria-label="${esc('Ampliar: '+alt)}"><img src="${src}" width="${width}" height="${height}" alt="${esc(alt)}" loading="lazy" decoding="async"></a>`;
-  }).join('')}</div>
- </article>`).join('')}</div>
+ return `<div class="experience-stage app-gallery" role="region" aria-label="Carrossel de funcionalidades da App EF" tabindex="0">${features.map(([title,description,file,width,height,alt])=>{
+  const src=`./assets/media/ef-online-${file}.webp`;
+  return `<article class="experience-slide app-feature">
+   <div class="experience-copy"><h3>${esc(title)}</h3><p>${esc(description)}</p></div>
+   <div class="app-feature-screens"><a href="${src}" aria-label="${esc('Ampliar: '+alt)}"><img src="${src}" width="${width}" height="${height}" alt="${esc(alt)}" loading="lazy" decoding="async"></a></div>
+  </article>`;
+ }).join('')}</div>
  ${carouselControls()}`;
 }
 function appPage(d){
