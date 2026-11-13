@@ -156,7 +156,13 @@ function presencialPage(d){
  return `${nav(d)}<main id="conteudo">
  <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">${esc(p.hero.eyebrow)}</div><h1>${p.hero.title}</h1><p>${esc(p.hero.subtitle)}</p><div class="actions">${btn(d.site.instagram_url,'Pedir disponibilidade')}${btn('#formatos','Ver formatos','btn-light')}</div></div><div class="hero-photo">${img(p.hero.image,'Personal Training EF')}</div></div></section>
  <div class="location-band"><div class="wrap"><strong>${esc(p.location)}</strong><span>Sessões por marcação · disponibilidade limitada pelo horário presencial.</span></div></div>
- <section class="section paper" id="formatos"><div class="wrap"><div class="section-head"><h2>Escolhe o contexto. O acompanhamento mantém-se.</h2><p>O formato muda; a atenção à execução, progressão e contexto continua.</p></div><div class="formats">${p.formats.map((x,i)=>`<article class="format"><div class="eyebrow">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div></div></section>
+ <section class="experience formats-experience" id="formatos" aria-labelledby="formats-title">
+ <div class="wrap experience-heading"><h2 id="formats-title">Escolhe o contexto. O acompanhamento mantém-se.</h2><p>O formato muda, e continuas a ter acompanhamento na execução e na progressão.</p></div>
+ <div class="experience-stage formats-stage" role="region" aria-label="Carrossel de formatos de treino presencial" tabindex="0">
+ ${p.formats.map(({title,text})=>`<article class="experience-slide format-slide"><div class="experience-copy"><h3>${esc(title)}</h3><p>${esc(text)}</p></div></article>`).join('')}
+ </div>
+ ${carouselControls()}
+ </section>
  <section class="section"><div class="wrap"><div class="section-head"><h2>Como funciona.</h2><p>O presencial também segue uma rota clara para não transformar cada sessão numa aula isolada.</p></div><div class="journey">${p.process.map((x,i)=>`<article><div class="n">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div></div></section>
  <section class="section paper"><div class="wrap grid-2 training-photo-grid"><div><h2>Treino acompanhado no estúdio</h2><p class="lead muted">Escolho os exercícios de acordo com o teu objetivo e acompanho a execução durante a sessão.</p></div><figure class="training-photo"><img src="./assets/media/edgar-metodo-drive.webp" width="780" height="1386" loading="lazy" decoding="async" alt="Edgar Filipe a executar uma remada com halter no estúdio"></figure></div></section>
  <section class="section dark"><div class="wrap grid-2"><h2>${esc(p.closing_title)}</h2><div><p class="lead">${esc(p.closing_body)}</p>${btn(d.site.instagram_url,'Falar comigo no Instagram')}</div></div></section> </main>${footer(d)}`;
