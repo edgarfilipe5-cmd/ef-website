@@ -88,3 +88,9 @@ html{scroll-padding-top:85px}.form-start{display:inline-flex;margin:10px 0 24px;
  .form-grid{gap:18px}
  .form-card .progress-track{margin-bottom:18px}
 }
+
+.price-box,
+.form-card {
+  border-color: #a08150;
+  box-shadow: 0 5px 0 #a0815040, 0 14px 24px #0002;
+}

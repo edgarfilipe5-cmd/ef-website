@@ -137,10 +137,13 @@ function methodPage(d){
  const m=d.method;
  return `${nav(d)}<main id="conteudo">
  <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">${esc(m.hero.eyebrow)}</div><h1 style="max-width:10ch">${m.hero.title}</h1><p>${esc(m.hero.subtitle)}</p><div class="actions">${btn(applicationURL(d),'Candidatar-me')}${btn('#passos','Ver o método','btn-light')}</div></div><div class="hero-photo">${img('/assets/media/edgar-metodo-drive.webp','Edgar Filipe a executar uma remada com halter')}</div></div></section>
- <section class="section paper" id="passos"><div class="wrap">
-  <div class="section-head"><h2>Como aplico o Método EF</h2></div>
-  <div class="method-topics">${m.steps.map(({title,text})=>`<article class="card method-topic"><h3>${esc(title)}</h3><ul>${text.split('\n').filter(Boolean).map(point=>`<li>${esc(point)}</li>`).join('')}</ul></article>`).join('')}</div>
- </div></section>
+ <section class="experience method-experience" id="passos" aria-labelledby="method-topics-title">
+  <div class="wrap experience-heading"><h2 id="method-topics-title">Como aplico o Método EF</h2></div>
+  <div class="experience-stage method-topics" role="region" aria-label="Tópicos do Método EF" tabindex="0">
+   ${m.steps.map(({title,text})=>`<article class="experience-slide method-topic"><div class="experience-copy"><h3>${esc(title)}</h3><ul>${text.split('\n').filter(Boolean).map(point=>`<li>${esc(point)}</li>`).join('')}</ul></div></article>`).join('')}
+  </div>
+  ${carouselControls()}
+ </section>
  ${finalCTA(d,'Queres treinar com este acompanhamento?')} </main>${footer(d)}`;
 }
 function aboutPage(d){
