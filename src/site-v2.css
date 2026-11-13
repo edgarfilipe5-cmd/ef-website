@@ -915,12 +915,18 @@ html,body{overflow-x:clip}
  body[data-page=app] .footer,body[data-page=presential] .footer{padding-bottom:32px}
 }
 
+.app-experience {
+  background: radial-gradient(ellipse at 50% 52%, #584226 0%, #211a12 45%, #10100f 76%);
+}
 .app-experience .experience-heading p {
   color: #d4cbbd;
   margin-bottom: 18px;
 }
 .app-gallery .app-feature {
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  border-color: #a08150;
+  background: linear-gradient(145deg, #32271a, #161311 58%);
+  box-shadow: inset 0 1px 0 #ecd2a64d, 0 6px 0 #44331e, 0 10px 0 #21190f, 0 22px 32px #000b;
 }
 .app-gallery .experience-copy {
   padding: clamp(16px, 3vw, 24px);
@@ -934,9 +940,25 @@ html,body{overflow-x:clip}
 }
 .app-gallery.is-interactive {
   height: 558px;
+  perspective: 880px;
+  perspective-origin: center 44%;
 }
 .app-gallery.is-interactive .app-feature {
   height: 518px;
+}
+.app-gallery .app-feature[data-position="0"] {
+  --slide-z: 10px;
+  border-color: #c5a36a;
+}
+.app-gallery .app-feature[data-position="-1"] {
+  --slide-x: calc(-1 * min(580px, 64vw));
+  --slide-z: -205px;
+  --slide-ry: 48deg;
+}
+.app-gallery .app-feature[data-position="1"] {
+  --slide-x: min(580px, 64vw);
+  --slide-z: -205px;
+  --slide-ry: -48deg;
 }
 .app-feature-screens {
   display: flex;
@@ -946,7 +968,7 @@ html,body{overflow-x:clip}
   min-width: 0;
   min-height: 0;
   padding: 16px;
-  background: #141210;
+  background: radial-gradient(ellipse at 44% 34%, #443420, #151210 76%);
 }
 .app-feature-screens a {
   position: relative;
@@ -955,10 +977,10 @@ html,body{overflow-x:clip}
   min-width: 0;
   aspect-ratio: 3 / 4;
   overflow: hidden;
-  border: 1px solid #776344;
+  border: 1px solid #ad8a55;
   border-radius: 12px;
   background: #0c0c0c;
-  box-shadow: 0 10px 24px #0008;
+  box-shadow: inset 0 1px 0 #e7c58c66, 0 4px 0 #5c4427, 0 8px 0 #251a10, 0 16px 22px #000a;
 }
 .app-feature-screens a:focus-visible {
   outline: 3px solid var(--gold);
@@ -982,6 +1004,16 @@ html,body{overflow-x:clip}
   .app-gallery.is-interactive .app-feature {
     height: 564px;
     grid-template-rows: minmax(0, 1fr) auto;
+  }
+  .app-gallery .app-feature[data-position="-1"] {
+    --slide-x: -76vw;
+    --slide-z: -148px;
+    --slide-ry: 43deg;
+  }
+  .app-gallery .app-feature[data-position="1"] {
+    --slide-x: 76vw;
+    --slide-z: -148px;
+    --slide-ry: -43deg;
   }
   .app-gallery .experience-copy {
     grid-row: 2;
