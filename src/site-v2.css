@@ -1099,3 +1099,67 @@ html,body{overflow-x:clip}
     padding: 18px;
   }
 }
+
+.about-hero h1 {
+  font-size: clamp(2.35rem, 4.2vw, 4.4rem);
+  max-width: 17ch;
+  margin-top: 12px;
+}
+.about-hero p {
+  font-size: 1rem;
+}
+.about-hero .hero-photo {
+  height: clamp(440px, 49vw, 650px);
+}
+.about-bio {
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  align-items: start;
+}
+.about-bio .bio-list p {
+  color: #514c43;
+}
+.about-bio .bio-list p:last-child {
+  margin-bottom: 0;
+}
+.about-online .app-grid {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+}
+.about-online-cards {
+  display: grid;
+  gap: 22px;
+}
+.about-online .about-online-card {
+  display: block;
+  width: 100%;
+  padding: clamp(18px, 3vw, 28px);
+  border-color: #a08150;
+  background: linear-gradient(145deg, #32271a, #161311 58%);
+  box-shadow: inset 0 1px 0 #ecd2a64d, 0 5px 0 #44331e, 0 9px 0 #21190f, 0 18px 28px #0008;
+}
+.about-online-card p {
+  margin: 0;
+  color: #eee6da;
+}
+.about-online-card strong {
+  color: var(--gold-light);
+}
+body[data-page="about"] .final-cta .btn {
+  padding-block: 10px;
+  text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .about-bio,
+  .about-online .app-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .about-hero .hero-photo {
+    width: min(100%, 540px);
+    justify-self: center;
+  }
+}
+@media (max-width: 760px) {
+  .about-hero .hero-photo {
+    height: clamp(305px, 105vw, 485px);
+  }
+}

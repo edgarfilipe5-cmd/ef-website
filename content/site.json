@@ -338,39 +338,27 @@
   "about": {
     "hero": {
       "eyebrow": "Edgar Filipe · Personal Trainer",
-      "title": "CIÊNCIA PARA ORIENTAR. <span>PESSOAS PARA DECIDIR.</span>",
-      "subtitle": "A minha função não é tornar o treino mais complicado. É transformar informação em decisões que consigas executar e manter.",
-      "image": "/assets/media/edgar-sobre-drive.webp",
-      "focus_x": 50,
-      "focus_y": 25,
-      "zoom": 100
+      "title": "Gosto de puxar por ti. <span>E gosto de te ensinar a treinar.</span>",
+      "image": "/assets/media/edgar-sobre-drive.webp"
     },
-    "bio_title": "Quem está do outro lado.",
+    "intro": [
+      "Imagina que chegas ao ginásio e a carga da semana passada hoje parece muito mais pesada. Manténs? Baixas um pouco? Fazes menos repetições? Quando me contas que isso aconteceu, quero perceber contigo o que sentiste e explicar-te como eu tomaria essa decisão. Assim, da próxima vez que estiveres a treinar por tua conta, já sabes o que avaliar.",
+      "Foi com essa ideia que criei o <strong>EF Online</strong>. Quero que tenhas um plano para seguir e que, à medida que treinas, ganhes conhecimento e confiança para tomar as tuas próprias decisões."
+    ],
+    "bio_title": "O que mudou na minha forma de treinar pessoas",
     "bio": [
-      "Sou o Edgar Filipe, Personal Trainer e fundador da EF.",
-      "Sou licenciado em Ciências do Desporto e trabalho com treino personalizado, online e presencial.",
-      "A minha forma de trabalhar parte de uma ideia simples: o treino tem de ser suficientemente estruturado para produzir progresso e suficientemente realista para continuar a ser cumprido."
+      "Quando comecei como Personal Trainer, queria que cada sessão seguisse à risca o que tinha aprendido nos livros. Se me dissesses que naquele dia só tinhas 20 minutos, eu teria dito que nem valia a pena começar. Hoje, num dia desses, ajudo-te a escolher o que vale a pena fazer com o tempo que tens. E explico-te porquê, para que consigas fazer essa escolha da próxima vez.",
+      "Sou o Edgar Filipe e <strong>treino musculação desde os 15 anos</strong>. Joguei futebol e futsal, sempre gostei de ciências e acabei por juntar esses interesses na licenciatura em Ciências do Desporto. Fiz também o curso PTFC e outras formações complementares. Já acompanhei <strong>mais de 100 clientes</strong> e continuo a investir em formação. Ensinar faz parte do meu trabalho, e gosto de encontrar a explicação que faz sentido para cada pessoa."
     ],
-    "beliefs": [
-      {
-        "title": "Clareza",
-        "text": "Quero que saibas o que fazer e porquê, sem transformar o treino num problema adicional."
-      },
-      {
-        "title": "Consistência",
-        "text": "Uma boa semana isolada vale menos do que várias semanas suficientemente boas."
-      },
-      {
-        "title": "Proximidade",
-        "text": "Acompanhamento significa perceber o que está a acontecer contigo, não apenas enviar um plano."
-      },
-      {
-        "title": "Decisão",
-        "text": "Feedback, treino e contexto servem para decidir quando manter, progredir ou adaptar."
-      }
+    "online_title": "Como te acompanho no EF Online",
+    "online": [
+      "Primeiro, quero saber <strong>o que queres melhorar e onde é que conseguimos encaixar os teus treinos</strong>. Se tens dois dias para treinar força e gostas de jogar futebol ou pádel ao fim de semana, é com essa semana que monto o teu plano. Podes querer ganhar músculo, perder gordura ou ter mais fôlego para o jogo de domingo. O treino parte do teu objetivo e da vida que já levas.",
+      "Na <strong>App EF</strong>, tens o teu plano, as indicações para cada exercício e um sítio para registar as cargas e as repetições. No <strong>check-in semanal</strong>, sou eu que revejo os teus registos contigo. Se as últimas repetições já saem com controlo, explico-te como perceber se está na altura de subir a carga. Se o trabalho apertou e só consegues fazer duas das três sessões, ajudo-te a escolher o que priorizar.",
+      "Quero que sintas a diferença quando treinas por tua conta. Sabes o que vais fazer, percebes o que estás a tentar melhorar e tens alguém com quem falar quando ficas na dúvida."
     ],
-    "why_title": "Porque criei o ecossistema EF.",
-    "why_body": "Quis juntar o que normalmente aparece separado: um método claro, acompanhamento humano e uma app que mantém o processo organizado. A tecnologia não substitui a relação treinador-cliente; torna-a mais informada."
+    "closing_title": "O que queres melhorar e onde é que conseguimos encaixar o treino na tua semana?",
+    "closing_body": "Conta-me como é a tua rotina e falamos sobre como te posso acompanhar online.",
+    "cta": "Quero falar com o Edgar sobre o EF Online"
   },
   "presential": {
     "hero": {

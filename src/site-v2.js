@@ -17,7 +17,7 @@ function nav(d){
 }
 function footer(d){
   return `<footer class="footer"><div class="wrap footer-inner"><img src="./assets/brand/ef-horizontal-white.svg" alt="Edgar Filipe Personal Trainer"><div><a href="./metodo.html">Método EF</a> · <a href="./privacidade-candidatura.html">Privacidade</a> · <a href="${d.site.instagram_url}" target="_blank" rel="noopener">Instagram</a></div></div></footer>
-  <a class="mobile-apply" href="${applicationURL(d)}"><span>Quero acompanhamento</span><b>→</b></a>`;
+  <a class="mobile-apply" href="${PAGE==='about'?'./coaching.html#planos-online':applicationURL(d)}"><span>${PAGE==='about'?'Ver programas EF Online':'Quero acompanhamento'}</span><b aria-hidden="true">→</b></a>`;
 }
 function faq(d){return `<section class="section paper"><div class="wrap faq-grid"><div><div class="eyebrow">FAQ</div><h2>Antes de te candidatares.</h2></div><div>${d.faq.map(x=>`<details><summary>${esc(x.question)}</summary><p>${esc(x.answer)}</p></details>`).join('')}</div></div></section>`}
 function finalCTA(d,title='Se queres deixar de improvisar, começa pela candidatura.'){return `<section class="final-cta"><div class="wrap final-grid"><h2>${title}</h2><div><p>Primeiro percebo o teu contexto. Se fizer sentido avançarmos, tratamos do resto a partir daí.</p>${btn(applicationURL(d),'Quero candidatar-me','btn-dark')}</div></div></section>`}
@@ -148,12 +148,33 @@ function methodPage(d){
 }
 function aboutPage(d){
  const a=d.about;
+ const programs='./coaching.html#planos-online';
  return `${nav(d)}<main id="conteudo">
- <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">${esc(a.hero.eyebrow)}</div><h1>${a.hero.title}</h1><p>${esc(a.hero.subtitle)}</p><div class="actions">${btn(applicationURL(d),'Candidatar-me')}${btn('./metodo.html','Conhecer o Método EF','btn-light')}</div></div><div class="hero-photo">${img(a.hero.image,'Edgar Filipe')}</div></div></section>
- <section class="section paper"><div class="wrap grid-2"><h2>${esc(a.bio_title)}</h2><div class="bio-list">${a.bio.map(x=>`<p>${esc(x)}</p>`).join('')}</div></div></section>
- <section class="section dark"><div class="wrap"><div class="section-head"><h2>O que valorizo no acompanhamento.</h2><p>Não procuro impressionar com complexidade. Procuro tornar as decisões mais claras e o processo mais sustentável.</p></div><div class="beliefs">${a.beliefs.map(x=>`<article class="belief"><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div></div></section>
- <section class="section paper"><div class="wrap grid-2"><h2>${esc(a.why_title)}</h2><p class="lead muted">${esc(a.why_body)}</p></div></section>
- ${finalCTA(d,'Se procuras acompanhamento com contexto, começa por me contar onde estás.')} </main>${footer(d)}`;
+ <section class="page-hero about-hero"><div class="wrap page-hero-grid">
+  <div>
+   <div class="eyebrow">${esc(a.hero.eyebrow)}</div>
+   <h1>${a.hero.title}</h1>
+   ${a.intro.map(paragraph=>`<p>${paragraph}</p>`).join('')}
+   <div class="actions">${btn(programs,'Ver programas EF Online')}</div>
+  </div>
+  <div class="hero-photo"><img src="${path(a.hero.image)}" alt="Edgar Filipe, Personal Trainer" width="800" height="1421" fetchpriority="high" decoding="async"></div>
+ </div></section>
+ <section class="section paper"><div class="wrap grid-2 about-bio">
+  <h2>${esc(a.bio_title)}</h2>
+  <div class="bio-list">${a.bio.map(paragraph=>`<p>${paragraph}</p>`).join('')}</div>
+ </div></section>
+ <section class="experience about-online" aria-labelledby="about-online-title"><div class="wrap app-grid">
+  <div>
+   <h2 id="about-online-title">${esc(a.online_title)}</h2>
+   <div class="about-online-cards">${a.online.map(paragraph=>`<div class="experience-slide about-online-card"><p>${paragraph}</p></div>`).join('')}</div>
+  </div>
+  ${appScreen()}
+ </div></section>
+ <section class="final-cta"><div class="wrap final-grid">
+  <h2>${esc(a.closing_title)}</h2>
+  <div><p>${esc(a.closing_body)}</p>${btn(applicationURL(d),a.cta,'btn-dark')}</div>
+ </div></section>
+ </main>${footer(d)}`;
 }
 function presencialPage(d){
  const p=d.presential;
