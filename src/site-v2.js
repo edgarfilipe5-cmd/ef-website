@@ -37,7 +37,7 @@ function offerChoices(d){
  </div></section>`;
 }
 function appScreen(){
- return `<figure class="app-device"><div class="app-device-shell"><img src="./assets/media/ef-app-online-atual.webp" width="600" height="840" alt="App EF Online no iPhone com o treino do dia, botão para retomar a sessão e acesso à evolução" loading="lazy" decoding="async"></div><figcaption>Captura da App EF Online no iPhone</figcaption></figure>`;
+ return `<figure class="app-device"><div class="app-device-shell"><img src="./assets/media/ef-online-inicio.webp" width="660" height="1275" alt="App EF Online no iPhone com o treino do dia, botão para retomar a sessão e acesso à evolução" loading="lazy" decoding="async"></div><figcaption>Vista de aluno da App EF Online</figcaption></figure>`;
 }
 function experience(){
  const slides=[
@@ -87,15 +87,41 @@ function coaching(d){
  ${faq(d)}${finalCTA(d,'Queres começar a treinar com acompanhamento?')}
  </main>${footer(d)}`;
 }
+function appGallery(){
+ const features=[
+  ['Plano semanal e histórico','Consulta os treinos da semana, vê quanto tempo está previsto para cada sessão e volta a abrir os treinos concluídos.',[
+   ['plano',660,993,'Calendário e resumo de uma semana com três treinos concluídos'],
+   ['historico',660,742,'Três sessões concluídas com a opção Ver treino']]],
+  ['Exercícios e registo de cargas','Consulta a ilustração, as instruções, as séries, as repetições e o descanso. Podes registar o que fizeste ou marcar o exercício como concluído.',[
+   ['exercicio',653,1245,'Ficha ilustrada da puxada na polia alta com séries e repetições'],
+   ['registo',660,555,'Registo opcional de séries, repetições e peso e opção de concluir o exercício']]],
+  ['Progresso e hábitos','Vê a tua consistência ao longo das semanas e acompanha a meta diária de passos e os dados do último check-in.',[
+   ['progresso',660,978,'Gráfico de consistência semanal'],
+   ['habitos',660,632,'Meta diária de passos e registos de sono, energia e recuperação']]],
+  ['Check-in semanal','Conta-me como correu a semana. Uso o teu feedback sobre sono, energia, stress, recuperação e cumprimento do plano para orientar os ajustes.',[
+   ['check-in',660,1280,'Check-in semanal com a pergunta sobre a qualidade do sono']]],
+  ['Desafios e conquistas','Participa no desafio da semana, assinala os dias cumpridos e acompanha os pontos e níveis que vais conquistando.',[
+   ['desafios',660,1096,'Desafio da semana com a meta e o progresso'],
+   ['conquistas',660,304,'Conquistas EF com nível, XP e acesso à classificação']]],
+  ['Coaching EF','Tira dúvidas com o assistente de IA sobre exercícios, repetições em reserva e descanso. As alterações relevantes ao plano passam pelo teu treinador.',[
+   ['coaching',660,920,'Coaching EF com atalhos para perguntas sobre o treino']]],
+  ['Perfil e lembretes','No perfil, podes configurar lembretes de treino e de check-in.',[
+   ['preferencias',660,437,'Preferências do perfil com lembretes de treino e check-in']]],
+ ];
+ return `<div class="app-gallery">${features.map(([title,description,screens])=>`<article class="card app-feature">
+  <h3>${esc(title)}</h3><p>${esc(description)}</p>
+  <div class="app-feature-screens">${screens.map(([file,width,height,alt])=>{
+   const src=`./assets/media/ef-online-${file}.webp`;
+   return `<a href="${src}" aria-label="${esc('Ampliar: '+alt)}"><img src="${src}" width="${width}" height="${height}" alt="${esc(alt)}" loading="lazy" decoding="async"></a>`;
+  }).join('')}</div>
+ </article>`).join('')}</div>`;
+}
 function appPage(d){
  return `${nav(d)}<main id="conteudo">
  <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">Incluída em todos os programas</div><h1>O teu treino na <span>App EF</span></h1><p>Abre o treino do dia, retoma uma sessão em curso e consulta a tua evolução. O plano que preparo para ti está sempre à mão.</p><div class="actions">${btn('./coaching.html#planos-online','Ver programas')}</div></div>${appScreen()}</div></section>
- <section class="section paper"><div class="wrap"><div class="section-head"><h2>Do plano à tua evolução</h2></div><div class="benefits-grid app-benefits">
- <article class="card"><h3>Treino do dia</h3><p>Consulta o plano que preparei e os exercícios da sessão.</p></article>
- <article class="card"><h3>Retomar a sessão</h3><p>Vê quantos exercícios já concluíste e continua o treino em curso.</p></article>
- <article class="card"><h3>Progresso</h3><p>Consulta a consistência das sessões e a evolução ao longo do plano.</p></article>
- <article class="card"><h3>Feedback</h3><p>Uso os teus registos para orientar a progressão e ajustar o plano.</p></article>
- </div></div></section>
+ <section class="section paper" id="funcionalidades"><div class="wrap"><div class="section-head"><h2>Vê como funciona a App EF</h2><p>Abre uma captura para veres os detalhes.</p></div>
+ ${appGallery()}
+ </div></section>
  ${finalCTA(d,'Treina com um plano feito para ti')}
  </main>${footer(d)}`;
 }

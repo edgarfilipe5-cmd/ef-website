@@ -914,3 +914,39 @@ html,body{overflow-x:clip}
  body[data-page=app] .mobile-apply,body[data-page=presential] .mobile-apply{display:none}
  body[data-page=app] .footer,body[data-page=presential] .footer{padding-bottom:32px}
 }
+
+.app-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 24px);
+}
+.app-feature {
+  min-width: 0;
+}
+.app-feature-screens {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 18px;
+}
+.app-feature-screens a {
+  display: block;
+  flex: 1 1 160px;
+  max-width: 300px;
+  border-radius: 14px;
+}
+.app-feature-screens a:focus-visible {
+  outline: 3px solid #815d24;
+  outline-offset: 4px;
+}
+.app-feature-screens img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+  background: #0c0c0c;
+}
+@media (max-width: 700px) {
+  .app-gallery { grid-template-columns: 1fr; }
+}
