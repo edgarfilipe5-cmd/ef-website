@@ -920,7 +920,17 @@ html,body{overflow-x:clip}
   margin-bottom: 18px;
 }
 .app-gallery .app-feature {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+}
+.app-gallery .experience-copy {
+  padding: clamp(16px, 3vw, 24px);
+}
+.app-gallery .experience-copy h3 {
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+}
+.app-gallery .experience-copy p {
+  margin-bottom: 0;
+  font-size: .875rem;
 }
 .app-gallery.is-interactive {
   height: 520px;
@@ -941,7 +951,7 @@ html,body{overflow-x:clip}
 .app-feature-screens a {
   position: relative;
   display: block;
-  flex: 0 1 clamp(96px, 27vw, 148px);
+  flex: 0 1 218px;
   min-width: 0;
   aspect-ratio: 3 / 4;
   overflow: hidden;
@@ -966,10 +976,21 @@ html,body{overflow-x:clip}
   .app-gallery .app-feature {
     grid-template-columns: 1fr;
   }
+  .app-gallery.is-interactive {
+    height: 558px;
+  }
   .app-gallery.is-interactive .app-feature {
+    height: 518px;
     grid-template-rows: minmax(0, 1fr) auto;
   }
-  .app-feature-screens {
-    padding: 14px 14px 24px;
+  .app-gallery .experience-copy {
+    grid-row: 2;
+  }
+  .app-gallery .app-feature-screens {
+    grid-row: 1;
+    padding: 12px;
+  }
+  .app-feature-screens a {
+    flex-basis: 250px;
   }
 }
