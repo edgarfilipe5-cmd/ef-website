@@ -933,10 +933,10 @@ html,body{overflow-x:clip}
   font-size: .875rem;
 }
 .app-gallery.is-interactive {
-  height: 520px;
+  height: 558px;
 }
 .app-gallery.is-interactive .app-feature {
-  height: 480px;
+  height: 518px;
 }
 .app-feature-screens {
   display: flex;
@@ -951,7 +951,7 @@ html,body{overflow-x:clip}
 .app-feature-screens a {
   position: relative;
   display: block;
-  flex: 0 1 218px;
+  flex: 0 1 284px;
   min-width: 0;
   aspect-ratio: 3 / 4;
   overflow: hidden;
@@ -966,21 +966,21 @@ html,body{overflow-x:clip}
 }
 .app-feature-screens img {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  inset: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  object-fit: contain;
+  object-position: center;
 }
 @media (max-width: 740px) {
   .app-gallery .app-feature {
     grid-template-columns: 1fr;
   }
   .app-gallery.is-interactive {
-    height: 558px;
+    height: 604px;
   }
   .app-gallery.is-interactive .app-feature {
-    height: 518px;
+    height: 564px;
     grid-template-rows: minmax(0, 1fr) auto;
   }
   .app-gallery .experience-copy {
@@ -989,8 +989,5 @@ html,body{overflow-x:clip}
   .app-gallery .app-feature-screens {
     grid-row: 1;
     padding: 12px;
-  }
-  .app-feature-screens a {
-    flex-basis: 250px;
   }
 }
