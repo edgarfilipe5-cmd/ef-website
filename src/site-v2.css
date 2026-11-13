@@ -939,34 +939,37 @@ html,body{overflow-x:clip}
   background: #141210;
 }
 .app-feature-screens a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 1 220px;
+  position: relative;
+  display: block;
+  flex: 0 1 clamp(96px, 27vw, 148px);
   min-width: 0;
-  height: 100%;
-  max-height: 440px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid #776344;
   border-radius: 12px;
+  background: #0c0c0c;
+  box-shadow: 0 10px 24px #0008;
 }
 .app-feature-screens a:focus-visible {
   outline: 3px solid var(--gold);
   outline-offset: 3px;
 }
 .app-feature-screens img {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  border-radius: inherit;
+  object-fit: cover;
+  object-position: center top;
 }
 @media (max-width: 740px) {
   .app-gallery .app-feature {
     grid-template-columns: 1fr;
   }
   .app-gallery.is-interactive .app-feature {
-    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
   }
   .app-feature-screens {
-    padding: 10px 14px 16px;
+    padding: 14px 14px 24px;
   }
 }
