@@ -137,10 +137,11 @@ function methodPage(d){
  const m=d.method;
  return `${nav(d)}<main id="conteudo">
  <section class="page-hero"><div class="wrap page-hero-grid"><div><div class="eyebrow">${esc(m.hero.eyebrow)}</div><h1 style="max-width:10ch">${m.hero.title}</h1><p>${esc(m.hero.subtitle)}</p><div class="actions">${btn(applicationURL(d),'Candidatar-me')}${btn('#passos','Ver o método','btn-light')}</div></div><div class="hero-photo">${img('/assets/media/edgar-metodo-drive.webp','Edgar Filipe a executar uma remada com halter')}</div></div></section>
- <section class="section paper" id="passos"><div class="wrap"><div class="section-head"><h2>Quatro decisões. Um processo.</h2><p>O objetivo não é complicar o treino. É garantir que cada decisão tem uma razão.</p></div><div class="method-steps">${m.steps.map((x,i)=>`<article class="method-step"><div class="n">${String(i+1).padStart(2,'0')}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div></div></section>
- <section class="section dark"><div class="wrap"><div class="section-head"><h2>O que orienta as decisões.</h2><p>A ciência dá princípios. O acompanhamento transforma esses princípios em decisões úteis para uma pessoa real.</p></div><div class="principles">${m.principles.map(x=>`<article class="principle"><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div></div></section>
- <section class="section"><div class="wrap"><div class="section-head"><h2>O que observamos.</h2><p>Não dependemos de uma única métrica. Cruzamos informação de acordo com o objetivo.</p></div><div class="measure-row">${m.measure.map(x=>`<span>${esc(x)}</span>`).join('')}</div></div></section>
- ${finalCTA(d,'Não precisas de mais complexidade. Precisas de direção.')} </main>${footer(d)}`;
+ <section class="section paper" id="passos"><div class="wrap">
+  <div class="section-head"><h2>Como aplico o Método EF</h2></div>
+  <div class="method-topics">${m.steps.map(({title,text})=>`<article class="card method-topic"><h3>${esc(title)}</h3><ul>${text.split('\n').filter(Boolean).map(point=>`<li>${esc(point)}</li>`).join('')}</ul></article>`).join('')}</div>
+ </div></section>
+ ${finalCTA(d,'Queres treinar com este acompanhamento?')} </main>${footer(d)}`;
 }
 function aboutPage(d){
  const a=d.about;

@@ -1049,3 +1049,20 @@ html,body{overflow-x:clip}
   max-width: 36ch;
   margin: 0 auto;
 }
+
+.method-topics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.method-topic ul {
+  padding-inline-start: 1.2em;
+  margin: 12px 0 0;
+  color: var(--muted);
+}
+.method-topic li + li {
+  margin-top: 10px;
+}
+@media (max-width: 740px) {
+  .method-topics { grid-template-columns: 1fr; }
+}

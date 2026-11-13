@@ -277,25 +277,29 @@
   "method": {
     "hero": {
       "eyebrow": "Método EF",
-      "title": "ESTRUTURA PARA EVOLUIR. <span>FLEXIBILIDADE PARA MANTER.</span>",
-      "subtitle": "O plano só é bom se for tecnicamente sólido e suficientemente realista para ser seguido na tua vida."
+      "title": "Treino feito para a tua <span>semana real.</span>",
+      "subtitle": "Preparo o teu plano a partir do teu objetivo e da tua rotina. Depois, uso os teus registos e o teu feedback para decidir contigo quando progredir e quando ajustar."
     },
     "steps": [
       {
-        "title": "Perceber",
-        "text": "Objetivo, experiência, rotina, disponibilidade, limitações e histórico entram primeiro na decisão."
+        "title": "Avaliação inicial",
+        "text": "Começo pelo teu objetivo, experiência, equipamento, preferências e limitações.\nDefino quantos treinos cabem mesmo na tua semana e quanto tempo tens por sessão. Se três dias forem os que consegues cumprir, o plano começa aí."
       },
       {
-        "title": "Planear",
-        "text": "O treino é construído para aquilo que consegues executar com consistência — não para uma semana ideal."
+        "title": "Plano de treino",
+        "text": "Para quem está a começar, costumo propor 2 a 3 treinos de corpo inteiro por semana. Nas primeiras duas semanas, dou prioridade à técnica e à criação de rotina.\nEscolho exercícios adequados ao teu equipamento e ao teu nível. No online, encontras na App EF as séries, repetições, descanso e, quando se aplica, a margem de esforço."
       },
       {
-        "title": "Acompanhar",
-        "text": "Treino, feedback, consistência, recuperação e contexto ajudam a perceber a resposta ao processo."
+        "title": "Progressão",
+        "text": "Mantemos os exercícios que estão a resultar para comparar a técnica, as repetições e a carga ao longo das semanas.\nNuma remada de 3 séries de 8 a 12 repetições, por exemplo, podes começar pelas 8. Ao chegar às 12 nas três séries, com boa técnica e a margem de esforço prevista, posso subir ligeiramente a carga."
       },
       {
-        "title": "Ajustar",
-        "text": "O plano muda quando existe motivo: progressão, dificuldade, contexto, disponibilidade ou resposta ao treino."
+        "title": "Acompanhamento e ajustes",
+        "text": "No online, consulto os teus registos na App EF e o check-in semanal sobre sono, energia, stress e recuperação. No presencial, observo a execução e adapto a sessão no momento.\nSe a falta de tempo se repete, posso encurtar o treino e manter os exercícios prioritários. Se o desempenho cair várias vezes, revejo o esforço, o volume e a recuperação antes de decidir."
+      },
+      {
+        "title": "Como medimos o progresso",
+        "text": "Para ganhar massa muscular, acompanho cargas e repetições e ajusto o volume à tua recuperação. Para perder gordura, posso incluir uma meta de passos ou cardio que caiba na tua rotina.\nConsoante o objetivo, acompanhamos também a regularidade dos treinos, o peso, as medidas ou a forma como a roupa te assenta."
       }
     ],
     "principles": [
